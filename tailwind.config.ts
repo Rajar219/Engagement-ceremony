@@ -9,6 +9,39 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        lavender: {
+          50: '#faf7fd',
+          100: '#f3ecfa',
+          200: '#e8daf5',
+          300: '#d5bdec',
+          400: '#bc95e0',
+          500: '#a16dd1',
+          600: '#874ec0',
+          700: '#6f3ba3',
+          800: '#5c3286',
+          900: '#4c2b6d',
+          950: '#220f36',
+        },
+        champagne: {
+          50: '#fdfbf7',
+          100: '#f9f5eb',
+          200: '#f3e9d2',
+          300: '#e9d7af',
+          400: '#dcbe83',
+          500: '#d4af37', // Metallic champagne gold
+          600: '#be9628',
+          700: '#987321',
+          800: '#7c5c21',
+          900: '#674c20',
+        },
+        ivory: {
+          50: '#fdfcf9',
+          100: '#fbf8f2',
+          200: '#f6f0e2',
+          300: '#eee3cb',
+          400: '#e3d1ac',
+          500: '#d4bc8b',
+        },
         gold: {
           50: '#fdfbf7',
           100: '#fbf7ee',
@@ -20,18 +53,6 @@ const config: Config = {
           700: '#957121',
           800: '#7b5c21',
           900: '#684d20',
-        },
-        rose: {
-          50: '#fff1f2',
-          100: '#ffe4e6',
-          200: '#fecdd3',
-          300: '#fda4af',
-          400: '#fb7185',
-          500: '#f43f5e',
-          600: '#e11d48',
-          700: '#be123c',
-          800: '#9f1239',
-          900: '#881337',
         },
         burgundy: {
           50: '#fcf4f5',
@@ -46,14 +67,10 @@ const config: Config = {
           900: '#682a36',
           950: '#3a121b',
         },
-        emerald: {
-          850: '#064232',
-          950: '#02241b',
-        }
       },
       fontFamily: {
-        serif: ['var(--font-playfair)', 'Georgia', 'serif'],
-        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+        serif: ['var(--font-playfair)', 'Cinzel', 'Georgia', 'serif'],
+        sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
         script: ['var(--font-alex-brush)', 'cursive', 'serif'],
       },
       backgroundImage: {
@@ -63,6 +80,7 @@ const config: Config = {
         'float-slow': 'float 6s ease-in-out infinite',
         'pulse-subtle': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'shimmer': 'shimmer 2.5s infinite',
+        'seal-crack': 'crack 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards',
       },
       keyframes: {
         float: {
@@ -71,6 +89,11 @@ const config: Config = {
         },
         shimmer: {
           '100%': { transform: 'translateX(100%)' },
+        },
+        crack: {
+          '0%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(1.08)' },
+          '100%': { transform: 'scale(1.02)' },
         }
       }
     },

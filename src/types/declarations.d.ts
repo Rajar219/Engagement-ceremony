@@ -4,6 +4,7 @@ declare module 'lucide-react' {
     size?: string | number;
     color?: string;
     strokeWidth?: string | number;
+    className?: string;
   }
   export type LucideIcon = React.FC<LucideProps>;
 
@@ -13,7 +14,9 @@ declare module 'lucide-react' {
   export const VolumeX: LucideIcon;
   export const Sparkles: LucideIcon;
   export const ChevronDown: LucideIcon;
+  export const ChevronRight: LucideIcon;
   export const Calendar: LucideIcon;
+  export const CalendarCheck: LucideIcon;
   export const Clock: LucideIcon;
   export const MapPin: LucideIcon;
   export const Heart: LucideIcon;
@@ -27,15 +30,25 @@ declare module 'lucide-react' {
   export const Building: LucideIcon;
   export const Info: LucideIcon;
   export const CheckCircle2: LucideIcon;
+  export const XCircle: LucideIcon;
+  export const AlertCircle: LucideIcon;
   export const Send: LucideIcon;
   export const User: LucideIcon;
   export const Phone: LucideIcon;
+  export const Mail: LucideIcon;
   export const Users: LucideIcon;
   export const MessageSquare: LucideIcon;
   export const Edit3: LucideIcon;
   export const Share2: LucideIcon;
   export const Music: LucideIcon;
   export const Award: LucideIcon;
+  export const Lock: LucideIcon;
+  export const Search: LucideIcon;
+  export const Download: LucideIcon;
+  export const LogOut: LucideIcon;
+  export const RefreshCw: LucideIcon;
+  export const ShieldCheck: LucideIcon;
+  export const Eye: LucideIcon;
 
   const icons: Record<string, LucideIcon>;
   export default icons;

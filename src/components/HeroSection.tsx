@@ -1,235 +1,165 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { Calendar, Clock, MapPin, Heart, Sparkles, ChevronDown, Bell } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Calendar, Clock, MapPin, ChevronDown, Sparkles } from 'lucide-react';
 import { invitationConfig } from '@/config/invitation.config';
 
-interface TimeLeft {
-  days: number;
-  hours: number;
-  minutes: number;
-  seconds: number;
-  isComplete: boolean;
+interface HeroSectionProps {
+  isVisible?: boolean;
 }
 
-export const HeroSection: React.FC = () => {
-  const [timeLeft, setTimeLeft] = useState<TimeLeft>({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-    isComplete: false,
-  });
+export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) => {
+  const [mounted, setMounted] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   const videoSrc = invitationConfig.media.videos.heroBackground?.src || '/assets/videos/hero-background.mp4';
   const posterSrc = invitationConfig.media.videos.heroBackground?.poster || '/assets/images/hero-poster.jpg';
 
   useEffect(() => {
-    const targetDate = new Date(invitationConfig.engagement.isoDate).getTime();
-
-    const calculateTime = () => {
-      const now = new Date().getTime();
-      const difference = targetDate - now;
-
-      if (difference <= 0) {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0, isComplete: true });
-        return;
-      }
-
-      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-      setTimeLeft({ days, hours, minutes, seconds, isComplete: false });
-    };
-
-    calculateTime();
-    const interval = setInterval(calculateTime, 1000);
-    return () => clearInterval(interval);
+    setMounted(true);
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {});
+    }
   }, []);
 
   return (
-    <section className="relative min-h-[100svh] w-full flex flex-col items-center justify-between text-center overflow-hidden px-4 py-8">
-      {/* VIDEO HERO BACKGROUND */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
+    <section className="relative min-h-[100svh] w-full flex flex-col items-center justify-between text-center overflow-hidden px-4 py-8 select-none">
+      {/* 1. ROYAL LAVENDER CURTAIN VIDEO BACKGROUND */}
+      <div className="absolute inset-0 z-0 overflow-hidden bg-[#180a2b]">
         <video
+          ref={videoRef}
           src={videoSrc}
           poster={posterSrc}
           autoPlay
           muted
           loop
           playsInline
-          className="w-full h-full object-cover object-center scale-105"
+          preload="auto"
+          className="w-full h-full object-cover object-center scale-[1.02] filter brightness-95"
         />
-        {/* Luxury Vignette & Darkening Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#120508]/85 via-[#1a060d]/75 to-[#0e0306]/95" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_20%,_#0e0306_90%)]" />
+
+        {/* Soft, non-intrusive vignette that preserves the central open entrance and heavenly clouds */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#180a2b]/70 via-transparent to-[#12051e]/85" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_35%,_rgba(18,5,30,0.6)_95%)] pointer-events-none" />
       </div>
 
-      {/* TOP CONTENT: Invocations & Badges */}
-      <div className="relative z-10 w-full max-w-4xl pt-6 flex flex-col items-center">
-        {/* Auspicious Header */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/40 border border-gold-500/30 backdrop-blur-md mb-4 shadow-lg">
-          <Sparkles className="w-3.5 h-3.5 text-gold-400" />
-          <span className="text-xs uppercase tracking-[0.25em] text-gold-300 font-serif">
+      {/* 2. TOP HEADER (Delicate Auspicious Greeting) */}
+      <div
+        className={`relative z-10 w-full max-w-2xl pt-6 sm:pt-8 flex flex-col items-center transition-all duration-1000 ${
+          mounted ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
+        }`}
+      >
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#200c38]/60 border border-champagne-400/30 backdrop-blur-md shadow-lg">
+          <span className="text-[11px] sm:text-xs tracking-[0.3em] uppercase text-champagne-200 font-serif">
             ॥ श्री गणेशाय नमः ॥
           </span>
-          <Sparkles className="w-3.5 h-3.5 text-gold-400" />
         </div>
-
-        <p className="text-xs sm:text-sm text-gold-200/80 tracking-widest uppercase font-sans max-w-md mx-auto">
-          With the blessings of our elders and Almighty
+        <p className="text-[11px] sm:text-xs tracking-[0.25em] text-champagne-200/80 uppercase font-sans mt-2">
+          With Divine Blessings of our Elders &amp; Family
         </p>
       </div>
 
-      {/* CENTER CONTENT: Couple Presentation */}
-      <div className="relative z-10 w-full max-w-3xl my-auto py-6 flex flex-col items-center">
+      {/* 3. CENTER CONTENT: COUPLE NAME OVERLAY IN THE OPEN ENTRANCE */}
+      <div
+        className={`relative z-10 w-full max-w-4xl my-auto py-4 flex flex-col items-center transition-all duration-1000 delay-300 ${
+          mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+        }`}
+      >
         {/* Monogram Seal */}
-        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-gold-400/50 bg-burgundy-950/70 backdrop-blur-md flex items-center justify-center shadow-[0_0_30px_rgba(212,175,55,0.3)] mb-4 animate-subtle-float">
-          <span className="font-serif text-2xl sm:text-3xl font-bold tracking-wider text-gold-300">
+        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-champagne-400/50 bg-[#261042]/70 backdrop-blur-md flex items-center justify-center shadow-[0_0_25px_rgba(212,175,55,0.35)] mb-4">
+          <span className="font-serif text-2xl sm:text-3xl font-bold tracking-widest text-champagne-200 drop-shadow">
             {invitationConfig.couple.monogram}
           </span>
         </div>
 
-        <p className="text-sm sm:text-base font-serif italic text-gold-300/90 mb-3 tracking-wider">
+        <p className="text-xs sm:text-sm font-serif italic text-champagne-200/90 tracking-widest mb-3">
           Together with their families, cordially invite you to celebrate the
         </p>
 
-        {/* Ceremony Title */}
-        <h1 className="text-3xl sm:text-5xl md:text-6xl font-serif font-black tracking-wider uppercase mb-6 gold-gradient-text drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
-          {invitationConfig.engagement.title}
+        {/* Subtitle */}
+        <span className="text-xs sm:text-sm tracking-[0.3em] uppercase text-champagne-300 font-sans font-semibold mb-2">
+          Engagement &amp; Wedding Ceremonies
+        </span>
+
+        {/* COUPLE NAMES OVERLAY */}
+        <h1 className="font-serif text-3xl sm:text-5xl md:text-6xl font-bold tracking-wide text-white drop-shadow-[0_4px_16px_rgba(15,4,26,0.9)] my-2">
+          <span className="champagne-gradient-text block sm:inline">
+            {invitationConfig.couple.groom.fullName}
+          </span>
+          <span className="font-script text-champagne-300 text-3xl sm:text-5xl mx-2 sm:mx-4 font-normal">
+            &amp;
+          </span>
+          <span className="champagne-gradient-text block sm:inline">
+            {invitationConfig.couple.bride.fullName}
+          </span>
         </h1>
 
-        {/* Couple Cards Grid */}
-        <div className="w-full flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 my-3">
-          {/* GROOM */}
-          <div className="w-full sm:w-72 p-5 rounded-2xl bg-black/40 border border-gold-500/30 backdrop-blur-md shadow-xl flex flex-col items-center text-center">
-            <span className="text-[11px] uppercase tracking-[0.25em] text-gold-400/80 font-sans mb-1 font-semibold">
-              The Groom
+        {/* Parents Information */}
+        <div className="w-full max-w-xl grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4 my-4 text-center px-4">
+          <div className="p-2.5 rounded-xl bg-[#1e0a35]/50 border border-champagne-400/20 backdrop-blur-sm">
+            <span className="text-[10px] tracking-widest uppercase text-champagne-400/90 font-semibold block">
+              Groom
             </span>
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-white tracking-wide">
-              {invitationConfig.couple.groom.fullName}
-            </h2>
-            <div className="w-12 h-0.5 bg-gold-500/40 my-2" />
-            <p className="text-xs text-gold-200/80 leading-relaxed font-sans">
+            <p className="text-xs text-ivory-100/90 font-sans mt-0.5">
               {invitationConfig.couple.groom.parents}
             </p>
           </div>
-
-          {/* Heart / Ampersand Emblem */}
-          <div className="flex flex-col items-center justify-center my-1 md:my-0">
-            <div className="w-12 h-12 rounded-full bg-gold-500/20 border border-gold-400/50 flex items-center justify-center shadow-lg text-gold-300">
-              <Heart className="w-5 h-5 text-rose-400 fill-rose-400/30" />
-            </div>
-          </div>
-
-          {/* BRIDE */}
-          <div className="w-full sm:w-72 p-5 rounded-2xl bg-black/40 border border-gold-500/30 backdrop-blur-md shadow-xl flex flex-col items-center text-center">
-            <span className="text-[11px] uppercase tracking-[0.25em] text-gold-400/80 font-sans mb-1 font-semibold">
-              The Bride
+          <div className="p-2.5 rounded-xl bg-[#1e0a35]/50 border border-champagne-400/20 backdrop-blur-sm">
+            <span className="text-[10px] tracking-widest uppercase text-champagne-400/90 font-semibold block">
+              Bride
             </span>
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-white tracking-wide">
-              {invitationConfig.couple.bride.fullName}
-            </h2>
-            <div className="w-12 h-0.5 bg-gold-500/40 my-2" />
-            <p className="text-xs text-gold-200/80 leading-relaxed font-sans">
+            <p className="text-xs text-ivory-100/90 font-sans mt-0.5">
               {invitationConfig.couple.bride.parents}
             </p>
           </div>
         </div>
 
-        {/* Date, Time & Venue Highlight Pill */}
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs sm:text-sm text-gold-100 font-sans">
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/50 border border-gold-500/30 backdrop-blur-sm">
-            <Calendar className="w-4 h-4 text-gold-400" />
-            <span className="font-medium">{invitationConfig.engagement.date}</span>
+        {/* Primary Event Date & Venue Highlight */}
+        <div className="mt-4 flex flex-wrap items-center justify-center gap-2.5 sm:gap-4 text-xs text-ivory-100 font-sans">
+          <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1e0a35]/65 border border-champagne-400/30 backdrop-blur-sm shadow-md">
+            <Calendar className="w-3.5 h-3.5 text-champagne-400" />
+            <span className="font-medium">Engagement: {invitationConfig.engagement.date}</span>
           </div>
-
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/50 border border-gold-500/30 backdrop-blur-sm">
-            <Clock className="w-4 h-4 text-gold-400" />
+          <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1e0a35]/65 border border-champagne-400/30 backdrop-blur-sm shadow-md">
+            <Clock className="w-3.5 h-3.5 text-champagne-400" />
             <span className="font-medium">{invitationConfig.engagement.time}</span>
           </div>
-
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/50 border border-gold-500/30 backdrop-blur-sm">
-            <MapPin className="w-4 h-4 text-gold-400" />
+          <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1e0a35]/65 border border-champagne-400/30 backdrop-blur-sm shadow-md">
+            <MapPin className="w-3.5 h-3.5 text-champagne-400" />
             <span className="font-medium">{invitationConfig.engagement.venue.name}, Chennai</span>
           </div>
         </div>
 
-        {/* LIVE COUNTDOWN TIMER */}
-        <div className="mt-8 w-full max-w-lg">
-          <p className="text-[11px] uppercase tracking-[0.25em] text-gold-300/75 mb-3 font-medium">
-            Counting down to our forever
-          </p>
-
-          <div className="grid grid-cols-4 gap-2 sm:gap-4">
-            <div className="p-3 sm:p-4 rounded-xl bg-black/60 border border-gold-500/30 backdrop-blur-md shadow-lg flex flex-col items-center">
-              <span className="font-serif text-2xl sm:text-4xl font-bold text-gold-300">
-                {timeLeft.days}
-              </span>
-              <span className="text-[10px] sm:text-xs uppercase tracking-wider text-gold-400/80 mt-1">
-                Days
-              </span>
-            </div>
-
-            <div className="p-3 sm:p-4 rounded-xl bg-black/60 border border-gold-500/30 backdrop-blur-md shadow-lg flex flex-col items-center">
-              <span className="font-serif text-2xl sm:text-4xl font-bold text-gold-300">
-                {timeLeft.hours}
-              </span>
-              <span className="text-[10px] sm:text-xs uppercase tracking-wider text-gold-400/80 mt-1">
-                Hours
-              </span>
-            </div>
-
-            <div className="p-3 sm:p-4 rounded-xl bg-black/60 border border-gold-500/30 backdrop-blur-md shadow-lg flex flex-col items-center">
-              <span className="font-serif text-2xl sm:text-4xl font-bold text-gold-300">
-                {timeLeft.minutes}
-              </span>
-              <span className="text-[10px] sm:text-xs uppercase tracking-wider text-gold-400/80 mt-1">
-                Mins
-              </span>
-            </div>
-
-            <div className="p-3 sm:p-4 rounded-xl bg-black/60 border border-gold-500/30 backdrop-blur-md shadow-lg flex flex-col items-center">
-              <span className="font-serif text-2xl sm:text-4xl font-bold text-gold-300">
-                {timeLeft.seconds}
-              </span>
-              <span className="text-[10px] sm:text-xs uppercase tracking-wider text-gold-400/80 mt-1">
-                Secs
-              </span>
-            </div>
-          </div>
-        </div>
-
-        {/* PRIMARY CALL TO ACTIONS */}
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+        {/* Quick Action CTAs */}
+        <div className="mt-7 flex flex-wrap items-center justify-center gap-3.5">
           <a
             href="#rsvp-section"
-            className="px-8 py-3.5 rounded-xl bg-gradient-to-r from-gold-600 via-gold-500 to-gold-700 text-burgundy-950 font-bold tracking-wider uppercase text-sm shadow-[0_0_25px_rgba(212,175,55,0.4)] hover:shadow-[0_0_35px_rgba(212,175,55,0.8)] hover:scale-105 transition-all duration-300 flex items-center gap-2"
+            className="px-7 py-3 rounded-xl bg-gradient-to-r from-champagne-500 via-champagne-400 to-champagne-600 text-[#18072d] font-bold tracking-wider uppercase text-xs sm:text-sm shadow-[0_0_25px_rgba(212,175,55,0.45)] hover:shadow-[0_0_35px_rgba(212,175,55,0.7)] hover:scale-105 transition-all duration-300 flex items-center gap-2"
           >
-            <span>RSVP Joyfully</span>
             <Sparkles className="w-4 h-4" />
+            <span>RSVP for Celebrations</span>
           </a>
 
           <a
-            href="#event-details"
-            className="px-6 py-3.5 rounded-xl bg-black/50 border border-gold-400/50 hover:bg-gold-500/10 text-gold-200 font-semibold tracking-wider uppercase text-sm backdrop-blur-sm transition-all duration-300 flex items-center gap-2"
+            href="#events-section"
+            className="px-6 py-3 rounded-xl bg-[#1e0a35]/60 border border-champagne-400/40 hover:bg-champagne-500/15 text-champagne-200 font-medium tracking-wider uppercase text-xs sm:text-sm backdrop-blur-md transition-all duration-300 flex items-center gap-2"
           >
-            <span>Ceremony Schedule</span>
+            <span>View Events &amp; Details</span>
             <ChevronDown className="w-4 h-4" />
           </a>
         </div>
       </div>
 
-      {/* BOTTOM SCROLL INDICATOR */}
-      <div className="relative z-10 pt-4 flex flex-col items-center">
+      {/* 4. BOTTOM SCROLL INDICATOR */}
+      <div className="relative z-10 pb-2 flex flex-col items-center">
         <a
-          href="#event-details"
-          className="text-xs text-gold-300/70 hover:text-gold-200 flex flex-col items-center gap-1 transition-colors group"
+          href="#events-section"
+          className="text-xs text-champagne-300/80 hover:text-champagne-100 flex flex-col items-center gap-1 transition-colors group"
         >
-          <span className="tracking-widest uppercase text-[10px]">Scroll to Discover</span>
-          <ChevronDown className="w-4 h-4 animate-bounce text-gold-400 group-hover:text-gold-200" />
+          <span className="tracking-[0.25em] uppercase text-[10px] font-sans font-medium">
+            Explore Invitation
+          </span>
+          <ChevronDown className="w-4 h-4 animate-bounce text-champagne-400 group-hover:text-champagne-200" />
         </a>
       </div>
     </section>

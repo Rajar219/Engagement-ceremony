@@ -3,8 +3,11 @@
 import React, { useState } from 'react';
 import { EnvelopeOpener } from '@/components/EnvelopeOpener';
 import { HeroSection } from '@/components/HeroSection';
-import { EventSchedule } from '@/components/EventSchedule';
+import { CoupleIntro } from '@/components/CoupleIntro';
+import { EngagementSection } from '@/components/EngagementSection';
+import { WeddingSection } from '@/components/WeddingSection';
 import { VenueCard } from '@/components/VenueCard';
+import { MomentsGallery } from '@/components/MomentsGallery';
 import { RSVPForm } from '@/components/RSVPForm';
 import { WishesWall } from '@/components/WishesWall';
 import { ShareBar } from '@/components/ShareBar';
@@ -15,7 +18,7 @@ export default function InvitationPage() {
   const [isEnvelopeOpened, setIsEnvelopeOpened] = useState(false);
   const [musicTrigger, setMusicTrigger] = useState(false);
 
-  const handleOpenInvitation = () => {
+  const handleOpenComplete = () => {
     setIsEnvelopeOpened(true);
     setMusicTrigger(true);
   };
@@ -25,63 +28,93 @@ export default function InvitationPage() {
   };
 
   return (
-    <main className="relative min-h-screen w-full bg-[#0e0306] text-[#fbf7ee] overflow-x-hidden">
-      {/* 1. INTERACTIVE ENVELOPE OPENING MODAL */}
+    <main className="relative min-h-screen w-full bg-[#12051e] text-[#fcfaf6] overflow-x-hidden selection:bg-champagne-500/30 selection:text-champagne-200">
+      {/* 1. CINEMATIC OPENING: INTERACTIVE HEART SEAL & ENVELOPE VIDEO */}
       <EnvelopeOpener
         isOpen={isEnvelopeOpened}
-        onOpen={handleOpenInvitation}
+        onOpenComplete={handleOpenComplete}
       />
 
-      {/* 2. HERO SECTION WITH VIDEO BACKGROUND & LIVE COUNTDOWN */}
-      <HeroSection />
+      {/* 2. HERO SECTION: ROYAL LAVENDER CURTAIN VIDEO WITH HEAVENLY SKY ENTRANCE */}
+      <HeroSection isVisible={isEnvelopeOpened} />
 
       {/* Subtle ornamental section divider */}
-      <div className="w-full max-w-4xl mx-auto px-4 py-8">
-        <div className="ornament-divider text-gold-400/60 font-serif text-sm">
+      <div className="w-full max-w-4xl mx-auto px-4 py-6">
+        <div className="ornament-divider text-champagne-400/50 font-serif text-sm">
           ❦
         </div>
       </div>
 
-      {/* 3. EVENT TIMELINE & ITINERARY */}
-      <EventSchedule />
+      {/* 3. COUPLE INTRODUCTION & JOURNEY */}
+      <CoupleIntro />
 
       {/* Subtle ornamental section divider */}
-      <div className="w-full max-w-4xl mx-auto px-4 py-8">
-        <div className="ornament-divider text-gold-400/60 font-serif text-sm">
+      <div className="w-full max-w-4xl mx-auto px-4 py-6">
+        <div className="ornament-divider text-champagne-400/50 font-serif text-sm">
           ❦
         </div>
       </div>
 
-      {/* 4. CEREMONY VENUE & GOOGLE MAPS */}
+      {/* 4. ENGAGEMENT CEREMONY INVITATION & COUNTDOWN TIMER */}
+      <EngagementSection />
+
+      {/* Subtle ornamental section divider */}
+      <div className="w-full max-w-4xl mx-auto px-4 py-6">
+        <div className="ornament-divider text-champagne-400/50 font-serif text-sm">
+          ❦
+        </div>
+      </div>
+
+      {/* 5. WEDDING CEREMONY INVITATION (HOLY MATRIMONY) */}
+      <WeddingSection />
+
+      {/* Subtle ornamental section divider */}
+      <div className="w-full max-w-4xl mx-auto px-4 py-6">
+        <div className="ornament-divider text-champagne-400/50 font-serif text-sm">
+          ❦
+        </div>
+      </div>
+
+      {/* 6. CEREMONY VENUE & DIRECT GOOGLE MAPS NAVIGATION */}
       <VenueCard />
 
       {/* Subtle ornamental section divider */}
-      <div className="w-full max-w-4xl mx-auto px-4 py-8">
-        <div className="ornament-divider text-gold-400/60 font-serif text-sm">
+      <div className="w-full max-w-4xl mx-auto px-4 py-6">
+        <div className="ornament-divider text-champagne-400/50 font-serif text-sm">
           ❦
         </div>
       </div>
 
-      {/* 5. PERFECT INTERACTIVE RSVP SYSTEM */}
+      {/* 7. CHERISHED MOMENTS & MILESTONES GALLERY */}
+      <MomentsGallery />
+
+      {/* Subtle ornamental section divider */}
+      <div className="w-full max-w-4xl mx-auto px-4 py-6">
+        <div className="ornament-divider text-champagne-400/50 font-serif text-sm">
+          ❦
+        </div>
+      </div>
+
+      {/* 8. COMPLETE INTERACTIVE RSVP SYSTEM (DATABASE BACKED) */}
       <RSVPForm />
 
       {/* Subtle ornamental section divider */}
-      <div className="w-full max-w-4xl mx-auto px-4 py-8">
-        <div className="ornament-divider text-gold-400/60 font-serif text-sm">
+      <div className="w-full max-w-4xl mx-auto px-4 py-6">
+        <div className="ornament-divider text-champagne-400/50 font-serif text-sm">
           ❦
         </div>
       </div>
 
-      {/* 6. WISHES & BLESSINGS WALL */}
+      {/* 9. WISHES & BLESSINGS WALL */}
       <WishesWall />
 
-      {/* 7. SHARE & ACTIONS BAR */}
+      {/* 10. SOCIAL SHARING & ENVELOPE REPLAY BAR */}
       <ShareBar onReopenEnvelope={handleReopenEnvelope} />
 
-      {/* 8. FOOTER WITH FAMILY BLESSINGS */}
+      {/* 11. FOOTER & FAMILY CLOSING BLESSING */}
       <Footer />
 
-      {/* 9. FLOATING AMBIENT AUDIO PLAYER */}
+      {/* 12. FLOATING BACKGROUND AUDIO EXPERIENCE WITH VISIBILITY HANDLING */}
       <MusicPlayer autoPlayTrigger={musicTrigger} />
     </main>
   );

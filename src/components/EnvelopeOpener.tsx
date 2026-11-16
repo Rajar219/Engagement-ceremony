@@ -1,173 +1,357 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import { MailOpen, Play, Volume2, Sparkles, ChevronDown } from 'lucide-react';
 import { invitationConfig } from '@/config/invitation.config';
 
 interface EnvelopeOpenerProps {
-  onOpen: () => void;
+  onOpenComplete: () => void;
   isOpen: boolean;
 }
 
-export const EnvelopeOpener: React.FC<EnvelopeOpenerProps> = ({ onOpen, isOpen }) => {
-  const [isPlayingVideo, setIsPlayingVideo] = useState(false);
-  const [videoEnded, setVideoEnded] = useState(false);
+export const EnvelopeOpener: React.FC<EnvelopeOpenerProps> = ({ onOpenComplete, isOpen }) => {
+  const [phase, setPhase] = useState<'envelope' | 'breaking' | 'video' | 'flashing' | 'done'>('envelope');
+  const [flashOpacity, setFlashOpacity] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const sessionOpenedRef = useRef(false);
 
   const videoSrc = invitationConfig.media.videos.envelopeOpening?.src || '/assets/videos/envelope-opening.mp4';
   const posterSrc = invitationConfig.media.videos.envelopeOpening?.poster || '/assets/images/envelope-poster.jpg';
 
-  const handleStartOpening = () => {
-    setIsPlayingVideo(true);
-    if (videoRef.current) {
-      videoRef.current.currentTime = 0;
-      videoRef.current.play().catch(() => {
-        // Fallback if browser autoplay policy blocks unmuted play
-        if (videoRef.current) {
-          videoRef.current.muted = true;
-          videoRef.current.play();
-        }
-      });
+  // Handle heart seal click
+  const handleSealClick = () => {
+    if (phase !== 'envelope' || sessionOpenedRef.current) return;
+    sessionOpenedRef.current = true;
+
+    // Phase 1: Breaking animation
+    setPhase('breaking');
+
+    // Phase 2: Start video after seal crack & flap open animation completes
+    setTimeout(() => {
+      setPhase('video');
+      if (videoRef.current) {
+        videoRef.current.currentTime = 0;
+        videoRef.current.play().catch(() => {
+          if (videoRef.current) {
+            videoRef.current.muted = true;
+            videoRef.current.play();
+          }
+        });
+      }
+    }, 650);
+  };
+
+  // Video time update to trigger golden-white flash right as video approaches final frames
+  const handleTimeUpdate = () => {
+    if (!videoRef.current) return;
+    const { currentTime, duration } = videoRef.current;
+    if (duration > 0 && duration - currentTime <= 0.45 && phase === 'video') {
+      triggerGoldenFlash();
     }
   };
 
-  const handleVideoEnded = () => {
-    setVideoEnded(true);
+  // Trigger seamless golden-white flash transition
+  const triggerGoldenFlash = () => {
+    setPhase('flashing');
+    setFlashOpacity(1);
+
+    // After reaching peak brightness, notify parent and fade flash into hero video
     setTimeout(() => {
-      onOpen();
-    }, 600);
+      onOpenComplete();
+      // Smoothly fade out the golden-white overlay into the royal lavender hero video
+      setTimeout(() => {
+        setFlashOpacity(0);
+        setTimeout(() => {
+          setPhase('done');
+        }, 800);
+      }, 150);
+    }, 450);
   };
 
   const handleSkip = () => {
     if (videoRef.current) {
       videoRef.current.pause();
     }
-    onOpen();
+    triggerGoldenFlash();
   };
 
-  if (isOpen) {
+  if (isOpen && phase === 'done') {
     return null;
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-md transition-all duration-700">
-      {/* Ambient background glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-burgundy-900/60 via-black to-black opacity-90 pointer-events-none" />
+    <div
+      className={`fixed inset-0 z-50 overflow-hidden select-none transition-opacity duration-700 ${
+        phase === 'done' ? 'opacity-0 pointer-events-none' : 'opacity-100'
+      }`}
+    >
+      {/* 1. INITIAL ENVELOPE STAGE (Soft Ivory Background & Premium Ivory Envelope) */}
+      {(phase === 'envelope' || phase === 'breaking') && (
+        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center p-4 bg-gradient-to-b from-[#fdfbf7] via-[#f7f2e7] to-[#eee5d3]">
+          {/* Subtle Ambient Decorative Vignette */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_40%,_rgba(188,149,224,0.12)_100%)] pointer-events-none" />
 
-      {/* Floating sparkles background effect */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-gold-500/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-rose-600/10 rounded-full blur-3xl animate-pulse delay-1000" />
-      </div>
-
-      <div className="relative z-10 w-full max-w-md px-4 py-6 flex flex-col items-center text-center">
-        {!isPlayingVideo ? (
-          /* INITIAL ENVELOPE CARD */
-          <div className="w-full flex flex-col items-center animate-subtle-float">
-            {/* Auspicious Inscription */}
-            <p className="text-xs tracking-[0.3em] uppercase text-gold-400/80 mb-3 font-serif">
+          {/* Top Auspicious Note */}
+          <div className="mb-6 text-center">
+            <span className="text-[11px] sm:text-xs tracking-[0.35em] uppercase text-champagne-800 font-serif font-semibold">
               ॥ श्री गणेशाय नमः ॥
+            </span>
+            <p className="text-xs text-lavender-900/60 font-sans tracking-widest uppercase mt-1">
+              Royal Invitation
             </p>
+          </div>
 
-            {/* Envelope Frame Card */}
-            <div className="relative w-full aspect-[4/5] max-h-[520px] rounded-2xl overflow-hidden border-2 border-gold-500/40 shadow-2xl bg-gradient-to-b from-burgundy-950 via-[#1e070c] to-black flex flex-col items-center justify-between p-6">
-              {/* Background Poster Image */}
-              <div 
-                className="absolute inset-0 bg-cover bg-center opacity-40 scale-105 transition-transform duration-1000 hover:scale-110"
-                style={{ backgroundImage: `url(${posterSrc})` }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-burgundy-950/70 to-transparent" />
+          {/* THE LUXURY IVORY ENVELOPE CARD */}
+          <div className="relative w-full max-w-[420px] aspect-[4/3] rounded-2xl shadow-[0_20px_60px_-15px_rgba(76,43,109,0.25)] border border-[#e8dfcf] bg-[#faf7f0] flex flex-col justify-between overflow-hidden">
+            {/* Envelope Inner Texture Lines */}
+            <div className="absolute inset-0 bg-gradient-to-br from-[#ffffff] via-[#faf6ee] to-[#f0e7d5] opacity-90" />
+            <div className="absolute inset-2 rounded-xl border border-dashed border-champagne-500/30 pointer-events-none" />
 
-              {/* Top Ornamental Details */}
-              <div className="relative z-10 pt-2 flex flex-col items-center">
-                <span className="text-xs uppercase tracking-[0.25em] text-gold-300 font-sans font-medium px-4 py-1 rounded-full bg-gold-950/60 border border-gold-500/30 backdrop-blur-sm">
-                  Royal Invitation
-                </span>
-                <h3 className="font-serif text-lg tracking-wider text-gold-200 mt-4">
-                  The Engagement Ceremony
-                </h3>
-              </div>
+            {/* Simulated Envelope Flap (Triangular Top) */}
+            <div
+              className={`absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-[#f5eee0] to-[#ece3d0] border-b border-champagne-500/40 shadow-sm z-20 ${
+                phase === 'breaking' ? 'animate-flap-open' : ''
+              }`}
+              style={{
+                clipPath: 'polygon(0 0, 100% 0, 50% 100%)',
+              }}
+            />
 
-              {/* Center Monogram Wax Seal Icon */}
-              <div className="relative z-10 my-auto flex flex-col items-center">
-                <div className="relative group cursor-pointer" onClick={handleStartOpening}>
-                  {/* Outer pulsating ring */}
-                  <div className="absolute -inset-3 rounded-full bg-gold-500/20 blur-md animate-ping" />
-                  
-                  {/* Gold Wax Seal Badge */}
-                  <div className="relative w-28 h-28 rounded-full bg-gradient-to-br from-gold-300 via-gold-600 to-gold-800 p-1 shadow-2xl transition-all duration-300 group-hover:scale-105 group-hover:shadow-[0_0_35px_rgba(212,175,55,0.7)] flex items-center justify-center">
-                    <div className="w-full h-full rounded-full bg-gradient-to-tr from-burgundy-950 to-burgundy-900 flex flex-col items-center justify-center border border-gold-400/60 text-center">
-                      <span className="font-serif text-2xl font-bold tracking-widest text-gold-300">
-                        {invitationConfig.couple.monogram}
-                      </span>
-                      <span className="text-[9px] tracking-widest uppercase text-gold-400/80 font-sans mt-0.5">
-                        Seal
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-5 text-center">
-                  <h2 className="font-serif text-2xl font-bold tracking-wide text-white">
-                    {invitationConfig.couple.groom.firstName} & {invitationConfig.couple.bride.firstName}
-                  </h2>
-                  <p className="text-xs text-gold-300/80 tracking-widest mt-1">
-                    Sunday, 13th December 2026
-                  </p>
-                </div>
-              </div>
-
-              {/* Bottom Action Button */}
-              <div className="relative z-10 w-full pb-2">
-                <button
-                  onClick={handleStartOpening}
-                  className="w-full group relative overflow-hidden py-3.5 px-6 rounded-xl bg-gradient-to-r from-gold-600 via-gold-500 to-gold-700 text-burgundy-950 font-semibold tracking-wider uppercase text-sm shadow-[0_0_25px_rgba(212,175,55,0.4)] hover:shadow-[0_0_35px_rgba(212,175,55,0.8)] transition-all duration-300 flex items-center justify-center gap-2"
-                >
-                  <MailOpen className="w-5 h-5 text-burgundy-950 transition-transform group-hover:scale-110" />
-                  <span>Tap to Open Invitation</span>
-                  <Sparkles className="w-4 h-4 text-burgundy-950" />
-                </button>
-              </div>
+            {/* Corner Ornamental Flourishes */}
+            <div className="relative z-10 pt-4 px-6 flex justify-between text-champagne-600/40 text-xs font-serif">
+              <span>❧</span>
+              <span className="tracking-widest uppercase text-[10px] text-champagne-700/70 font-sans font-medium">
+                Wedding & Engagement
+              </span>
+              <span>❧</span>
             </div>
 
-            {/* Quick Skip link */}
-            <button
-              onClick={handleSkip}
-              className="mt-4 text-xs text-gold-400/70 hover:text-gold-200 transition-colors flex items-center gap-1.5 underline underline-offset-4"
-            >
-              Skip intro & view invitation directly
-              <ChevronDown className="w-3.5 h-3.5" />
-            </button>
-          </div>
-        ) : (
-          /* VIDEO PLAYING STAGE */
-          <div className="w-full flex flex-col items-center">
-            <div className="relative w-full aspect-[9/16] max-h-[82vh] rounded-2xl overflow-hidden border-2 border-gold-500/50 shadow-2xl bg-black">
-              <video
-                ref={videoRef}
-                src={videoSrc}
-                poster={posterSrc}
-                playsInline
-                className="w-full h-full object-cover"
-                onEnded={handleVideoEnded}
-              />
-
-              {/* Overlay Skip Button */}
+            {/* CENTER: THE INTERACTIVE V&P HEART WAX SEAL */}
+            <div className="relative z-30 my-auto flex flex-col items-center">
               <button
-                onClick={handleSkip}
-                className="absolute top-4 right-4 z-20 px-3.5 py-1.5 rounded-full bg-black/60 hover:bg-black/90 border border-gold-400/40 text-xs text-gold-300 font-medium tracking-wide backdrop-blur-md transition-all"
+                type="button"
+                onClick={handleSealClick}
+                disabled={phase === 'breaking'}
+                aria-label="Tap to open the V&P invitation"
+                className="group relative cursor-pointer focus:outline-none transition-transform duration-300 hover:scale-105 active:scale-95"
               >
-                Skip to Invitation ➔
+                {/* Subtle Ambient Golden Halo on Hover */}
+                <div className="absolute -inset-2.5 rounded-full bg-champagne-400/25 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                {/* HEART-SHAPED WAX SEAL SVG */}
+                <div className="relative w-28 h-28 sm:w-32 sm:h-32 flex items-center justify-center filter drop-shadow-[0_8px_16px_rgba(76,17,45,0.45)]">
+                  {phase === 'breaking' ? (
+                    /* BROKEN / CRACKED HEART SEAL ANIMATION */
+                    <div className="relative w-full h-full flex items-center justify-center">
+                      {/* Left Half */}
+                      <svg
+                        viewBox="0 0 100 100"
+                        className="absolute inset-0 w-full h-full animate-seal-crack-left"
+                      >
+                        <defs>
+                          <linearGradient id="sealGradLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stopColor="#9a1b38" />
+                            <stop offset="50%" stopColor="#7a122a" />
+                            <stop offset="100%" stopColor="#550c1c" />
+                          </linearGradient>
+                          <clipPath id="leftClip">
+                            <path d="M 0 0 L 50 0 L 48 30 L 53 55 L 49 80 L 50 100 L 0 100 Z" />
+                          </clipPath>
+                        </defs>
+                        <g clipPath="url(#leftClip)">
+                          <path
+                            d="M 50,30 C 50,15 35,5 20,5 C 8,5 0,15 0,30 C 0,55 35,75 50,95 C 65,75 100,55 100,30 C 100,15 92,5 80,5 C 65,5 50,15 50,30 Z"
+                            fill="url(#sealGradLeft)"
+                            stroke="#d4af37"
+                            strokeWidth="1.5"
+                          />
+                          <text
+                            x="50"
+                            y="48"
+                            textAnchor="middle"
+                            fontFamily="Cinzel, Georgia, serif"
+                            fontSize="17"
+                            fontWeight="bold"
+                            fill="#fcfaf6"
+                            stroke="#b89228"
+                            strokeWidth="0.5"
+                            letterSpacing="1.5"
+                          >
+                            V&amp;P
+                          </text>
+                        </g>
+                      </svg>
+
+                      {/* Right Half */}
+                      <svg
+                        viewBox="0 0 100 100"
+                        className="absolute inset-0 w-full h-full animate-seal-crack-right"
+                      >
+                        <defs>
+                          <linearGradient id="sealGradRight" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stopColor="#8d1732" />
+                            <stop offset="50%" stopColor="#6d1025" />
+                            <stop offset="100%" stopColor="#4a0a18" />
+                          </linearGradient>
+                          <clipPath id="rightClip">
+                            <path d="M 50 0 L 100 0 L 100 100 L 50 100 L 49 80 L 53 55 L 48 30 Z" />
+                          </clipPath>
+                        </defs>
+                        <g clipPath="url(#rightClip)">
+                          <path
+                            d="M 50,30 C 50,15 35,5 20,5 C 8,5 0,15 0,30 C 0,55 35,75 50,95 C 65,75 100,55 100,30 C 100,15 92,5 80,5 C 65,5 50,15 50,30 Z"
+                            fill="url(#sealGradRight)"
+                            stroke="#d4af37"
+                            strokeWidth="1.5"
+                          />
+                          <text
+                            x="50"
+                            y="48"
+                            textAnchor="middle"
+                            fontFamily="Cinzel, Georgia, serif"
+                            fontSize="17"
+                            fontWeight="bold"
+                            fill="#fcfaf6"
+                            stroke="#b89228"
+                            strokeWidth="0.5"
+                            letterSpacing="1.5"
+                          >
+                            V&amp;P
+                          </text>
+                        </g>
+                      </svg>
+                    </div>
+                  ) : (
+                    /* INTACT HEART SEAL */
+                    <svg viewBox="0 0 100 100" className="w-full h-full transition-transform">
+                      <defs>
+                        {/* Realistic Wax Gradient with 3D Depth */}
+                        <radialGradient id="heartWax" cx="40%" cy="35%" r="65%">
+                          <stop offset="0%" stopColor="#a32140" />
+                          <stop offset="45%" stopColor="#84152f" />
+                          <stop offset="85%" stopColor="#5d0d1f" />
+                          <stop offset="100%" stopColor="#3d0713" />
+                        </radialGradient>
+                        {/* Gold Embossed Rim */}
+                        <linearGradient id="goldRim" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stopColor="#fdfbf7" />
+                          <stop offset="35%" stopColor="#d4af37" />
+                          <stop offset="70%" stopColor="#875e18" />
+                          <stop offset="100%" stopColor="#f3e9d2" />
+                        </linearGradient>
+                      </defs>
+
+                      {/* Outer Wax Droplet Border */}
+                      <path
+                        d="M 50,32 C 50,16 34,4 18,4 C 6,4 -1,16 0,32 C 1,58 35,78 50,96 C 65,78 99,58 100,32 C 101,16 94,4 82,4 C 66,4 50,16 50,32 Z"
+                        fill="url(#heartWax)"
+                        stroke="url(#goldRim)"
+                        strokeWidth="1.75"
+                      />
+
+                      {/* Inner Sculpted Ridge */}
+                      <path
+                        d="M 50,36 C 50,23 37,13 23,13 C 12,13 7,22 8,34 C 9,54 38,71 50,86 C 62,71 91,54 92,34 C 93,22 88,13 77,13 C 63,13 50,23 50,36 Z"
+                        fill="none"
+                        stroke="rgba(212, 175, 55, 0.45)"
+                        strokeWidth="0.8"
+                      />
+
+                      {/* Sharp, Centered V&P Initials */}
+                      <text
+                        x="50"
+                        y="51"
+                        textAnchor="middle"
+                        fontFamily="Cinzel, Georgia, serif"
+                        fontSize="18"
+                        fontWeight="bold"
+                        fill="#fdfbf7"
+                        stroke="#caa034"
+                        strokeWidth="0.6"
+                        letterSpacing="1.8"
+                      >
+                        V&amp;P
+                      </text>
+
+                      {/* Small Subtitle underneath monogram */}
+                      <text
+                        x="50"
+                        y="63"
+                        textAnchor="middle"
+                        fontFamily="system-ui, sans-serif"
+                        fontSize="5.5"
+                        letterSpacing="2.2"
+                        fill="rgba(253, 251, 247, 0.75)"
+                      >
+                        2026
+                      </text>
+                    </svg>
+                  )}
+                </div>
               </button>
+
+              {/* Subtle instruction text */}
+              <div className="mt-4 flex flex-col items-center">
+                <span className="text-xs uppercase tracking-[0.25em] font-medium text-champagne-800 transition-opacity duration-300 group-hover:text-champagne-950">
+                  {phase === 'breaking' ? 'Opening Invitation...' : 'Tap to Open'}
+                </span>
+                <span className="text-[10px] text-champagne-600/70 tracking-widest mt-0.5">
+                  Vallalarasu &amp; Priyanka
+                </span>
+              </div>
             </div>
 
-            <p className="text-xs text-gold-400/70 mt-3 tracking-widest uppercase flex items-center gap-2">
-              <Sparkles className="w-3.5 h-3.5 text-gold-400" />
-              Unfolding your invitation...
-            </p>
+            {/* Bottom Envelope Trim */}
+            <div className="relative z-10 pb-4 px-6 text-center">
+              <span className="text-[10px] text-champagne-700/60 tracking-wider font-serif">
+                Chennai • Tamil Nadu
+              </span>
+            </div>
           </div>
-        )}
-      </div>
+
+          {/* Quick Skip Option */}
+          <button
+            type="button"
+            onClick={handleSkip}
+            className="mt-6 text-xs text-champagne-700/70 hover:text-champagne-900 underline underline-offset-4 tracking-wider transition-colors"
+          >
+            Skip to invitation directly ➔
+          </button>
+        </div>
+      )}
+
+      {/* 2. CINEMATIC ENVELOPE VIDEO PLAYBACK STAGE */}
+      {(phase === 'video' || phase === 'flashing') && (
+        <div className="absolute inset-0 z-20 flex items-center justify-center bg-black">
+          <video
+            ref={videoRef}
+            src={videoSrc}
+            poster={posterSrc}
+            playsInline
+            autoPlay
+            preload="auto"
+            onTimeUpdate={handleTimeUpdate}
+            onEnded={triggerGoldenFlash}
+            className="w-full h-full object-contain md:object-cover"
+          />
+
+          {/* Discreet Skip Button */}
+          <button
+            type="button"
+            onClick={handleSkip}
+            className="absolute top-6 right-6 z-30 px-4 py-1.5 rounded-full bg-black/60 hover:bg-black/80 border border-champagne-400/40 text-xs text-champagne-200 tracking-wider font-sans backdrop-blur-md transition-all"
+          >
+            Skip ➔
+          </button>
+        </div>
+      )}
+
+      {/* 3. GOLDEN-WHITE FLASH TRANSITION OVERLAY */}
+      <div
+        className="absolute inset-0 z-40 bg-[#fffdf5] pointer-events-none transition-opacity duration-500 ease-out"
+        style={{
+          opacity: flashOpacity,
+        }}
+      />
     </div>
   );
 };
