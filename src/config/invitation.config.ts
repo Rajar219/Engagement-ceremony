@@ -90,6 +90,18 @@ export interface InvitationConfig {
       src: string; // e.g. "/assets/music/invitation-theme.mp3"
     };
     videos: {
+      envelopeOpening?: {
+        title: string;
+        src: string;
+        aspectRatio: '16:9' | '9:16' | 'adaptive';
+        poster?: string;
+      };
+      heroBackground?: {
+        title: string;
+        src: string;
+        aspectRatio: '16:9' | '9:16' | 'adaptive';
+        poster?: string;
+      };
       landingIntro: {
         title: string;
         src: string; // "/assets/videos/engagement-intro.mp4"
@@ -234,29 +246,41 @@ export const invitationConfig: InvitationConfig = {
       src: "/assets/music/invitation-theme.mp3",
     },
     videos: {
+      envelopeOpening: {
+        title: "Royal Wax Seal Envelope Opening",
+        src: "/assets/videos/envelope-opening.mp4",
+        aspectRatio: "9:16",
+        poster: "/assets/images/envelope-poster.jpg",
+      },
+      heroBackground: {
+        title: "Grand Entrance & Golden Backdrop",
+        src: "/assets/videos/hero-background.mp4",
+        aspectRatio: "9:16",
+        poster: "/assets/images/hero-poster.jpg",
+      },
       landingIntro: {
-        title: "Invitation Cinematic Opening",
-        src: "/assets/videos/engagement-intro.mp4",
-        aspectRatio: "adaptive",
-        poster: "/assets/images/poster-intro.jpg",
+        title: "Royal Envelope Opening",
+        src: "/assets/videos/envelope-opening.mp4",
+        aspectRatio: "9:16",
+        poster: "/assets/images/envelope-poster.jpg",
       },
       coupleIntroduction: {
-        title: "The Couple Portrait Sequence",
-        src: "/assets/videos/couple-introduction.mp4",
-        aspectRatio: "adaptive",
-        poster: "/assets/images/poster-couple.jpg",
+        title: "Grand Ceremony Entrance",
+        src: "/assets/videos/hero-background.mp4",
+        aspectRatio: "9:16",
+        poster: "/assets/images/hero-poster.jpg",
       },
       weddingCinematic: {
-        title: "The Wedding Celebration Sequence",
-        src: "/assets/videos/wedding-cinematic.mp4",
-        aspectRatio: "adaptive",
-        poster: "/assets/images/poster-wedding.jpg",
+        title: "The Celebration Sequence",
+        src: "/assets/videos/hero-background.mp4",
+        aspectRatio: "9:16",
+        poster: "/assets/images/hero-poster.jpg",
       },
       finalScene: {
         title: "The Closing Journey",
-        src: "/assets/videos/final-scene.mp4",
-        aspectRatio: "adaptive",
-        poster: "/assets/images/poster-final.jpg",
+        src: "/assets/videos/hero-background.mp4",
+        aspectRatio: "9:16",
+        poster: "/assets/images/hero-poster.jpg",
       },
     },
     gallery: [
