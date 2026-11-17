@@ -48,15 +48,16 @@ export interface InvitationConfig {
   wedding: {
     title: string;
     subtitle: string;
-    date: string; // e.g. "[Wedding Date, e.g. December 15, 2026]"
-    isoDate: string; // e.g. "2026-12-15T09:00:00" for countdown / calendar
-    time: string; // e.g. "[Wedding Time, e.g. 9:00 AM onwards]"
+    date: string;
+    isAnnounced?: boolean;
+    isoDate?: string;
+    time: string;
     venue: {
       name: string;
       hallOrLawn?: string;
       address: string;
       cityState: string;
-      mapUrl: string; // Google Maps navigation link
+      mapUrl: string;
       embedMapUrl?: string;
     };
     dressCode?: string;
@@ -196,22 +197,23 @@ export const invitationConfig: InvitationConfig = {
   wedding: {
     title: "The Holy Matrimony & Wedding",
     subtitle: "Two Souls, One Sacred Bond",
-    date: "[Wedding Date to be announced]",
-    isoDate: "2026-12-20T10:00:00",
-    time: "[Wedding Time to be announced]",
+    date: "To Be Announced",
+    isAnnounced: false,
+    isoDate: "",
+    time: "Timings To Be Announced",
     venue: {
-      name: "[Wedding Venue to be announced]",
-      hallOrLawn: "[Main Mandap]",
-      address: "[Venue Address]",
-      cityState: "Chennai, Tamil Nadu",
-      mapUrl: "https://maps.google.com/?q=Chennai",
+      name: "To Be Announced",
+      hallOrLawn: "Main Mandap Ceremony",
+      address: "Chennai",
+      cityState: "Tamil Nadu, India",
+      mapUrl: "https://maps.google.com/?q=Chennai+Tamil+Nadu",
     },
     dressCode: "Royal Traditional Attire",
     itinerary: [
       {
         time: "Muhurtham",
         title: "Sacred Wedding Ceremony",
-        description: "Sacred vows and auspicious wedding rituals",
+        description: "Sacred vows and auspicious Vedic wedding rituals",
       },
     ],
   },
@@ -315,9 +317,9 @@ export const invitationConfig: InvitationConfig = {
     ],
   },
   seo: {
-    title: "Engagement Ceremony | G. Vallalarasu & K. Priyanka",
-    description: "Cordially inviting you to the engagement ceremony of G. Vallalarasu and K. Priyanka on Sunday, 13th December 2026 at RSM Banquet Hall, Triplicane, Chennai.",
-    canonicalUrl: "https://engagement-ceremony.vercel.app/",
-    ogImage: "/assets/images/og-invitation.jpg",
+    title: "V&P | Engagement & Wedding Celebration | G. Vallalarasu & K. Priyanka",
+    description: "Cordially inviting you to celebrate the Engagement Ceremony of G. Vallalarasu and K. Priyanka on Sunday, 13th December 2026 at RSM Banquet Hall, Triplicane, Chennai.",
+    canonicalUrl: "https://vallarasu-priyanka-engagement.vercel.app/",
+    ogImage: "/assets/images/hero-poster.jpg",
   },
 };

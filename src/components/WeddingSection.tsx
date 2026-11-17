@@ -1,81 +1,72 @@
 'use client';
 
 import React from 'react';
-import { Calendar, Clock, MapPin, Sparkles, Heart } from 'lucide-react';
+import { Calendar, MapPin, Sparkles, Heart } from 'lucide-react';
 import { invitationConfig } from '@/config/invitation.config';
+import { useLanguage } from '@/context/LanguageContext';
+import { CornerOrnaments } from '@/components/CornerOrnaments';
 
 export const WeddingSection: React.FC = () => {
   const { wedding } = invitationConfig;
+  const { t, language } = useLanguage();
 
   return (
-    <section className="relative w-full py-16 px-4 max-w-4xl mx-auto text-center">
-      {/* Section Header */}
-      <div className="flex flex-col items-center mb-10">
-        <span className="text-xs uppercase tracking-[0.3em] text-champagne-400 font-semibold mb-2">
-          Sacred Union
-        </span>
-        <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold champagne-gradient-text tracking-wide">
-          {wedding.title}
-        </h2>
-        <p className="text-xs sm:text-sm font-serif italic text-champagne-200/80 mt-2">
-          {wedding.subtitle}
-        </p>
-        <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-champagne-400 to-transparent mt-4 mb-4" />
-      </div>
+    <section id="wedding-section" className="relative w-full py-12 px-4 max-w-3xl mx-auto text-center">
+      {/* 07. WEDDING / MUHURTHAM INVITATION CARD */}
+      <div className="luxury-card p-6 sm:p-10 shadow-xl text-center">
+        <CornerOrnaments color="text-[#c5a059]/40" />
 
-      {/* Wedding Announcement Card */}
-      <div className="w-full p-8 rounded-3xl bg-gradient-to-b from-[#240e3d]/85 via-[#1a082c]/90 to-[#12051e]/95 border border-champagne-400/40 shadow-2xl backdrop-blur-md">
-        <div className="max-w-2xl mx-auto flex flex-col items-center text-center">
-          <div className="w-16 h-16 rounded-full bg-champagne-500/20 border border-champagne-400/50 flex items-center justify-center text-champagne-300 mb-4 shadow-lg">
-            <Heart className="w-7 h-7 text-rose-400 fill-rose-400/30" />
+        <div className="relative z-10 mb-6">
+          <span className="text-[11px] uppercase tracking-[0.25em] text-[#8e6c2e] font-semibold block font-tamil-serif mb-1.5">
+            Holy Matrimony • திருமண நன்னாள்
+          </span>
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold gold-foil-text tracking-wide">
+            {language === 'ta' ? 'புனித திருமண சுபமுகூர்த்தம்' : 'The Sacred Wedding Muhurtham'}
+          </h2>
+          <div className="ornament-divider text-[#c5a059]/50 font-serif text-sm w-44 mx-auto my-3">
+            ❖
           </div>
-
-          <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white mb-2">
-            The Auspicious Muhurtham
-          </h3>
-
-          <p className="text-xs sm:text-sm text-ivory-100/80 max-w-lg mb-6 font-sans leading-relaxed">
-            With the sacred blessings of elders and loved ones, Vallalarasu and Priyanka will take their holy vows in the traditional Hindu matrimony rituals.
+          <p className="text-xs sm:text-sm text-[#5c534b] font-tamil max-w-lg mx-auto leading-relaxed">
+            {language === 'ta'
+              ? 'இறைவன் திருவருளாலும் பெரியோர்களின் ஆசிகளாலும் ஜி. வள்ளலரசு & கே. பிரியங்கா ஆகியோரின் திருமண முகூர்த்தம் முறைப்படி இனிதே நடைபெற உள்ளது.'
+              : 'With the sacred blessings of elders and loved ones, G. Vallalarasu and K. Priyanka will unite in holy matrimony following traditional Vedic rites.'}
           </p>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-md my-4">
-            <div className="p-4 rounded-2xl bg-[#140624]/70 border border-champagne-400/25">
-              <span className="text-[10px] uppercase tracking-widest text-champagne-400/80 font-semibold block mb-1">
-                Wedding Muhurtham
-              </span>
-              <p className="font-serif text-base font-bold text-champagne-200">
-                Auspicious Date To Be Announced
-              </p>
-              <span className="text-[11px] text-ivory-100/60 font-sans">
-                Sacred Muhurtham Timings
-              </span>
-            </div>
-
-            <div className="p-4 rounded-2xl bg-[#140624]/70 border border-champagne-400/25">
-              <span className="text-[10px] uppercase tracking-widest text-champagne-400/80 font-semibold block mb-1">
-                Location
-              </span>
-              <p className="font-serif text-base font-bold text-champagne-200">
-                Chennai, Tamil Nadu
-              </p>
-              <span className="text-[11px] text-ivory-100/60 font-sans">
-                Main Mandap Ceremony
-              </span>
-            </div>
-          </div>
-
-          <p className="text-xs text-champagne-300/80 italic mt-3 mb-6">
-            Dress Code: {wedding.dressCode || 'Royal Traditional Attire'}
-          </p>
-
-          <a
-            href="#rsvp-section"
-            className="px-6 py-3 rounded-xl bg-gradient-to-r from-champagne-500 to-champagne-600 text-[#18072d] font-bold text-xs uppercase tracking-wider shadow-lg hover:scale-105 transition-all flex items-center gap-2"
-          >
-            <Sparkles className="w-4 h-4" />
-            <span>RSVP for Wedding Celebrations</span>
-          </a>
         </div>
+
+        {/* Configurable Announcement Details */}
+        <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md mx-auto my-6 text-left">
+          <div className="p-4 rounded-2xl bg-[#faf8f4] border border-[#c5a059]/35 flex flex-col items-center text-center shadow-sm">
+            <Calendar className="w-5 h-5 text-[#8e6c2e] mb-1.5" />
+            <span className="text-[10px] uppercase tracking-widest text-[#8e6c2e] font-semibold block mb-1 font-tamil-sans">
+              {language === 'ta' ? 'முகூர்த்த தேதி' : 'Muhurtham Date'}
+            </span>
+            <p className="font-serif text-base font-bold text-[#231c18]">
+              {language === 'ta' ? 'சுப தேதி விரைவில் அறிவிக்கப்படும்' : 'To Be Announced'}
+            </p>
+            <span className="text-[11px] text-[#766c62] font-tamil-sans mt-0.5">
+              {language === 'ta' ? 'சுப முகூர்த்த நேரம்' : 'Sacred Vedic Timings'}
+            </span>
+          </div>
+
+          <div className="p-4 rounded-2xl bg-[#faf8f4] border border-[#c5a059]/35 flex flex-col items-center text-center shadow-sm">
+            <MapPin className="w-5 h-5 text-[#8e6c2e] mb-1.5" />
+            <span className="text-[10px] uppercase tracking-widest text-[#8e6c2e] font-semibold block mb-1 font-tamil-sans">
+              {language === 'ta' ? 'திருமண இடம்' : 'Location'}
+            </span>
+            <p className="font-serif text-base font-bold text-[#231c18]">
+              {language === 'ta' ? 'சென்னை, தமிழ்நாடு' : 'Chennai, Tamil Nadu'}
+            </p>
+            <span className="text-[11px] text-[#766c62] font-tamil-sans mt-0.5">
+              {language === 'ta' ? 'மணவறை நிகழ்வு' : 'Main Mandap Ceremony'}
+            </span>
+          </div>
+        </div>
+
+        <p className="relative z-10 text-xs text-[#8e6c2e] font-tamil-sans italic mt-2 mb-4">
+          {language === 'ta'
+            ? 'உடை முறை: பாரம்பரிய பட்டு ஆடைகள்'
+            : `Dress Code: ${wedding.dressCode || 'Royal Traditional Festive Attire'}`}
+        </p>
       </div>
     </section>
   );

@@ -1,12 +1,18 @@
+export type InvitationCinematicState =
+  | 'INITIAL_ENVELOPE'
+  | 'SEAL_BREAKING'
+  | 'ENVELOPE_PLAYING'
+  | 'FLASH_TRANSITION'
+  | 'HERO_PLAYING'
+  | 'INVITATION_SCROLLING';
+
 export interface RSVP {
   id: string;
   name: string;
-  email: string;
+  email?: string;
   phone: string;
-  attending: 'yes' | 'no';
+  attending: 'both' | 'engagement' | 'wedding' | 'declined';
   guestsCount: number;
-  dietaryPreference?: string;
-  songRequest?: string;
   message?: string;
   createdAt: string;
 }
@@ -14,9 +20,10 @@ export interface RSVP {
 export interface Wish {
   id: string;
   name: string;
-  relation: string;
+  relation?: string;
   message: string;
   likes: number;
+  approved?: boolean;
   createdAt: string;
 }
 
@@ -33,13 +40,13 @@ export interface EventScheduleItem {
   title: string;
   description: string;
   dressCode?: string;
-  iconName: string;
+  iconName?: string;
 }
 
 export interface GalleryPhoto {
   id: string;
   title: string;
-  category: 'candid' | 'portrait' | 'celebration' | 'travel';
+  category: 'couple' | 'engagement' | 'moments';
   src: string;
   caption?: string;
 }

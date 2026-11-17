@@ -6,6 +6,8 @@
 
 # testing
 /coverage
+/.playwright-mcp
+tamil_fonts/
 
 # next.js
 /.next/

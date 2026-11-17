@@ -77,20 +77,20 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({ autoPlayTrigger }) => 
       <button
         onClick={togglePlay}
         aria-label={isPlaying ? 'Pause music' : 'Play music'}
-        className="group relative flex items-center gap-2.5 px-3.5 py-2.5 rounded-full bg-gradient-to-r from-[#2a0e44]/95 to-[#160626]/95 border border-champagne-400/50 shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_rgba(212,175,55,0.6)] backdrop-blur-md transition-all duration-300"
+        className="group relative flex items-center gap-2.5 px-3.5 py-2.5 rounded-full bg-[#ffffff]/92 hover:bg-[#faf8f4] border border-[#c5a059]/45 shadow-[0_8px_24px_rgba(35,28,24,0.12)] hover:shadow-[0_8px_30px_rgba(197,160,89,0.35)] backdrop-blur-md transition-all duration-300 cursor-pointer"
       >
         {/* Equalizer Wave / Icon */}
         {isPlaying ? (
           <div className="flex items-end gap-0.5 h-4 w-4">
-            <span className="w-1 bg-champagne-400 rounded-full eq-bar-1" />
-            <span className="w-1 bg-champagne-400 rounded-full eq-bar-2" />
-            <span className="w-1 bg-champagne-400 rounded-full eq-bar-3" />
+            <span className="w-1 bg-[#c5a059] rounded-full eq-bar-1" />
+            <span className="w-1 bg-[#c5a059] rounded-full eq-bar-2" />
+            <span className="w-1 bg-[#c5a059] rounded-full eq-bar-3" />
           </div>
         ) : (
-          <VolumeX className="w-4 h-4 text-champagne-400/70" />
+          <VolumeX className="w-4 h-4 text-[#a88136]" />
         )}
 
-        <span className="text-[11px] font-sans uppercase tracking-wider text-champagne-300 font-medium hidden sm:inline">
+        <span className="text-[11px] font-sans uppercase tracking-wider text-[#231c18] font-semibold hidden sm:inline">
           {isPlaying ? 'Music On' : 'Play Music'}
         </span>
       </button>

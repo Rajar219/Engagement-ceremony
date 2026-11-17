@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "id": "rsvp_1794908534416_ejmpayk",
+    "fullName": "S. Rajagopalan",
+    "mobileNumber": "+919841056789",
+    "email": "rajagopalan@example.com",
+    "attendance": "both",
+    "attendingEngagement": true,
+    "attendingWedding": true,
+    "guestCount": 3,
+    "message": "Looking forward to participating in both celebrations with family.",
+    "submittedAt": "2026-11-17T09:42:14.416Z"
+  }
+]

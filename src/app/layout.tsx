@@ -1,21 +1,41 @@
 import type { Metadata, Viewport } from 'next';
+import { Noto_Serif_Tamil, Noto_Sans_Tamil } from 'next/font/google';
 import './globals.css';
 import { invitationConfig } from '@/config/invitation.config';
+
+const notoSerifTamil = Noto_Serif_Tamil({
+  subsets: ['tamil', 'latin'],
+  weight: ['400', '600', '700'],
+  variable: '--font-noto-serif-tamil',
+  display: 'swap',
+});
+
+const notoSansTamil = Noto_Sans_Tamil({
+  subsets: ['tamil', 'latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-noto-sans-tamil',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: invitationConfig.seo.title,
   description: invitationConfig.seo.description,
-  metadataBase: new URL('https://engagement-ceremony.vercel.app'),
+  metadataBase: new URL('https://vallarasu-priyanka-engagement.vercel.app'),
+  alternates: {
+    canonical: 'https://vallarasu-priyanka-engagement.vercel.app',
+  },
   openGraph: {
     title: invitationConfig.seo.title,
     description: invitationConfig.seo.description,
+    url: 'https://vallarasu-priyanka-engagement.vercel.app',
+    siteName: 'Vallalarasu & Priyanka Engagement & Wedding Invitation',
     type: 'website',
     images: [
       {
         url: invitationConfig.seo.ogImage || '/assets/images/hero-poster.jpg',
         width: 1080,
         height: 1920,
-        alt: 'Engagement Ceremony Invitation - G. Vallalarasu & K. Priyanka',
+        alt: 'Engagement Ceremony - G. Vallalarasu & K. Priyanka',
       },
     ],
   },
@@ -25,13 +45,46 @@ export const metadata: Metadata = {
     description: invitationConfig.seo.description,
     images: [invitationConfig.seo.ogImage || '/assets/images/hero-poster.jpg'],
   },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
-  themeColor: '#3a121b',
+  themeColor: '#faf8f4',
+};
+
+const jsonLdEvent = {
+  '@context': 'https://schema.org',
+  '@type': 'Event',
+  name: 'Engagement Ceremony: G. Vallalarasu & K. Priyanka',
+  startDate: '2026-12-13T18:00:00+05:30',
+  endDate: '2026-12-13T21:00:00+05:30',
+  eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+  eventStatus: 'https://schema.org/EventScheduled',
+  location: {
+    '@type': 'Place',
+    name: 'RSM Banquet Hall',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '35/37, Dr Besant Road, Near Hotel Viveka, Triplicane',
+      addressLocality: 'Chennai',
+      postalCode: '600005',
+      addressRegion: 'Tamil Nadu',
+      addressCountry: 'IN',
+    },
+  },
+  image: ['https://vallarasu-priyanka-engagement.vercel.app/assets/images/hero-poster.jpg'],
+  description:
+    'Cordially inviting you to celebrate the Engagement Ceremony of G. Vallalarasu and K. Priyanka on Sunday, 13th December 2026 at RSM Banquet Hall, Triplicane, Chennai.',
+  organizer: {
+    '@type': 'Person',
+    name: 'G. Vallalarasu & K. Priyanka with families',
+  },
 };
 
 export default function RootLayout({
@@ -40,11 +93,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="ta" className={`scroll-smooth ${notoSerifTamil.variable} ${notoSansTamil.variable}`}>
       <head>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💍</text></svg>" />
+        <link
+          rel="icon"
+          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💍</text></svg>"
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdEvent) }}
+        />
       </head>
-      <body className="min-h-screen bg-[#0e0306] text-[#fbf7ee] antialiased selection:bg-gold-500/30 selection:text-gold-200">
+      <body className="min-h-[100dvh] bg-[#faf8f4] text-[#231c18] antialiased selection:bg-[#c5a059]/30 selection:text-[#231c18] overflow-x-clip">
         {children}
       </body>
     </html>
