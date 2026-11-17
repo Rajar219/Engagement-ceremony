@@ -14,7 +14,7 @@ export const CoupleIntro: React.FC = () => {
     <section id="couple-section" className="relative w-full py-16 px-4 max-w-4xl mx-auto text-center">
       {/* Ornamental Section Header */}
       <div className="flex flex-col items-center mb-12">
-        <span className="text-[11px] uppercase tracking-[0.25em] text-[#8e6c2e] font-semibold mb-2 font-tamil-serif">
+        <span className={`text-[11px] text-[#8e6c2e] font-semibold mb-2 ${language === 'ta' ? 'font-tamil-serif' : 'uppercase tracking-[0.25em] font-serif'}`}>
           {language === 'ta' ? 'மணமக்கள் அறிமுகம்' : 'Two Souls • One Beautiful Journey'}
         </span>
         <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold gold-foil-text tracking-wide">
@@ -34,12 +34,12 @@ export const CoupleIntro: React.FC = () => {
         <div className="luxury-card p-8 sm:p-10 flex flex-col items-center group transition-all duration-300 hover:shadow-2xl">
           <CornerOrnaments color="text-[#c5a059]/40" />
 
-          {/* Monogram Medallion */}
-          <div className="w-20 h-20 rounded-full border border-[#c5a059] bg-[#fdfbf7] flex items-center justify-center text-[#231c18] font-serif font-bold text-2xl mb-4 shadow-sm group-hover:scale-105 transition-transform">
-            G
+          {/* Monogram Medallion with Authentic Tamil Initial: ஜி. */}
+          <div className="w-20 h-20 rounded-full border border-[#c5a059] bg-[#fdfbf7] flex items-center justify-center text-[#231c18] font-tamil-heading font-bold text-2xl mb-4 shadow-sm group-hover:scale-105 transition-transform select-none">
+            <span className="leading-none pt-0.5">ஜி.</span>
           </div>
 
-          <span className="text-[10px] uppercase tracking-[0.25em] text-[#8e6c2e] font-semibold font-tamil-sans">
+          <span className={`text-[10px] text-[#8e6c2e] font-semibold ${language === 'ta' ? 'font-tamil-sans' : 'uppercase tracking-[0.25em] font-sans'}`}>
             {language === 'ta' ? 'மணமகன் • Groom' : 'Groom'}
           </span>
 
@@ -71,12 +71,12 @@ export const CoupleIntro: React.FC = () => {
         <div className="luxury-card p-8 sm:p-10 flex flex-col items-center group transition-all duration-300 hover:shadow-2xl">
           <CornerOrnaments color="text-[#c5a059]/40" />
 
-          {/* Monogram Medallion */}
-          <div className="w-20 h-20 rounded-full border border-[#c5a059] bg-[#fdfbf7] flex items-center justify-center text-[#231c18] font-serif font-bold text-2xl mb-4 shadow-sm group-hover:scale-105 transition-transform">
-            P
+          {/* Monogram Medallion with Authentic Tamil Initial: கே. */}
+          <div className="w-20 h-20 rounded-full border border-[#c5a059] bg-[#fdfbf7] flex items-center justify-center text-[#231c18] font-tamil-heading font-bold text-2xl mb-4 shadow-sm group-hover:scale-105 transition-transform select-none">
+            <span className="leading-none pt-0.5">கே.</span>
           </div>
 
-          <span className="text-[10px] uppercase tracking-[0.25em] text-[#8e6c2e] font-semibold font-tamil-sans">
+          <span className={`text-[10px] text-[#8e6c2e] font-semibold ${language === 'ta' ? 'font-tamil-sans' : 'uppercase tracking-[0.25em] font-sans'}`}>
             {language === 'ta' ? 'மணமகள் • Bride' : 'Bride'}
           </span>
 

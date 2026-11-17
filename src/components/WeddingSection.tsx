@@ -11,13 +11,13 @@ export const WeddingSection: React.FC = () => {
   const { t, language } = useLanguage();
 
   return (
-    <section id="wedding-section" className="relative w-full py-12 px-4 max-w-3xl mx-auto text-center">
+    <section id="wedding-section" className="relative w-full py-12 px-4 max-w-4xl mx-auto text-center">
       {/* 07. WEDDING / MUHURTHAM INVITATION CARD */}
       <div className="luxury-card p-6 sm:p-10 shadow-xl text-center">
         <CornerOrnaments color="text-[#c5a059]/40" />
 
         <div className="relative z-10 mb-6">
-          <span className="text-[11px] uppercase tracking-[0.25em] text-[#8e6c2e] font-semibold block font-tamil-serif mb-1.5">
+          <span className={`text-[11px] text-[#8e6c2e] font-semibold block mb-1.5 ${language === 'ta' ? 'font-tamil-serif' : 'uppercase tracking-[0.25em] font-serif'}`}>
             Holy Matrimony • திருமண நன்னாள்
           </span>
           <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold gold-foil-text tracking-wide">

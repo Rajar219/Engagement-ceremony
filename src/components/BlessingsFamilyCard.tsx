@@ -9,7 +9,7 @@ export const BlessingsFamilyCard: React.FC = () => {
   const { t, language } = useLanguage();
 
   return (
-    <section id="blessings-section" className="relative w-full py-8 px-4 max-w-3xl mx-auto text-center">
+    <section id="blessings-section" className="relative w-full py-12 px-4 max-w-4xl mx-auto text-center">
       {/* MATCHING LUXURY COTTON-RAG STATIONERY CARD */}
       <div className="luxury-card p-6 sm:p-10 shadow-xl overflow-hidden backdrop-blur-md">
         {/* Delicate Gold Corner Floral Ornaments */}
@@ -17,7 +17,7 @@ export const BlessingsFamilyCard: React.FC = () => {
 
         {/* Card Title & Ornamental Divider */}
         <div className="relative z-10 mb-6">
-          <span className="text-[11px] uppercase tracking-[0.25em] text-[#a88136] font-semibold block font-tamil-serif mb-1.5">
+          <span className={`text-[11px] text-[#a88136] font-semibold block mb-1.5 ${language === 'ta' ? 'font-tamil-serif' : 'uppercase tracking-[0.25em] font-serif'}`}>
             Divine Grace • திருவருள் ஆசி
           </span>
           <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold gold-foil-text tracking-wide">

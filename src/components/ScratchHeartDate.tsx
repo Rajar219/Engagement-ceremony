@@ -208,15 +208,28 @@ export const ScratchHeartDate: React.FC = () => {
 
   return (
     <section id="scratch-section" className="relative w-full py-14 px-4 max-w-4xl mx-auto text-center">
-      {/* SECTION HEADER: Save the Date • தேதியைச் சுரண்டிப் பார்க்கவும் */}
-      <div className="mb-6 max-w-lg mx-auto">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold gold-foil-text leading-snug">
-          {t.scratchSectionHeader}
+      {/* SECTION HEADER: Save the Date / சுப தேதியைக் குறித்துக் கொள்ளுங்கள் */}
+      <div className="mb-6 max-w-lg mx-auto flex flex-col items-center">
+        <span className={`text-[11px] text-[#8e6c2e] font-semibold mb-1.5 ${language === 'ta' ? 'font-tamil-serif' : 'uppercase tracking-[0.25em] font-serif'}`}>
+          {language === 'ta' ? 'சுப முகூர்த்த நாள்' : 'Mark Your Calendar'}
+        </span>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold gold-foil-text tracking-wide">
+          Save the Date
         </h2>
-        <div className="w-20 h-0.5 bg-gradient-to-r from-transparent via-[#c5a059] to-transparent mx-auto mt-2 mb-3" />
-        <p className="text-xs sm:text-sm text-[#5a4a42] font-tamil">
-          {t.scratchHelperCaption}
-        </p>
+        <span className="text-base sm:text-lg font-tamil-heading font-semibold text-[#8e6c2e] mt-1">
+          சுப தேதியைக் குறித்துக் கொள்ளுங்கள்
+        </span>
+        <div className="w-20 h-0.5 bg-gradient-to-r from-transparent via-[#c5a059] to-transparent mx-auto mt-2.5 mb-3" />
+
+        {/* BILINGUAL DESCRIPTION WITH COMFORTABLE LINE-HEIGHT */}
+        <div className="flex flex-col items-center gap-1 text-center max-w-md px-2">
+          <p className="text-xs sm:text-sm text-[#5a4a42] font-serif italic">
+            Scratch the golden seal below to reveal our special day
+          </p>
+          <p className="text-xs sm:text-sm text-[#766c62] font-tamil-body leading-relaxed">
+            எங்கள் திருமண நிச்சயதார்த்த நன்னாளை அறிய பொன் முத்திரையைத் தேய்க்கவும்
+          </p>
+        </div>
       </div>
 
       {/* SVG ClipPath for the Heart/Crest Shape */}
@@ -242,25 +255,25 @@ export const ScratchHeartDate: React.FC = () => {
       >
         {/* UNDERLYING REVEALED DATE CARD: 13 • 12 • 2026 | ஞாயிறு (Sunday) */}
         <div
-          className="absolute inset-0 bg-gradient-to-br from-[#241d18] via-[#1c1613] to-[#140f0c] border-2 border-[#c5a059]/60 flex flex-col items-center justify-center p-6 text-center select-none"
+          className="absolute inset-0 bg-gradient-to-br from-[#241d18] via-[#1c1613] to-[#140f0c] border-2 border-[#c5a059]/60 flex flex-col items-center justify-center p-5 text-center select-none"
           style={{ clipPath: 'url(#revealHeartClipVP)' }}
         >
-          <span className="text-xs sm:text-sm font-serif font-bold tracking-[0.22em] text-[#c5a059] uppercase block mb-1">
-            {t.scratchRevealDay}
+          <span className="text-[11px] sm:text-xs font-serif font-bold tracking-[0.2em] text-[#c5a059] uppercase block mb-0.5">
+            SUNDAY • ஞாயிற்றுக்கிழமை
           </span>
 
-          <div className="my-1.5 border-t border-b border-[#c5a059]/40 py-2.5 w-4/5 flex flex-col items-center justify-center">
+          <div className="my-1.5 border-t border-b border-[#c5a059]/40 py-2 w-4/5 flex flex-col items-center justify-center">
             <h4 className="text-3xl sm:text-4xl font-serif font-black text-[#faf8f4] leading-none tracking-tight">
-              {t.scratchRevealDate}
+              13 • 12 • 2026
             </h4>
           </div>
 
-          <div className="flex items-center gap-1.5 text-[11px] text-[#d4c3b3] font-tamil-sans mt-1">
+          <div className="flex items-center gap-1.5 text-[11px] text-[#d4c3b3] font-tamil-sans mt-0.5">
             <Clock className="w-3.5 h-3.5 text-[#c5a059] shrink-0" />
             <span>6:00 PM – 9:00 PM IST</span>
           </div>
 
-          <span className="text-[10px] text-[#c5a059]/90 tracking-widest uppercase mt-0.5 font-medium font-tamil-sans">
+          <span className="text-[10px] text-[#c5a059]/90 font-medium font-tamil-sans mt-0.5">
             RSM Banquet Hall, Chennai
           </span>
         </div>
@@ -300,20 +313,22 @@ export const ScratchHeartDate: React.FC = () => {
       </div>
 
       {/* HELPER CAPTION & QUICK REVEAL BUTTON */}
-      <div className="mt-4 flex flex-col items-center gap-2 text-xs text-[#5a4a42] font-sans">
-        <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#ffffff] border border-[#c5a059]/35 text-[#231c18] font-tamil-sans shadow-sm">
-          {t.scratchStatusLabel}: <strong>{scratchPercent}%</strong>
-          {scratchPercent >= 60 ? ' • ✨ சுபமுகூர்த்த தேதி திறக்கப்பட்டது!' : ''}
-        </span>
+      <div className="mt-5 flex flex-col items-center gap-2.5 text-xs text-[#5a4a42]">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#ffffff] border border-[#c5a059]/35 text-[#231c18] font-tamil-sans shadow-sm">
+          <span>🪙 {language === 'ta' ? 'தேய்த்த நிலை' : 'Scratched'}: <strong>{scratchPercent}%</strong></span>
+          {scratchPercent >= 60 && <span className="text-[#8e6c2e] font-semibold">• ✨ திறக்கப்பட்டது!</span>}
+        </div>
 
         {!isRevealed && (
           <button
             type="button"
             onClick={revealFully}
-            className="mt-1 text-xs font-bold text-[#1c1613] bg-gradient-to-r from-[#b08b41] via-[#c5a059] to-[#99732f] hover:from-[#c5a059] hover:to-[#b08b41] border border-[#f4e8c8]/40 rounded-full px-5 py-1.5 shadow-md transition active:scale-95 flex items-center gap-1.5 cursor-pointer"
+            className="mt-1 text-xs font-semibold text-[#1c1613] bg-gradient-to-r from-[#b08b41] via-[#c5a059] to-[#99732f] hover:from-[#c5a059] hover:to-[#b08b41] border border-[#f4e8c8]/40 rounded-full px-5 py-2 shadow-md transition-transform active:scale-95 flex items-center justify-center gap-2 cursor-pointer max-w-xs"
           >
             <Sparkles className="w-3.5 h-3.5 shrink-0" />
-            <span className="font-tamil-sans">{t.scratchInstantBtn}</span>
+            <span className="font-tamil-sans">
+              {language === 'ta' ? 'தேதியை உடனே திறக்க' : 'Tap to Reveal Instantly • உடனே திறக்க'}
+            </span>
           </button>
         )}
       </div>

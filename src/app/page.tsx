@@ -10,7 +10,6 @@ import { ScratchHeartDate } from '@/components/ScratchHeartDate';
 import { MainCeremonyCard } from '@/components/MainCeremonyCard';
 import { BlessingsFamilyCard } from '@/components/BlessingsFamilyCard';
 import { EngagementSection } from '@/components/EngagementSection';
-import { CelebrationFeastCard } from '@/components/CelebrationFeastCard';
 import { WeddingSection } from '@/components/WeddingSection';
 import { VenueCard } from '@/components/VenueCard';
 import { MomentsGallery } from '@/components/MomentsGallery';
@@ -98,16 +97,6 @@ export default function InvitationPage() {
 
         {/* AUSPICIOUS MOMENT COUNTDOWN TIMER & CALENDAR INTEGRATION */}
         <EngagementSection />
-
-        {/* Refined Gilded Divider */}
-        <div className="w-full max-w-4xl mx-auto px-4 py-4">
-          <div className="ornament-divider text-[#c5a059]/40 font-serif text-sm">
-            ❦
-          </div>
-        </div>
-
-        {/* SECTION 5: CELEBRATION HIGHLIGHTS & GRAND DINNER FEAST CARD */}
-        <CelebrationFeastCard />
 
         {/* Refined Gilded Divider */}
         <div className="w-full max-w-4xl mx-auto px-4 py-4">

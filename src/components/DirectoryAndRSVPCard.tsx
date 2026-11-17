@@ -180,13 +180,13 @@ export const DirectoryAndRSVPCard: React.FC = () => {
   };
 
   return (
-    <section id="directory-rsvp-section" className="relative w-full py-8 px-4 max-w-3xl mx-auto text-center space-y-10">
+    <section id="directory-rsvp-section" className="relative w-full py-12 px-4 max-w-4xl mx-auto text-center space-y-10">
       {/* 1. DIRECTORY CARD: "With Best Compliments From • அன்புடன் அழைக்கும்" */}
       <div className="luxury-card p-6 sm:p-10 shadow-xl overflow-hidden backdrop-blur-md text-left">
         <CornerOrnaments />
 
         <div className="relative z-10 text-center mb-6">
-          <span className="text-[11px] uppercase tracking-[0.25em] text-[#a88136] font-semibold block font-tamil-serif mb-1.5">
+          <span className={`text-[11px] text-[#a88136] font-semibold block mb-1.5 ${language === 'ta' ? 'font-tamil-serif' : 'uppercase tracking-[0.25em] font-serif'}`}>
             Cordially Welcoming You • இல்லத்தார் வரவேற்பு
           </span>
           <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold gold-foil-text tracking-wide">

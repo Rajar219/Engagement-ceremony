@@ -26,7 +26,7 @@ export const MainCeremonyCard: React.FC = () => {
   };
 
   return (
-    <section id="ceremony-section" className="relative w-full py-8 px-4 max-w-3xl mx-auto text-center">
+    <section id="ceremony-section" className="relative w-full py-12 px-4 max-w-4xl mx-auto text-center">
       {/* ELEVATED LUXURY ESPRESSO & GILDED GOLD CARD */}
       <div className="luxury-dark-card p-6 sm:p-10 shadow-2xl overflow-hidden backdrop-blur-md">
         {/* Delicate Gold Corner Floral Ornaments */}
@@ -34,7 +34,7 @@ export const MainCeremonyCard: React.FC = () => {
 
         {/* Card Title & Ornamental Divider */}
         <div className="relative z-10 mb-8">
-          <span className="text-[11px] uppercase tracking-[0.25em] text-[#c5a059] font-semibold block font-tamil-serif mb-1.5">
+          <span className={`text-[11px] text-[#c5a059] font-semibold block mb-1.5 ${language === 'ta' ? 'font-tamil-serif' : 'uppercase tracking-[0.25em] font-serif'}`}>
             Auspicious Occasion • சுபமுகூர்த்த வைபவம்
           </span>
           <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold gold-foil-text tracking-wide">

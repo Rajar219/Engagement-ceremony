@@ -40,7 +40,6 @@ export const NavigationBar: React.FC<NavigationBarProps> = ({ isVisible }) => {
     { label: language === 'ta' ? 'குடும்பம்' : 'Family', href: '#family-section' },
     { label: language === 'ta' ? 'சுரண்டும் அட்டை' : 'Save Date', href: '#scratch-section' },
     { label: language === 'ta' ? 'நிச்சயதார்த்தம்' : 'Engagement', href: '#ceremony-section' },
-    { label: language === 'ta' ? 'நிகழ்ச்சி நிரல்' : 'Schedule', href: '#schedule-section' },
     { label: language === 'ta' ? 'மண்டபம்' : 'Venue', href: '#venue-section' },
     { label: language === 'ta' ? 'நினைவுகள்' : 'Moments', href: '#gallery-section' },
     { label: language === 'ta' ? 'வருகைப் பதிவு' : 'RSVP', href: '#rsvp-section' },
