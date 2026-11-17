@@ -33,22 +33,6 @@
 }
 
 @font-face {
-  font-family: 'TAU-Nilavu';
-  src: url('/assets/fonts/TAU-Nilavu.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'TAU-Nilavu';
-  src: url('/assets/fonts/TAU-Nilavu Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
   font-family: 'TAU-Marutham';
   src: url('/assets/fonts/TAU-Marutham.ttf') format('truetype');
   font-weight: 400;
@@ -80,21 +64,74 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'TAU-Kambar';
+  src: url('/assets/fonts/TAU-Kambar.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TAU-Kambar';
+  src: url('/assets/fonts/TAU-Kambar-B.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TAU-Kabilar';
+  src: url('/assets/fonts/TAU-Kabilar.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TAU-Kabilar';
+  src: url('/assets/fonts/TAU-Kabilar-B.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TAU-Nilavu';
+  src: url('/assets/fonts/TAU-Nilavu.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TAU-Nilavu';
+  src: url('/assets/fonts/TAU-Nilavu Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --font-noto-serif-tamil: 'Noto Serif Tamil', serif;
-  --font-noto-sans-tamil: 'Noto Sans Tamil', sans-serif;
   --font-serif: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  --font-display: 'Cormorant Garamond', serif;
+  --font-heading: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
   --font-cinzel: 'Cinzel', serif;
   --font-script: 'Pinyon Script', 'Great Vibes', cursive, serif;
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  --font-tamil-serif: 'TAU-Marutham', 'TAU-Valluvar', 'TAU-Barathi', var(--font-noto-serif-tamil), 'Noto Serif Tamil', serif;
-  --font-tamil-sans: 'TAU-Marutham', 'TAU-Ezhil', var(--font-noto-sans-tamil), 'Noto Sans Tamil', sans-serif;
-  --font-tamil-stylish: 'TAU-Barathi', 'TAU-Ezhil', 'TAU-Marutham', 'TAU-Nilavu', var(--font-noto-serif-tamil), serif;
-  --font-tamil-body: 'TAU-Marutham', 'TAU-Valluvar', var(--font-noto-serif-tamil), serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+
+  /* Premium Tamil Typography Suite from Local TAU Unicode Fonts */
+  --font-tamil-heading: 'TAU-Valluvar', 'TAU-Barathi', 'Noto Serif Tamil', serif;
+  --font-tamil-body: 'TAU-Marutham', 'TAU-Kabilar', 'Noto Serif Tamil', serif;
+  --font-tamil-stylish: 'TAU-Barathi', 'TAU-Ezhil', 'TAU-Marutham', 'Noto Serif Tamil', serif;
+  --font-tamil-sans: 'TAU-Ezhil', 'TAU-Marutham', 'Noto Sans Tamil', sans-serif;
+  --font-tamil-serif: 'TAU-Valluvar', 'TAU-Marutham', 'Noto Serif Tamil', serif;
+  --font-tamil-invitation: 'TAU-Marutham', 'TAU-Valluvar', 'Noto Serif Tamil', serif;
 }
 
 html {
@@ -124,9 +161,44 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+.font-tamil-heading {
+  font-family: var(--font-tamil-heading);
+  line-height: 1.5 !important;
+  text-rendering: optimizeLegibility;
+}
+
+.font-tamil-body {
+  font-family: var(--font-tamil-body);
+  line-height: 1.7 !important;
+  text-rendering: optimizeLegibility;
+}
+
 .font-tamil-stylish {
   font-family: var(--font-tamil-stylish);
   line-height: 1.6 !important;
+  text-rendering: optimizeLegibility;
+}
+
+.font-tamil-invitation {
+  font-family: var(--font-tamil-invitation);
+  line-height: 1.6 !important;
+  text-rendering: optimizeLegibility;
+}
+
+/* White Hero Typography (Crisp white against natural original background with subtle black text-shadow) */
+.hero-white-title {
+  color: #ffffff;
+  text-shadow: 1px 2px 7px rgba(0, 0, 0, 0.75);
+}
+
+.hero-white-text {
+  color: #ffffff;
+  text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.65);
+}
+
+.hero-warm-ivory {
+  color: #fff8ed;
+  text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.65);
 }
 
 /* Cinematic Editorial Gold Foil Title for Couple Names (Matches exact reference image) */

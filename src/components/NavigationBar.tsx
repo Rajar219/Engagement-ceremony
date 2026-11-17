@@ -26,7 +26,9 @@ export const NavigationBar: React.FC<NavigationBarProps> = ({ isVisible }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  if (!isVisible) {
+  // The opening homepage has NO visible navigation bar, language selectors, or menu controls.
+  // The navigation bar mounts smoothly only once the user scrolls down into the invitation details.
+  if (!isVisible || !isScrolled) {
     return null;
   }
 
