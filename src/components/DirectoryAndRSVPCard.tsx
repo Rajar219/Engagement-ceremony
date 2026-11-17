@@ -170,7 +170,7 @@ export const DirectoryAndRSVPCard: React.FC = () => {
         : 'Unable to Attend (Warm Wishes)';
 
     const text = encodeURIComponent(
-      `💐 RSVP Confirmation for Vallalarasu & Priyanka Engagement!\n\n` +
+      `💐 RSVP Confirmation for Vallarasu & Priyanka Engagement!\n\n` +
       `Guest: ${submittedRSVP.fullName}\n` +
       `Status: ${attendanceText}\n` +
       (submittedRSVP.attendance !== 'declined' ? `Number of Guests: ${submittedRSVP.guestCount}\n` : '') +

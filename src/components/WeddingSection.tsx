@@ -29,7 +29,7 @@ export const WeddingSection: React.FC = () => {
           <p className="text-xs sm:text-sm text-[#5c534b] font-tamil max-w-lg mx-auto leading-relaxed">
             {language === 'ta'
               ? 'இறைவன் திருவருளாலும் பெரியோர்களின் ஆசிகளாலும் ஞா. வல்லரசு & க. பிரியங்கா ஆகியோரின் திருமண முகூர்த்தம் முறைப்படி இனிதே நடைபெற உள்ளது.'
-              : 'With the sacred blessings of elders and loved ones, G. Vallalarasu and K. Priyanka will unite in holy matrimony following traditional Vedic rites.'}
+              : 'With the sacred blessings of elders and loved ones, G. Vallarasu and K. Priyanka will unite in holy matrimony following traditional Vedic rites.'}
           </p>
         </div>
 

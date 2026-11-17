@@ -65,7 +65,7 @@ export const NavigationBar: React.FC<NavigationBarProps> = ({ isVisible }) => {
               V&amp;P
             </div>
             <span className="font-serif text-sm font-bold tracking-wider text-[#231c18] hidden sm:inline">
-              Vallalarasu &amp; Priyanka
+              Vallarasu &amp; Priyanka
             </span>
           </a>
         ) : (

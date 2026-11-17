@@ -8,9 +8,9 @@ export const EventSchedule: React.FC = () => {
   const { date, time, itinerary, dressCode } = invitationConfig.engagement;
 
   const handleAddToGoogleCalendar = () => {
-    const title = encodeURIComponent(`Engagement Ceremony: G. Vallalarasu & K. Priyanka`);
+    const title = encodeURIComponent(`Engagement Ceremony: G. Vallarasu & K. Priyanka`);
     const details = encodeURIComponent(
-      `Cordially inviting you to the auspicious Engagement Ceremony of G. Vallalarasu & K. Priyanka at RSM Banquet Hall, Triplicane, Chennai.`
+      `Cordially inviting you to the auspicious Engagement Ceremony of G. Vallarasu & K. Priyanka at RSM Banquet Hall, Triplicane, Chennai.`
     );
     const location = encodeURIComponent(
       `RSM Banquet Hall, 35/37, Dr Besant Rd, Near Hotel Viveka, Triplicane, Chennai - 600005`
@@ -29,8 +29,8 @@ PRODID:-//Engagement Ceremony//EN
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT
-SUMMARY:Engagement Ceremony: G. Vallalarasu & K. Priyanka
-DESCRIPTION:Engagement Ceremony of G. Vallalarasu & K. Priyanka at RSM Banquet Hall\\, Triplicane\\, Chennai.
+SUMMARY:Engagement Ceremony: G. Vallarasu & K. Priyanka
+DESCRIPTION:Engagement Ceremony of G. Vallarasu & K. Priyanka at RSM Banquet Hall\\, Triplicane\\, Chennai.
 LOCATION:RSM Banquet Hall\\, 35/37\\, Dr Besant Rd\\, Near Hotel Viveka\\, Triplicane\\, Chennai - 600005
 DTSTART:20261213T123000Z
 DTEND:20261213T153000Z
@@ -41,7 +41,7 @@ END:VCALENDAR`;
     const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
     const link = document.createElement('a');
     link.href = window.URL.createObjectURL(blob);
-    link.setAttribute('download', 'Vallalarasu-Priyanka-Engagement.ics');
+    link.setAttribute('download', 'Vallarasu-Priyanka-Engagement.ics');
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

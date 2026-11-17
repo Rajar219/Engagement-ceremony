@@ -147,7 +147,7 @@ export const WishesWall: React.FC = () => {
         <p className="text-xs sm:text-sm text-[#5c534b] max-w-md font-tamil">
           {language === 'ta'
             ? 'மணமக்களுக்கான தங்களின் அன்பான வாழ்த்துகளையும் ஆசிகளையும் இங்கு பதிவு செய்யலாம்.'
-            : 'Leave your loving prayers, heartfelt blessings, and congratulations for Vallalarasu & Priyanka.'}
+            : 'Leave your loving prayers, heartfelt blessings, and congratulations for Vallarasu & Priyanka.'}
         </p>
       </div>
 

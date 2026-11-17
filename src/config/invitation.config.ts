@@ -147,8 +147,8 @@ export interface InvitationConfig {
 export const invitationConfig: InvitationConfig = {
   couple: {
     groom: {
-      firstName: "Vallalarasu",
-      fullName: "G. Vallalarasu",
+      firstName: "Vallarasu",
+      fullName: "G. Vallarasu",
       roleTitle: "The Groom",
       bio: "Son of Mr. V. Gnanasekar & Mrs. G. Meena",
       parents: "Son of Mr. V. Gnanasekar & Mrs. G. Meena",
@@ -238,7 +238,7 @@ export const invitationConfig: InvitationConfig = {
     heading: "With Joyful Hearts",
     message: "Your gracious presence, warm blessings, and wishes will make our special day truly memorable.",
     blessing: "We warmly invite you to join us in celebrating this auspicious beginning.",
-    signature: "G. Vallalarasu & K. Priyanka with families",
+    signature: "G. Vallarasu & K. Priyanka with families",
   },
   media: {
     music: {
@@ -317,8 +317,8 @@ export const invitationConfig: InvitationConfig = {
     ],
   },
   seo: {
-    title: "V&P | Engagement & Wedding Celebration | G. Vallalarasu & K. Priyanka",
-    description: "Cordially inviting you to celebrate the Engagement Ceremony of G. Vallalarasu and K. Priyanka on Sunday, 13th December 2026 at RSM Banquet Hall, Triplicane, Chennai.",
+    title: "V&P | Engagement & Wedding Celebration | G. Vallarasu & K. Priyanka",
+    description: "Cordially inviting you to celebrate the Engagement Ceremony of G. Vallarasu and K. Priyanka on Sunday, 13th December 2026 at RSM Banquet Hall, Triplicane, Chennai.",
     canonicalUrl: "https://vallarasu-priyanka-engagement.vercel.app/",
     ogImage: "/assets/images/hero-poster.jpg",
   },

@@ -13,14 +13,14 @@ export const metadata: Metadata = {
     title: invitationConfig.seo.title,
     description: invitationConfig.seo.description,
     url: 'https://vallarasu-priyanka-engagement.vercel.app',
-    siteName: 'Vallalarasu & Priyanka Engagement & Wedding Invitation',
+    siteName: 'Vallarasu & Priyanka Engagement & Wedding Invitation',
     type: 'website',
     images: [
       {
         url: invitationConfig.seo.ogImage || '/assets/images/hero-poster.jpg',
         width: 1080,
         height: 1920,
-        alt: 'Engagement Ceremony - G. Vallalarasu & K. Priyanka',
+        alt: 'Engagement Ceremony - G. Vallarasu & K. Priyanka',
       },
     ],
   },
@@ -46,7 +46,7 @@ export const viewport: Viewport = {
 const jsonLdEvent = {
   '@context': 'https://schema.org',
   '@type': 'Event',
-  name: 'Engagement Ceremony: G. Vallalarasu & K. Priyanka',
+  name: 'Engagement Ceremony: G. Vallarasu & K. Priyanka',
   startDate: '2026-12-13T18:00:00+05:30',
   endDate: '2026-12-13T21:00:00+05:30',
   eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
@@ -65,10 +65,10 @@ const jsonLdEvent = {
   },
   image: ['https://vallarasu-priyanka-engagement.vercel.app/assets/images/hero-poster.jpg'],
   description:
-    'Cordially inviting you to celebrate the Engagement Ceremony of G. Vallalarasu and K. Priyanka on Sunday, 13th December 2026 at RSM Banquet Hall, Triplicane, Chennai.',
+    'Cordially inviting you to celebrate the Engagement Ceremony of G. Vallarasu and K. Priyanka on Sunday, 13th December 2026 at RSM Banquet Hall, Triplicane, Chennai.',
   organizer: {
     '@type': 'Person',
-    name: 'G. Vallalarasu & K. Priyanka with families',
+    name: 'G. Vallarasu & K. Priyanka with families',
   },
 };
 

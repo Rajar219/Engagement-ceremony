@@ -132,46 +132,26 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
               : 'WITH THE BLESSINGS OF OUR FAMILIES'}
           </p>
 
-          {/* ITEMS 2, 3, 4: Vallalarasu & Priyanka (CENTERPIECE EDITORIAL SERIF) */}
-          <div className="my-2 sm:my-3 flex flex-col items-center w-full">
+          {/* ITEMS 2, 3, 4: Vallarasu & Priyanka (OFFICIAL 3D GOLD CALLIGRAPHY EMBLEM) */}
+          <div className="my-1.5 sm:my-2.5 flex flex-col items-center w-full">
             {language === 'ta' ? (
-              /* Tamil Couple Names */
-              <div className="flex flex-col items-center font-tamil-heading text-center">
-                {/* ITEM 2: Vallarasu (வல்லரசு) */}
-                <h1
-                  className="font-tamil-heading text-[clamp(38px,9.5vw,56px)] font-bold tracking-[0.02em] leading-tight text-[#FFFFFF] select-none hero-solid-white"
-                  style={{
-                    color: '#FFFFFF',
-                    opacity: 1,
-                    WebkitTextFillColor: '#FFFFFF',
-                    WebkitTextStroke: '0px transparent',
-                    textShadow: '1px 2px 4px rgba(0, 0, 0, 0.75)',
-                  }}
-                >
-                  வல்லரசு
-                </h1>
-
-                {/* ITEM 3: Ampersand flanked by hairlines: ────── & ────── */}
-                <div className="flex items-center justify-center w-full max-w-[200px] sm:max-w-[260px] my-1 sm:my-1.5">
-                  <div className="flex-1 h-px bg-gradient-to-r from-transparent via-white/70 to-white/70" />
-                  <span
-                    className="font-serif italic text-[clamp(26px,6vw,34px)] text-[#FFFFFF] px-3 sm:px-4 font-normal leading-none select-none hero-solid-white"
-                    style={{
-                      color: '#FFFFFF',
-                      opacity: 1,
-                      WebkitTextFillColor: '#FFFFFF',
-                      WebkitTextStroke: '0px transparent',
-                      textShadow: '1px 2px 4px rgba(0, 0, 0, 0.75)',
-                    }}
-                  >
-                    &amp;
-                  </span>
-                  <div className="flex-1 h-px bg-gradient-to-l from-transparent via-white/70 to-white/70" />
+              /* Tamil Couple Names with Official 3D Gold Typography Emblem */
+              <div className="flex flex-col items-center font-tamil-heading text-center w-full">
+                <div className="w-full max-w-[320px] sm:max-w-[400px] mx-auto my-1">
+                  <picture>
+                    <source srcSet="/assets/images/couple-name-gold.webp" type="image/webp" />
+                    <img
+                      src="/assets/images/couple-name-gold.png"
+                      alt="Vallarasu & Priyanka"
+                      className="w-full h-auto object-contain filter drop-shadow-[0_4px_14px_rgba(0,0,0,0.7)] select-none pointer-events-none"
+                      loading="eager"
+                      width={1024}
+                      height={341}
+                    />
+                  </picture>
                 </div>
-
-                {/* ITEM 4: Priyanka (பிரியங்கா) */}
-                <h2
-                  className="font-tamil-heading text-[clamp(38px,9.5vw,56px)] font-bold tracking-[0.02em] leading-tight text-[#FFFFFF] select-none hero-solid-white"
+                <h1
+                  className="font-tamil-heading text-[clamp(26px,6.8vw,38px)] font-bold tracking-[0.02em] leading-tight text-[#FFFFFF] select-none hero-solid-white mt-1"
                   style={{
                     color: '#FFFFFF',
                     opacity: 1,
@@ -180,57 +160,23 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
                     textShadow: '1px 2px 4px rgba(0, 0, 0, 0.75)',
                   }}
                 >
-                  பிரியங்கா
-                </h2>
+                  வல்லரசு &amp; பிரியங்கா
+                </h1>
               </div>
             ) : (
-              /* English Couple Names */
-              <div className="flex flex-col items-center text-center font-serif">
-                {/* ITEM 2: Vallalarasu */}
-                <h1
-                  className="font-serif font-normal text-[clamp(44px,11vw,64px)] text-[#FFFFFF] tracking-[0.015em] leading-[1.08] select-none hero-solid-white"
-                  style={{
-                    color: '#FFFFFF',
-                    opacity: 1,
-                    WebkitTextFillColor: '#FFFFFF',
-                    WebkitTextStroke: '0px transparent',
-                    textShadow: '1px 2px 4px rgba(0, 0, 0, 0.75)',
-                  }}
-                >
-                  Vallalarasu
-                </h1>
-
-                {/* ITEM 3: Ampersand flanked by hairlines: ────── & ────── */}
-                <div className="flex items-center justify-center w-full max-w-[200px] sm:max-w-[260px] my-1 sm:my-1.5">
-                  <div className="flex-1 h-px bg-gradient-to-r from-transparent via-white/70 to-white/70" />
-                  <span
-                    className="font-serif italic text-[clamp(26px,6vw,34px)] text-[#FFFFFF] px-3 sm:px-4 font-normal leading-none select-none hero-solid-white"
-                    style={{
-                      color: '#FFFFFF',
-                      opacity: 1,
-                      WebkitTextFillColor: '#FFFFFF',
-                      WebkitTextStroke: '0px transparent',
-                      textShadow: '1px 2px 4px rgba(0, 0, 0, 0.75)',
-                    }}
-                  >
-                    &amp;
-                  </span>
-                  <div className="flex-1 h-px bg-gradient-to-l from-transparent via-white/70 to-white/70" />
-                </div>
-
-                {/* ITEM 4: Priyanka */}
-                <h2
-                  className="font-serif font-normal text-[clamp(44px,11vw,64px)] text-[#FFFFFF] tracking-[0.015em] leading-[1.08] select-none hero-solid-white"
-                  style={{
-                    color: '#FFFFFF',
-                    opacity: 1,
-                    WebkitTextFillColor: '#FFFFFF',
-                    WebkitTextStroke: '0px transparent',
-                    textShadow: '1px 2px 4px rgba(0, 0, 0, 0.75)',
-                  }}
-                >
-                  Priyanka
-                </h2>
+              /* English Couple Names using Official 3D Gold Calligraphy Graphic */
+              <div className="flex flex-col items-center text-center my-1 sm:my-2 w-full max-w-[340px] sm:max-w-[430px] mx-auto">
+                <picture>
+                  <source srcSet="/assets/images/couple-name-gold.webp" type="image/webp" />
+                  <img
+                    src="/assets/images/couple-name-gold.png"
+                    alt="Vallarasu & Priyanka"
+                    className="w-full h-auto object-contain filter drop-shadow-[0_4px_14px_rgba(0,0,0,0.7)] select-none pointer-events-none"
+                    loading="eager"
+                    width={1024}
+                    height={341}
+                  />
+                </picture>
               </div>
             )}
           </div>
