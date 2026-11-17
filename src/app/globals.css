@@ -185,28 +185,49 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* White Hero Typography with Subtle Black Stroke (Crisp white against natural original background) */
-.hero-subtle-stroke {
-  -webkit-text-stroke: 0.35px rgba(0, 0, 0, 0.65);
-  text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.55);
+/* Solid Pure White Cinematic Typography (Sharp, crisp text against natural background) */
+.hero-solid-white {
+  color: #ffffff !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: #ffffff !important;
+  -webkit-text-stroke: 0 !important;
+  text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.75);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 .hero-white-title {
-  color: #ffffff;
-  -webkit-text-stroke: 0.35px rgba(0, 0, 0, 0.65);
-  text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.55);
+  color: #ffffff !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: #ffffff !important;
+  -webkit-text-stroke: 0 !important;
+  text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.75);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 .hero-white-text {
-  color: #ffffff;
-  -webkit-text-stroke: 0.35px rgba(0, 0, 0, 0.65);
-  text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.55);
+  color: #ffffff !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: #ffffff !important;
+  -webkit-text-stroke: 0 !important;
+  text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.75);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 .hero-warm-ivory {
-  color: #fff8ed;
-  -webkit-text-stroke: 0.35px rgba(0, 0, 0, 0.65);
-  text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.55);
+  color: #ffffff !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: #ffffff !important;
+  -webkit-text-stroke: 0 !important;
+  text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.75);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 /* Cinematic Editorial Gold Foil Title for Couple Names (Matches exact reference image) */

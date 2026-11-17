@@ -109,19 +109,21 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
       {/* TOP SPACER (keeps vertical balance with viewport top) */}
       <div className="w-full pt-3 sm:pt-6" />
 
-      {/* 2. MAIN POSTER CONTENT — EXACT SPECIFIED ORDER (ALL WHITE & WARM IVORY TYPOGRAPHY) */}
+      {/* 2. MAIN POSTER CONTENT — EXACT SPECIFIED ORDER (ALL CRISP SOLID WHITE TYPOGRAPHY) */}
       <div
-        className={`relative z-10 w-full max-w-2xl my-auto flex flex-col items-center transition-all duration-1000 ease-out ${
-          mounted ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-3 scale-[0.98]'
+        className={`relative z-10 w-full max-w-2xl my-auto flex flex-col items-center transition-opacity duration-700 ease-out ${
+          mounted ? 'opacity-100' : 'opacity-0'
         }`}
-        style={{ willChange: 'transform, opacity' }}
       >
         {/* ITEM 1: WITH THE BLESSINGS OF OUR FAMILIES */}
         <p
-          className="text-[clamp(11px,2.8vw,13px)] tracking-[0.24em] sm:tracking-[0.32em] uppercase font-serif font-medium text-[#FFFFFF] select-none hero-subtle-stroke"
+          className="text-[clamp(11px,2.8vw,13px)] tracking-[0.16em] sm:tracking-[0.20em] uppercase font-serif font-semibold text-[#FFFFFF] select-none hero-solid-white"
           style={{
-            WebkitTextStroke: '0.35px rgba(0, 0, 0, 0.65)',
-            textShadow: '1px 2px 4px rgba(0, 0, 0, 0.55)',
+            color: '#FFFFFF',
+            opacity: 1,
+            WebkitTextFillColor: '#FFFFFF',
+            WebkitTextStroke: '0px transparent',
+            textShadow: '1px 2px 4px rgba(0, 0, 0, 0.75)',
           }}
         >
           {language === 'ta'
@@ -136,10 +138,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
             <div className="flex flex-col items-center font-tamil-heading text-center">
               {/* ITEM 2: Vallalarasu (வள்ளலரசு) */}
               <h1
-                className="font-tamil-heading text-[clamp(38px,9.5vw,56px)] font-bold tracking-[0.02em] leading-tight text-[#FFFFFF] select-none hero-subtle-stroke"
+                className="font-tamil-heading text-[clamp(40px,10vw,60px)] font-bold tracking-[0.02em] leading-tight text-[#FFFFFF] select-none hero-solid-white"
                 style={{
-                  WebkitTextStroke: '0.35px rgba(0, 0, 0, 0.65)',
-                  textShadow: '1px 2px 4px rgba(0, 0, 0, 0.55)',
+                  color: '#FFFFFF',
+                  opacity: 1,
+                  WebkitTextFillColor: '#FFFFFF',
+                  WebkitTextStroke: '0px transparent',
+                  textShadow: '1px 2px 4px rgba(0, 0, 0, 0.75)',
                 }}
               >
                 வள்ளலரசு
@@ -149,10 +154,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
               <div className="flex items-center justify-center w-full max-w-[200px] sm:max-w-[280px] my-1 sm:my-1.5">
                 <div className="flex-1 h-px bg-gradient-to-r from-transparent via-white/70 to-white/70" />
                 <span
-                  className="font-serif italic text-[clamp(28px,6.5vw,36px)] text-[#FFFFFF] px-3 sm:px-4 font-normal leading-none select-none hero-subtle-stroke"
+                  className="font-serif italic text-[clamp(28px,6.5vw,36px)] text-[#FFFFFF] px-3 sm:px-4 font-normal leading-none select-none hero-solid-white"
                   style={{
-                    WebkitTextStroke: '0.35px rgba(0, 0, 0, 0.65)',
-                    textShadow: '1px 2px 4px rgba(0, 0, 0, 0.55)',
+                    color: '#FFFFFF',
+                    opacity: 1,
+                    WebkitTextFillColor: '#FFFFFF',
+                    WebkitTextStroke: '0px transparent',
+                    textShadow: '1px 2px 4px rgba(0, 0, 0, 0.75)',
                   }}
                 >
                   &amp;
@@ -162,10 +170,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
 
               {/* ITEM 4: Priyanka (பிரியங்கா) */}
               <h2
-                className="font-tamil-heading text-[clamp(38px,9.5vw,56px)] font-bold tracking-[0.02em] leading-tight text-[#FFFFFF] select-none hero-subtle-stroke"
+                className="font-tamil-heading text-[clamp(40px,10vw,60px)] font-bold tracking-[0.02em] leading-tight text-[#FFFFFF] select-none hero-solid-white"
                 style={{
-                  WebkitTextStroke: '0.35px rgba(0, 0, 0, 0.65)',
-                  textShadow: '1px 2px 4px rgba(0, 0, 0, 0.55)',
+                  color: '#FFFFFF',
+                  opacity: 1,
+                  WebkitTextFillColor: '#FFFFFF',
+                  WebkitTextStroke: '0px transparent',
+                  textShadow: '1px 2px 4px rgba(0, 0, 0, 0.75)',
                 }}
               >
                 பிரியங்கா
@@ -176,10 +187,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
             <div className="flex flex-col items-center text-center font-serif">
               {/* ITEM 2: Vallalarasu */}
               <h1
-                className="font-serif italic font-normal text-[clamp(46px,11.5vw,64px)] text-[#FFFFFF] tracking-[0.015em] leading-[1.06] select-none hero-subtle-stroke"
+                className="font-serif font-normal text-[clamp(48px,12vw,68px)] text-[#FFFFFF] tracking-[0.015em] leading-[1.06] select-none hero-solid-white"
                 style={{
-                  WebkitTextStroke: '0.35px rgba(0, 0, 0, 0.65)',
-                  textShadow: '1px 2px 4px rgba(0, 0, 0, 0.55)',
+                  color: '#FFFFFF',
+                  opacity: 1,
+                  WebkitTextFillColor: '#FFFFFF',
+                  WebkitTextStroke: '0px transparent',
+                  textShadow: '1px 2px 4px rgba(0, 0, 0, 0.75)',
                 }}
               >
                 Vallalarasu
@@ -189,10 +203,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
               <div className="flex items-center justify-center w-full max-w-[200px] sm:max-w-[280px] my-1 sm:my-1.5">
                 <div className="flex-1 h-px bg-gradient-to-r from-transparent via-white/70 to-white/70" />
                 <span
-                  className="font-serif italic text-[clamp(28px,6.5vw,36px)] text-[#FFFFFF] px-3 sm:px-4 font-normal leading-none select-none hero-subtle-stroke"
+                  className="font-serif italic text-[clamp(28px,6.5vw,36px)] text-[#FFFFFF] px-3 sm:px-4 font-normal leading-none select-none hero-solid-white"
                   style={{
-                    WebkitTextStroke: '0.35px rgba(0, 0, 0, 0.65)',
-                    textShadow: '1px 2px 4px rgba(0, 0, 0, 0.55)',
+                    color: '#FFFFFF',
+                    opacity: 1,
+                    WebkitTextFillColor: '#FFFFFF',
+                    WebkitTextStroke: '0px transparent',
+                    textShadow: '1px 2px 4px rgba(0, 0, 0, 0.75)',
                   }}
                 >
                   &amp;
@@ -202,10 +219,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
 
               {/* ITEM 4: Priyanka */}
               <h2
-                className="font-serif italic font-normal text-[clamp(46px,11.5vw,64px)] text-[#FFFFFF] tracking-[0.015em] leading-[1.06] select-none hero-subtle-stroke"
+                className="font-serif font-normal text-[clamp(48px,12vw,68px)] text-[#FFFFFF] tracking-[0.015em] leading-[1.06] select-none hero-solid-white"
                 style={{
-                  WebkitTextStroke: '0.35px rgba(0, 0, 0, 0.65)',
-                  textShadow: '1px 2px 4px rgba(0, 0, 0, 0.55)',
+                  color: '#FFFFFF',
+                  opacity: 1,
+                  WebkitTextFillColor: '#FFFFFF',
+                  WebkitTextStroke: '0px transparent',
+                  textShadow: '1px 2px 4px rgba(0, 0, 0, 0.75)',
                 }}
               >
                 Priyanka
@@ -215,12 +235,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
         </div>
 
         {/* ITEM 5: ENGAGEMENT CEREMONY */}
-        <div className="mt-1 sm:mt-2 flex flex-col items-center">
+        <div className="mt-1.5 sm:mt-2.5 flex flex-col items-center">
           <h3
-            className="font-serif uppercase tracking-[0.24em] sm:tracking-[0.34em] text-[clamp(13px,3.2vw,16px)] font-semibold text-[#FFFFFF] select-none hero-subtle-stroke"
+            className="font-serif uppercase tracking-[0.18em] sm:tracking-[0.24em] text-[clamp(13px,3.2vw,16px)] font-medium text-[#FFFFFF] select-none hero-solid-white"
             style={{
-              WebkitTextStroke: '0.35px rgba(0, 0, 0, 0.65)',
-              textShadow: '1px 2px 4px rgba(0, 0, 0, 0.55)',
+              color: '#FFFFFF',
+              opacity: 1,
+              WebkitTextFillColor: '#FFFFFF',
+              WebkitTextStroke: '0px transparent',
+              textShadow: '1px 2px 4px rgba(0, 0, 0, 0.75)',
             }}
           >
             {language === 'ta'
@@ -232,10 +255,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
         {/* ITEM 6: TAMIL INVITATION TEXT — அன்போடு அழைக்கிறோம் */}
         <div className="mt-1 sm:mt-1.5 flex flex-col items-center">
           <p
-            className="font-tamil-invitation text-[clamp(14px,3.5vw,17px)] font-medium text-[#FFFFFF] tracking-[0.05em] select-none hero-subtle-stroke"
+            className="font-tamil-invitation text-[clamp(14px,3.5vw,17px)] font-semibold text-[#FFFFFF] tracking-[0.04em] select-none hero-solid-white"
             style={{
-              WebkitTextStroke: '0.35px rgba(0, 0, 0, 0.65)',
-              textShadow: '1px 2px 4px rgba(0, 0, 0, 0.55)',
+              color: '#FFFFFF',
+              opacity: 1,
+              WebkitTextFillColor: '#FFFFFF',
+              WebkitTextStroke: '0px transparent',
+              textShadow: '1px 2px 4px rgba(0, 0, 0, 0.75)',
             }}
           >
             அன்போடு அழைக்கிறோம்
@@ -245,10 +271,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
         {/* ITEM 7: ROMANTIC QUOTATION IN ELEGANT WARM IVORY ITALIC SERIF */}
         <div className="max-w-[340px] sm:max-w-md mx-auto px-4 mt-3 sm:mt-4">
           <p
-            className="font-serif italic text-[clamp(15px,3.8vw,18.5px)] text-[#FFF8ED] leading-[1.65] tracking-wide select-none hero-subtle-stroke"
+            className="font-serif italic font-medium text-[clamp(15px,3.8vw,18.5px)] text-[#FFFFFF] leading-[1.65] tracking-wide select-none hero-solid-white"
             style={{
-              WebkitTextStroke: '0.35px rgba(0, 0, 0, 0.65)',
-              textShadow: '1px 2px 4px rgba(0, 0, 0, 0.55)',
+              color: '#FFFFFF',
+              opacity: 1,
+              WebkitTextFillColor: '#FFFFFF',
+              WebkitTextStroke: '0px transparent',
+              textShadow: '1px 2px 4px rgba(0, 0, 0, 0.75)',
             }}
           >
             {language === 'ta' ? (
@@ -279,18 +308,21 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
       <div className="relative z-10 pb-2 sm:pb-3 flex flex-col items-center">
         <a
           href="#couple-section"
-          className="text-xs text-[#FFFFFF]/90 hover:text-white flex flex-col items-center gap-1 transition-colors group cursor-pointer"
+          className="text-xs text-[#FFFFFF] hover:text-white flex flex-col items-center gap-1 transition-colors group cursor-pointer hero-solid-white"
         >
           <span
-            className="tracking-[0.24em] uppercase text-[10px] font-sans font-medium hero-subtle-stroke"
+            className="tracking-[0.18em] uppercase text-[10px] font-sans font-medium"
             style={{
-              WebkitTextStroke: '0.35px rgba(0, 0, 0, 0.65)',
-              textShadow: '1px 2px 4px rgba(0, 0, 0, 0.55)',
+              color: '#FFFFFF',
+              opacity: 1,
+              WebkitTextFillColor: '#FFFFFF',
+              WebkitTextStroke: '0px transparent',
+              textShadow: '1px 2px 4px rgba(0, 0, 0, 0.75)',
             }}
           >
             {language === 'ta' ? 'அழைப்பிதழைப் பார்வையிட' : 'Explore Invitation'}
           </span>
-          <ChevronDown className="w-4 h-4 animate-bounce text-white group-hover:text-[#FFF8ED] drop-shadow-md" />
+          <ChevronDown className="w-4 h-4 animate-bounce text-white group-hover:text-[#FFFFFF] drop-shadow-md" />
         </a>
       </div>
     </section>

@@ -21,6 +21,9 @@ tamil_fonts/
 *.pem
 /*.mp4
 *.original.mp4
+*watermark*.mp4
+*envelope intro*.mp4
+*.tmp
 
 # debug
 npm-debug.log*
