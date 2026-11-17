@@ -57,6 +57,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
   useEffect(() => {
     if (isVisible && heroVideoRef.current) {
       heroVideoRef.current.play().catch(() => {});
+    } else if (!isVisible && heroVideoRef.current) {
+      heroVideoRef.current.pause();
     }
   }, [isVisible]);
 
@@ -67,7 +69,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && isVisible) {
           video.play().catch(() => {});
         } else {
           video.pause();
@@ -78,7 +80,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
 
     observer.observe(video);
     return () => observer.disconnect();
-  }, []);
+  }, [isVisible]);
 
   return (
     <section
@@ -91,7 +93,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
           ref={heroVideoRef}
           src={videoSrc}
           poster={posterSrc}
-          autoPlay
           muted
           loop
           playsInline

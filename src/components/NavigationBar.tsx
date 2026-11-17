@@ -14,11 +14,14 @@ export const NavigationBar: React.FC<NavigationBarProps> = ({ isVisible }) => {
   const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      if (window.scrollY > 80) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 80);
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 

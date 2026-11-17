@@ -20,6 +20,7 @@ tamil_fonts/
 .DS_Store
 *.pem
 /*.mp4
+*.original.mp4
 
 # debug
 npm-debug.log*

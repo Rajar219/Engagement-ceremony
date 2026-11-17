@@ -12,6 +12,7 @@ export const ScratchHeartDate: React.FC = () => {
   const [isRevealed, setIsRevealed] = useState(false);
   const isDrawingRef = useRef(false);
   const hasTriggeredConfettiRef = useRef(false);
+  const progressPendingRef = useRef(false);
   const { t, language } = useLanguage();
 
   // Initialize canvas with golden/lavender metallic foil
@@ -75,6 +76,45 @@ export const ScratchHeartDate: React.FC = () => {
     initCanvas();
   }, [initCanvas]);
 
+  // Calculate percentage scratched (lightweight sample step 32)
+  const calculateProgress = useCallback(() => {
+    const canvas = canvasRef.current;
+    if (!canvas || isRevealed) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    try {
+      const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const pixels = imgData.data;
+      let transparentCount = 0;
+      let totalSampled = 0;
+
+      for (let i = 3; i < pixels.length; i += 32) {
+        totalSampled++;
+        if (pixels[i] === 0) {
+          transparentCount++;
+        }
+      }
+
+      const percent = Math.min(100, Math.round((transparentCount / totalSampled) * 100));
+      setScratchPercent(percent);
+
+      // Lightweight gold particle burst at 60% reveal
+      if (percent >= 60 && !hasTriggeredConfettiRef.current) {
+        revealFully();
+      }
+    } catch (e) {}
+  }, [isRevealed]);
+
+  const requestProgressCalculation = useCallback(() => {
+    if (progressPendingRef.current || isRevealed) return;
+    progressPendingRef.current = true;
+    requestAnimationFrame(() => {
+      calculateProgress();
+      progressPendingRef.current = false;
+    });
+  }, [calculateProgress, isRevealed]);
+
   // Scratch action helper
   const scratchAt = useCallback(
     (x: number, y: number) => {
@@ -88,39 +128,10 @@ export const ScratchHeartDate: React.FC = () => {
       ctx.arc(x, y, 22, 0, Math.PI * 2, false);
       ctx.fill();
 
-      calculateProgress();
+      requestProgressCalculation();
     },
-    [isRevealed]
+    [isRevealed, requestProgressCalculation]
   );
-
-  // Calculate percentage scratched
-  const calculateProgress = () => {
-    const canvas = canvasRef.current;
-    if (!canvas || isRevealed) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    try {
-      const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-      const pixels = imgData.data;
-      let transparentCount = 0;
-      const totalPixels = pixels.length / 4;
-
-      for (let i = 3; i < pixels.length; i += 16) {
-        if (pixels[i] === 0) {
-          transparentCount++;
-        }
-      }
-
-      const percent = Math.min(100, Math.round((transparentCount / (totalPixels / 4)) * 100));
-      setScratchPercent(percent);
-
-      // Lightweight gold particle burst at 60% reveal as specified
-      if (percent >= 60 && !hasTriggeredConfettiRef.current) {
-        revealFully();
-      }
-    } catch (e) {}
-  };
 
   const revealFully = () => {
     setIsRevealed(true);

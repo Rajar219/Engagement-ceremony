@@ -9,6 +9,11 @@ export const GoldenDustParticles: React.FC = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
+    // Respect user's reduced motion preference
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
@@ -17,8 +22,8 @@ export const GoldenDustParticles: React.FC = () => {
     const fpsInterval = 1000 / 30; // Strictly capped at 30fps for mobile GPU performance
     let isPaused = false;
 
-    // Device Pixel Ratio capped at 2 to protect high-DPI mobile devices
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    // Device Pixel Ratio capped at 1.5 for particle canvas on mobile to reduce fillrate overhead
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
 
     const resize = () => {
       const parent = canvas.parentElement;
@@ -35,21 +40,20 @@ export const GoldenDustParticles: React.FC = () => {
     resize();
     window.addEventListener('resize', resize, { passive: true });
 
-    // 28 subtle champagne gold & lavender dust particles
+    // 20 subtle champagne gold & warm ivory dust particles (optimized count)
     const particleColors = [
       'rgba(212, 175, 55, 0.55)',
       'rgba(243, 233, 210, 0.65)',
       'rgba(255, 248, 230, 0.7)',
-      'rgba(188, 149, 224, 0.45)',
       'rgba(226, 190, 121, 0.6)',
     ];
 
-    const particles = Array.from({ length: 28 }, () => ({
+    const particles = Array.from({ length: 20 }, () => ({
       x: Math.random() * (canvas.width / dpr),
       y: Math.random() * (canvas.height / dpr),
-      radius: Math.random() * 1.5 + 0.6,
-      speedY: -(Math.random() * 0.35 + 0.15),
-      speedX: (Math.random() - 0.5) * 0.25,
+      radius: Math.random() * 1.4 + 0.6,
+      speedY: -(Math.random() * 0.3 + 0.15),
+      speedX: (Math.random() - 0.5) * 0.2,
       opacity: Math.random() * 0.5 + 0.25,
       color: particleColors[Math.floor(Math.random() * particleColors.length)],
       pulseSpeed: Math.random() * 0.02 + 0.01,
@@ -75,7 +79,6 @@ export const GoldenDustParticles: React.FC = () => {
         p.x += p.speedX;
         p.pulseVal += p.pulseSpeed;
 
-        // Wrap around top/bottom/sides
         if (p.y < -10) {
           p.y = height + 10;
           p.x = Math.random() * width;
@@ -102,8 +105,18 @@ export const GoldenDustParticles: React.FC = () => {
     };
     document.addEventListener('visibilitychange', handleVisibilityChange);
 
+    // Pause when scrolled off-screen via IntersectionObserver
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isPaused = !entry.isIntersecting;
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(canvas);
+
     return () => {
       cancelAnimationFrame(animationFrameId);
+      observer.disconnect();
       window.removeEventListener('resize', resize);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
