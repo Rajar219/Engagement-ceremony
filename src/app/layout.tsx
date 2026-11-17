@@ -1,21 +1,6 @@
 import type { Metadata, Viewport } from 'next';
-import { Noto_Serif_Tamil, Noto_Sans_Tamil } from 'next/font/google';
 import './globals.css';
 import { invitationConfig } from '@/config/invitation.config';
-
-const notoSerifTamil = Noto_Serif_Tamil({
-  subsets: ['tamil', 'latin'],
-  weight: ['400', '600', '700'],
-  variable: '--font-noto-serif-tamil',
-  display: 'swap',
-});
-
-const notoSansTamil = Noto_Sans_Tamil({
-  subsets: ['tamil', 'latin'],
-  weight: ['400', '500', '600'],
-  variable: '--font-noto-sans-tamil',
-  display: 'swap',
-});
 
 export const metadata: Metadata = {
   title: invitationConfig.seo.title,
@@ -93,7 +78,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ta" className={`scroll-smooth ${notoSerifTamil.variable} ${notoSansTamil.variable}`}>
+    <html lang="ta" className="scroll-smooth">
       <head>
         <link
           rel="icon"
