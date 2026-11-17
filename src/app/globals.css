@@ -185,20 +185,28 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* White Hero Typography (Crisp white against natural original background with subtle black text-shadow) */
+/* White Hero Typography with Subtle Black Stroke (Crisp white against natural original background) */
+.hero-subtle-stroke {
+  -webkit-text-stroke: 0.35px rgba(0, 0, 0, 0.65);
+  text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.55);
+}
+
 .hero-white-title {
   color: #ffffff;
-  text-shadow: 1px 2px 7px rgba(0, 0, 0, 0.75);
+  -webkit-text-stroke: 0.35px rgba(0, 0, 0, 0.65);
+  text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.55);
 }
 
 .hero-white-text {
   color: #ffffff;
-  text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.65);
+  -webkit-text-stroke: 0.35px rgba(0, 0, 0, 0.65);
+  text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.55);
 }
 
 .hero-warm-ivory {
   color: #fff8ed;
-  text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.65);
+  -webkit-text-stroke: 0.35px rgba(0, 0, 0, 0.65);
+  text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.55);
 }
 
 /* Cinematic Editorial Gold Foil Title for Couple Names (Matches exact reference image) */
