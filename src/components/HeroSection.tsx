@@ -137,7 +137,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
             {language === 'ta' ? (
               /* Tamil Couple Names */
               <div className="flex flex-col items-center font-tamil-heading text-center">
-                {/* ITEM 2: Vallalarasu (வள்ளலரசு) */}
+                {/* ITEM 2: Vallarasu (வல்லரசு) */}
                 <h1
                   className="font-tamil-heading text-[clamp(38px,9.5vw,56px)] font-bold tracking-[0.02em] leading-tight text-[#FFFFFF] select-none hero-solid-white"
                   style={{
@@ -148,7 +148,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
                     textShadow: '1px 2px 4px rgba(0, 0, 0, 0.75)',
                   }}
                 >
-                  வள்ளலரசு
+                  வல்லரசு
                 </h1>
 
                 {/* ITEM 3: Ampersand flanked by hairlines: ────── & ────── */}

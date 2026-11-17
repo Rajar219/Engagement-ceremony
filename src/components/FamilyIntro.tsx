@@ -51,7 +51,7 @@ export const FamilyIntro: React.FC = () => {
 
           <p className="text-xs text-[#5a4a42] font-tamil leading-relaxed">
             {language === 'ta'
-              ? 'தங்கள் மூத்த புதல்வன் G. வல்லளரசுவின் நிச்சயதார்த்த வைபவத்திற்கு தங்களை அன்புடன் அழைக்கின்றனர்.'
+              ? 'தங்கள் மூத்த புதல்வன் ஞா. வல்லரசுவின் நிச்சயதார்த்த வைபவத்திற்கு தங்களை அன்புடன் அழைக்கின்றனர்.'
               : `Cordially invite your gracious presence and heartfelt blessings on the celebration of their son, ${couple.groom.fullName}.`}
           </p>
         </div>
@@ -78,7 +78,7 @@ export const FamilyIntro: React.FC = () => {
 
           <p className="text-xs text-[#5a4a42] font-tamil leading-relaxed">
             {language === 'ta'
-              ? 'தங்கள் அன்பு மகள் K. பிரியங்காவின் நல்வாழ்வு தொடங்கும் இந்நாளில் தங்களின் ஆசிகளையும் நல்வரவையும் நாடுகின்றனர்.'
+              ? 'தங்கள் அன்பு மகள் க. பிரியங்காவின் நல்வாழ்வு தொடங்கும் இந்நாளில் தங்களின் ஆசிகளையும் நல்வரவையும் நாடுகின்றனர்.'
               : `Warmly request your esteemed company, prayers, and loving blessings as their beloved daughter, ${couple.bride.fullName}, begins this sacred new chapter.`}
           </p>
         </div>
