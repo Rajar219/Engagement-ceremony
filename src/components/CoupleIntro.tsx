@@ -18,10 +18,10 @@ export const CoupleIntro: React.FC = () => {
           இரு இதயங்கள் • ஒரு இனிய இல்லறப் பயணம்
         </span>
 
-        <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold gold-foil-text tracking-wide mb-1">
+        <h2 className="font-serif text-[clamp(1.35rem,5.5vw,2.5rem)] font-bold gold-foil-text tracking-wide whitespace-nowrap mb-1">
           The Groom &amp; Bride
         </h2>
-        <h2 className="font-tamil-heading text-3xl sm:text-4xl md:text-5xl font-bold gold-foil-text tracking-wide">
+        <h2 className="font-tamil-heading text-[clamp(1.35rem,5.5vw,2.5rem)] font-bold gold-foil-text tracking-wide whitespace-nowrap">
           மணமகன் &amp; மணமகள்
         </h2>
 
