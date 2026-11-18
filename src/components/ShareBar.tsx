@@ -14,29 +14,27 @@ export const ShareBar: React.FC<ShareBarProps> = ({ onReopenEnvelope }) => {
   const { t, language } = useLanguage();
 
   const getShareUrl = () => {
-    if (typeof window !== 'undefined' && window.location.origin) {
-      return window.location.origin;
-    }
-    return 'https://vallarasu-priyanka-engagement.vercel.app';
+    return 'https://vallarasu-priyanka-engagement.vercel.app/';
   };
 
   const handleCopyLink = () => {
     const url = getShareUrl();
-    if (typeof navigator !== 'undefined') {
+    if (typeof navigator !== 'undefined' && navigator.clipboard) {
       navigator.clipboard.writeText(url);
       setCopied(true);
-      setTimeout(() => setCopied(false), 2500);
+      setTimeout(() => setCopied(false), 3000);
     }
   };
 
   const handleShareWhatsApp = () => {
     const url = getShareUrl();
     const text = encodeURIComponent(
-      `💍 *${invitationConfig.couple.groom.fullName} & ${invitationConfig.couple.bride.fullName} திருமண நிச்சயதார்த்த அழைப்பிதழ்!*\n\n` +
-      `📅 *நாள்:* 13th December 2026 • ஞாயிறு\n` +
-      `⏰ *நேரம்:* மாலை 6:00 PM to 9:00 PM IST\n` +
-      `📍 *இடம்:* RSM திருமண அரங்கம், திருவல்லிக்கேணி, சென்னை\n\n` +
-      `அழைப்பிதழைப் பார்வையிட்டு தங்கள் வருகையை உறுதி செய்ய:\n${url}`
+      `With immense joy, we invite you to celebrate the Engagement Ceremony of Vallalarasu & Priyanka.\n\n` +
+      `Sunday, 13 December 2026\n` +
+      `6:00 PM onwards\n` +
+      `RSM Banquet Hall, Triplicane, Chennai.\n\n` +
+      `Your gracious presence and blessings will make our celebration special.\n\n` +
+      `View our invitation:\n${url}`
     );
     window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
   };
@@ -76,7 +74,7 @@ export const ShareBar: React.FC<ShareBarProps> = ({ onReopenEnvelope }) => {
             {copied ? (
               <>
                 <Check className="w-3.5 h-3.5 text-emerald-600" />
-                <span className="text-emerald-700 font-bold">{language === 'ta' ? 'நகலெடுக்கப்பட்டது!' : 'Copied!'}</span>
+                <span className="text-emerald-700 font-bold">{language === 'ta' ? 'அழைப்பிதழ் இணைப்பு நகலெடுக்கப்பட்டது!' : 'Invitation link copied successfully!'}</span>
               </>
             ) : (
               <>

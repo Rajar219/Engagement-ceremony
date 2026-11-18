@@ -317,9 +317,9 @@ export const invitationConfig: InvitationConfig = {
     ],
   },
   seo: {
-    title: "V&P | Engagement & Wedding Celebration | G. Vallalarasu & K. Priyanka",
-    description: "Cordially inviting you to celebrate the Engagement Ceremony of G. Vallalarasu and K. Priyanka on Sunday, 13th December 2026 at RSM Banquet Hall, Triplicane, Chennai.",
+    title: "Vallalarasu & Priyanka | Engagement Invitation",
+    description: "With the blessings of our families, we warmly invite you to celebrate the engagement ceremony on 13 December 2026.",
     canonicalUrl: "https://vallarasu-priyanka-engagement.vercel.app/",
-    ogImage: "/assets/images/hero-poster.jpg",
+    ogImage: "https://vallarasu-priyanka-engagement.vercel.app/assets/images/og-whatsapp-preview.jpg?v=2",
   },
 };

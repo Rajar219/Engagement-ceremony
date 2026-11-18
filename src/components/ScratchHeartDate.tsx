@@ -76,10 +76,10 @@ export const ScratchHeartDate: React.FC = () => {
     initCanvas();
   }, [initCanvas]);
 
-  // Full-page pyrotechnics and grand celebration blast
+  // Full-page pyrotechnics, cracker effects and grand celebration blast
   const triggerFullPagePyros = useCallback(() => {
     try {
-      const count = 180;
+      const count = 200;
       const defaults = {
         origin: { y: 0.68 },
         zIndex: 99999,
@@ -93,73 +93,83 @@ export const ScratchHeartDate: React.FC = () => {
         });
       };
 
-      // 1. Initial explosive multi-color pyro blast
+      // 1. Initial grand explosive pyro blast with golden sparkles and stars
       fire(0.25, {
-        spread: 30,
-        startVelocity: 60,
-        colors: ['#ffd700', '#ffea75', '#ffffff'],
+        spread: 35,
+        startVelocity: 65,
+        shapes: ['star', 'circle'],
+        colors: ['#ffd700', '#ffea75', '#ffffff', '#ffaa00'],
       });
       fire(0.2, {
-        spread: 65,
-        colors: ['#e0b0ff', '#ba55d3', '#9370db'],
+        spread: 75,
+        shapes: ['circle'],
+        colors: ['#e0b0ff', '#ba55d3', '#ffd700', '#ff4081'],
       });
       fire(0.35, {
-        spread: 110,
+        spread: 120,
         decay: 0.91,
-        scalar: 0.9,
+        scalar: 1.1,
+        shapes: ['star', 'circle'],
         colors: ['#ffd700', '#ffffff', '#ff69b4', '#ffe4e1'],
       });
       fire(0.1, {
-        spread: 130,
-        startVelocity: 30,
+        spread: 140,
+        startVelocity: 35,
         decay: 0.92,
         colors: ['#f5d77f', '#d4af37'],
       });
       fire(0.1, {
-        spread: 130,
-        startVelocity: 48,
+        spread: 150,
+        startVelocity: 55,
+        shapes: ['star'],
         colors: ['#ffffff', '#ffd700', '#c5a059'],
       });
 
-      // 2. Full-Page Dual Cannon Pyros (Shooting from bottom-left & bottom-right across the entire page for 3 seconds)
-      const endTime = Date.now() + 3000;
-      const pyroColors = ['#ffd700', '#ffffff', '#c5a059', '#e0b0ff', '#ff69b4', '#b388ff', '#ffecb3'];
+      // 2. Full-Page Dual Cannon Pyros + Rapid Firecracker Sparkle Pops (3.5 seconds)
+      const endTime = Date.now() + 3500;
+      const crackerColors = ['#ffd700', '#ffffff', '#ff8c00', '#ff0055', '#e0b0ff', '#00e5ff', '#ffecb3'];
 
       const runPyros = () => {
         // Left cannon shooting up diagonally across screen
         confetti({
-          particleCount: 5,
+          particleCount: 6,
           angle: 60,
           spread: 60,
-          startVelocity: 55,
+          startVelocity: 58,
           origin: { x: 0, y: 0.85 },
-          colors: pyroColors,
+          colors: crackerColors,
+          shapes: ['star', 'circle'],
           zIndex: 99999,
         });
 
         // Right cannon shooting up diagonally across screen
         confetti({
-          particleCount: 5,
+          particleCount: 6,
           angle: 120,
           spread: 60,
-          startVelocity: 55,
+          startVelocity: 58,
           origin: { x: 1, y: 0.85 },
-          colors: pyroColors,
+          colors: crackerColors,
+          shapes: ['star', 'circle'],
           zIndex: 99999,
         });
 
-        // Cascading aerial firework bursts across the full page
-        if (Math.random() < 0.4) {
+        // Cracker / Sparkler pops (random aerial sparkle explosions popping across the screen)
+        if (Math.random() < 0.45) {
           confetti({
-            particleCount: 8,
-            angle: 90,
-            spread: 100,
-            startVelocity: 35,
+            particleCount: 14,
+            spread: 360,
+            startVelocity: 25 + Math.random() * 20,
+            ticks: 55,
+            gravity: 1.1,
+            decay: 0.92,
+            scalar: 0.8 + Math.random() * 0.5,
+            shapes: ['star', 'circle'],
             origin: {
               x: 0.15 + Math.random() * 0.7,
-              y: 0.2 + Math.random() * 0.35,
+              y: 0.15 + Math.random() * 0.45,
             },
-            colors: pyroColors,
+            colors: crackerColors,
             zIndex: 99999,
           });
         }
@@ -349,39 +359,36 @@ export const ScratchHeartDate: React.FC = () => {
         className="relative w-[300px] max-w-[calc(100vw-32px)] h-[280px] mx-auto filter drop-shadow-[0_16px_36px_rgba(35,28,24,0.18)] my-4"
         style={{ willChange: 'transform' }}
       >
-        {/* UNDERLYING REVEALED DATE CARD: Regal Royal Purple Background with Date & Time Only */}
+        {/* UNDERLYING REVEALED DATE CARD: Regal Royal Purple Background (1st SUNDAY, 2nd Date & Month, 3rd Year) */}
         <div
-          className="absolute inset-0 bg-gradient-to-br from-[#380e50] via-[#240636] to-[#150222] border-2 border-[#c5a059]/60 flex flex-col items-center justify-center p-5 text-center shadow-[inset_0_0_30px_rgba(147,51,234,0.35)]"
+          className="absolute inset-0 bg-gradient-to-br from-[#380e50] via-[#240636] to-[#150222] border-2 border-[#c5a059]/60 flex flex-col items-center justify-center p-6 text-center shadow-[inset_0_0_30px_rgba(147,51,234,0.35)]"
           style={{ clipPath: 'url(#revealHeartClipVP)' }}
         >
           {/* Subtle Royal Purple Glow */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(192,132,252,0.22),transparent_70%)] pointer-events-none" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,rgba(192,132,252,0.25),transparent_75%)] pointer-events-none" />
 
-          {/* Day: English & Tamil - Highly visible crisp ivory & gold */}
-          <div className="relative z-10 flex flex-col items-center pt-1 mb-0.5">
-            <span className="px-3.5 py-0.5 rounded-full bg-white/15 border border-[#c5a059]/50 text-[#ffffff] font-serif font-black text-xs sm:text-sm tracking-[0.28em] uppercase block drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
+          {/* 1st Line: SUNDAY */}
+          <div className="relative z-10 mb-2">
+            <span className="px-4 py-1 rounded-full bg-white/15 border border-[#c5a059]/60 text-[#ffffff] font-serif font-black text-xs sm:text-sm tracking-[0.3em] uppercase block drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
               SUNDAY
             </span>
-            <span className="text-[11px] sm:text-xs font-tamil font-semibold text-[#ffe599] block mt-1 drop-shadow-[0_1px_4px_rgba(0,0,0,0.95)]">
-              ஞாயிற்றுக்கிழமை
-            </span>
           </div>
 
-          {/* Date: 13 • 12 • 2026 */}
-          <div className="relative z-10 my-1.5 border-t border-b border-[#c5a059]/60 py-2.5 w-4/5 flex flex-col items-center justify-center">
-            <h4 className="text-3xl sm:text-4xl font-serif font-black text-[#ffffff] leading-none tracking-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
-              13 • 12 • 2026
+          {/* 2nd Line: Date and Month (13 DECEMBER) */}
+          <div className="relative z-10 my-0.5">
+            <h3 className="font-serif text-2xl sm:text-3xl font-extrabold text-[#ffe599] tracking-wider uppercase leading-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
+              13 DECEMBER
+            </h3>
+          </div>
+
+          {/* Delicate gold divider */}
+          <div className="relative z-10 w-24 h-[1px] bg-gradient-to-r from-transparent via-[#ffe082]/80 to-transparent my-1.5" />
+
+          {/* 3rd Line: Year (2026) */}
+          <div className="relative z-10">
+            <h4 className="font-serif text-3xl sm:text-4xl font-black text-[#ffffff] tracking-widest leading-none drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
+              2026
             </h4>
-          </div>
-
-          {/* Time: English & Tamil (Inside heart Date & Time is enough, venue removed) */}
-          <div className="relative z-10 flex flex-col items-center text-[11.5px] sm:text-xs text-[#f3e8ff] font-sans mt-1">
-            <span className="font-semibold tracking-wider text-[#ffe599] drop-shadow-[0_1px_3px_rgba(0,0,0,0.85)]">
-              6:00 PM – 9:00 PM IST
-            </span>
-            <span className="font-tamil-sans text-[11px] sm:text-xs text-[#f3e8ff] font-medium drop-shadow-[0_1px_3px_rgba(0,0,0,0.85)] mt-0.5">
-              மாலை 6:00 – 9:00 மணி
-            </span>
           </div>
         </div>
 

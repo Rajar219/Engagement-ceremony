@@ -3,32 +3,32 @@ import './globals.css';
 import { invitationConfig } from '@/config/invitation.config';
 
 export const metadata: Metadata = {
-  title: invitationConfig.seo.title,
-  description: invitationConfig.seo.description,
+  title: 'Vallalarasu & Priyanka | Engagement Invitation',
+  description: 'With the blessings of our families, we warmly invite you to celebrate the engagement ceremony on 13 December 2026.',
   metadataBase: new URL('https://vallarasu-priyanka-engagement.vercel.app'),
   alternates: {
-    canonical: 'https://vallarasu-priyanka-engagement.vercel.app',
+    canonical: 'https://vallarasu-priyanka-engagement.vercel.app/',
   },
   openGraph: {
-    title: invitationConfig.seo.title,
-    description: invitationConfig.seo.description,
-    url: 'https://vallarasu-priyanka-engagement.vercel.app',
-    siteName: 'Vallalarasu & Priyanka Engagement & Wedding Invitation',
+    title: 'Vallalarasu & Priyanka | Engagement Invitation',
+    description: 'With the blessings of our families, we warmly invite you to celebrate the engagement ceremony on 13 December 2026.',
+    url: 'https://vallarasu-priyanka-engagement.vercel.app/',
+    siteName: 'Vallalarasu & Priyanka Engagement Invitation',
     type: 'website',
     images: [
       {
-        url: invitationConfig.seo.ogImage || '/assets/images/hero-poster.jpg',
-        width: 1080,
-        height: 1920,
-        alt: 'Engagement Ceremony - G. Vallalarasu & K. Priyanka',
+        url: 'https://vallarasu-priyanka-engagement.vercel.app/assets/images/og-whatsapp-preview.jpg?v=2',
+        width: 1200,
+        height: 630,
+        alt: 'Vallalarasu and Priyanka Engagement Invitation',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: invitationConfig.seo.title,
-    description: invitationConfig.seo.description,
-    images: [invitationConfig.seo.ogImage || '/assets/images/hero-poster.jpg'],
+    title: 'Vallalarasu & Priyanka | Engagement Invitation',
+    description: 'With the blessings of our families, we warmly invite you to celebrate the engagement ceremony on 13 December 2026.',
+    images: ['https://vallarasu-priyanka-engagement.vercel.app/assets/images/og-whatsapp-preview.jpg?v=2'],
   },
   robots: {
     index: true,

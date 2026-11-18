@@ -67,10 +67,10 @@ export const BlessingsFamilyCard: React.FC = () => {
                 மணமகனின் பெற்றோர்
               </span>
 
-              <h4 className="font-serif text-sm sm:text-base font-bold text-[#231c18] leading-snug whitespace-nowrap">
+              <h4 className="font-serif text-[13px] sm:text-[15px] font-bold text-[#231c18] leading-snug whitespace-nowrap">
                 Mr. V. Gnanasekar &amp; Mrs. G. Meena
               </h4>
-              <h4 className="font-tamil text-[clamp(11px,3.2vw,13.5px)] font-bold text-[#231c18] leading-snug mb-1 whitespace-nowrap">
+              <h4 className="font-tamil text-[11px] xs:text-[12px] sm:text-[13px] font-bold text-[#231c18] leading-snug mb-1 whitespace-nowrap">
                 திரு. V. ஞானசேகர் &amp; திருமதி. G. மீனா
               </h4>
 
@@ -91,10 +91,10 @@ export const BlessingsFamilyCard: React.FC = () => {
                 மணமகளின் பெற்றோர்
               </span>
 
-              <h4 className="font-serif text-sm sm:text-base font-bold text-[#231c18] leading-snug whitespace-nowrap">
+              <h4 className="font-serif text-[13px] sm:text-[15px] font-bold text-[#231c18] leading-snug whitespace-nowrap">
                 Mr. S. Kabali &amp; Mrs. K. Sumathi
               </h4>
-              <h4 className="font-tamil text-[clamp(11px,3.2vw,13.5px)] font-bold text-[#231c18] leading-snug mb-1 whitespace-nowrap">
+              <h4 className="font-tamil text-[11px] xs:text-[12px] sm:text-[13px] font-bold text-[#231c18] leading-snug mb-1 whitespace-nowrap">
                 திரு. S. கபாலி &amp; திருமதி. K. சுமதி
               </h4>
 
