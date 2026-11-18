@@ -59,7 +59,7 @@ export const BlessingsFamilyCard: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             {/* Groom's Family */}
-            <div className="space-y-1">
+            <div className="space-y-1 min-w-0">
               <span className="text-xs uppercase tracking-widest text-[#a88136] font-sans font-semibold block">
                 Groom&apos;s Parents
               </span>
@@ -67,10 +67,10 @@ export const BlessingsFamilyCard: React.FC = () => {
                 மணமகனின் பெற்றோர்
               </span>
 
-              <h4 className="font-serif text-[clamp(13px,3.8vw,18px)] font-bold text-[#231c18] leading-snug whitespace-nowrap">
+              <h4 className="font-serif text-base sm:text-lg font-bold text-[#231c18] leading-snug">
                 Mr. V. Gnanasekar &amp; Mrs. G. Meena
               </h4>
-              <h4 className="font-tamil-heading text-[clamp(13px,3.8vw,18px)] font-bold text-[#231c18] leading-snug mb-1 whitespace-nowrap">
+              <h4 className="font-tamil-heading text-[clamp(14px,3.5vw,17px)] font-bold text-[#231c18] leading-snug mb-1">
                 திரு. V. ஞானசேகர் &amp; திருமதி. G. மீனா
               </h4>
 
@@ -83,7 +83,7 @@ export const BlessingsFamilyCard: React.FC = () => {
             </div>
 
             {/* Bride's Family */}
-            <div className="space-y-1">
+            <div className="space-y-1 min-w-0">
               <span className="text-xs uppercase tracking-widest text-[#a88136] font-sans font-semibold block">
                 Bride&apos;s Parents
               </span>
@@ -91,10 +91,10 @@ export const BlessingsFamilyCard: React.FC = () => {
                 மணமகளின் பெற்றோர்
               </span>
 
-              <h4 className="font-serif text-[clamp(13px,3.8vw,18px)] font-bold text-[#231c18] leading-snug whitespace-nowrap">
+              <h4 className="font-serif text-base sm:text-lg font-bold text-[#231c18] leading-snug">
                 Mr. S. Kabali &amp; Mrs. K. Sumathi
               </h4>
-              <h4 className="font-tamil-heading text-[clamp(13px,3.8vw,18px)] font-bold text-[#231c18] leading-snug mb-1 whitespace-nowrap">
+              <h4 className="font-tamil-heading text-[clamp(14px,3.5vw,17px)] font-bold text-[#231c18] leading-snug mb-1">
                 திரு. S. கபாலி &amp; திருமதி. K. சுமதி
               </h4>
 

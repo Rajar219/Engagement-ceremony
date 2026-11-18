@@ -57,7 +57,7 @@ export const MainCeremonyCard: React.FC = () => {
             <div className="w-12 h-12 rounded-xl bg-[#c5a059]/15 border border-[#c5a059]/35 flex items-center justify-center shrink-0 text-[#c5a059]">
               <Calendar className="w-6 h-6" />
             </div>
-            <div>
+            <div className="min-w-0 flex-1">
               <span className="text-xs uppercase tracking-widest text-[#c5a059]/90 font-sans font-semibold block">
                 Date &amp; Day
               </span>
@@ -79,7 +79,7 @@ export const MainCeremonyCard: React.FC = () => {
             <div className="w-12 h-12 rounded-xl bg-[#c5a059]/15 border border-[#c5a059]/35 flex items-center justify-center shrink-0 text-[#c5a059]">
               <Clock className="w-6 h-6" />
             </div>
-            <div>
+            <div className="min-w-0 flex-1">
               <span className="text-xs uppercase tracking-widest text-[#c5a059]/90 font-sans font-semibold block">
                 Auspicious Time
               </span>
@@ -101,7 +101,7 @@ export const MainCeremonyCard: React.FC = () => {
             <div className="w-12 h-12 rounded-xl bg-[#c5a059]/15 border border-[#c5a059]/35 flex items-center justify-center shrink-0 text-[#c5a059]">
               <MapPin className="w-6 h-6" />
             </div>
-            <div>
+            <div className="min-w-0 flex-1">
               <span className="text-xs uppercase tracking-widest text-[#c5a059]/90 font-sans font-semibold block">
                 Ceremony Venue
               </span>

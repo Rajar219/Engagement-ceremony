@@ -150,12 +150,23 @@ body {
   font-family: var(--font-sans), var(--font-tamil-body), system-ui, sans-serif;
 }
 
-/* Strict Tamil Typography Line-Height (1.7) to prevent diacritic clipping */
+/* Strict Website-wide Universal Tamil Typography Safety System */
 .font-tamil,
 .font-tamil-serif,
 .font-tamil-sans,
+.font-tamil-heading,
+.font-tamil-body,
+.font-tamil-stylish,
+.font-tamil-invitation,
 [lang="ta"],
 .tamil-text {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: normal;
   line-height: 1.7 !important;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -164,25 +175,21 @@ body {
 .font-tamil-heading {
   font-family: var(--font-tamil-heading);
   line-height: 1.5 !important;
-  text-rendering: optimizeLegibility;
 }
 
 .font-tamil-body {
   font-family: var(--font-tamil-body);
   line-height: 1.7 !important;
-  text-rendering: optimizeLegibility;
 }
 
 .font-tamil-stylish {
   font-family: var(--font-tamil-stylish);
   line-height: 1.6 !important;
-  text-rendering: optimizeLegibility;
 }
 
 .font-tamil-invitation {
   font-family: var(--font-tamil-invitation);
   line-height: 1.6 !important;
-  text-rendering: optimizeLegibility;
 }
 
 /* Solid Pure White Cinematic Typography (Sharp, crisp text against natural background) */

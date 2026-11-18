@@ -217,10 +217,10 @@ export const ScratchHeartDate: React.FC = () => {
           சுப முகூர்த்த நாள்
         </span>
 
-        <h2 className="text-[clamp(1.35rem,5.5vw,2.5rem)] font-serif font-bold gold-foil-text tracking-wide whitespace-nowrap mb-1">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold gold-foil-text tracking-wide mb-1 text-center">
           Save the Date
         </h2>
-        <h2 className="text-[clamp(1.1rem,4.5vw,2.25rem)] font-tamil-heading font-bold gold-foil-text tracking-wide whitespace-nowrap">
+        <h2 className="text-[clamp(15px,4.2vw,22px)] font-tamil-heading font-bold gold-foil-text tracking-wide text-center max-w-sm mx-auto leading-relaxed">
           சுப தேதியைக் குறித்துக் கொள்ளுங்கள்
         </h2>
 
@@ -255,7 +255,7 @@ export const ScratchHeartDate: React.FC = () => {
       {/* SCRATCH CONTAINER (GOLD-METALLIC RIMMED HEART CARD) */}
       <div
         ref={containerRef}
-        className="relative w-[300px] h-[280px] mx-auto filter drop-shadow-[0_16px_36px_rgba(35,28,24,0.18)] select-none my-4"
+        className="relative w-[300px] max-w-[calc(100vw-32px)] h-[280px] mx-auto filter drop-shadow-[0_16px_36px_rgba(35,28,24,0.18)] select-none my-4"
         style={{ willChange: 'transform' }}
       >
         {/* UNDERLYING REVEALED DATE CARD: Regal Royal Purple Background with Date & Time Only */}

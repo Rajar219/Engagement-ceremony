@@ -18,10 +18,10 @@ export const CoupleIntro: React.FC = () => {
           இரு இதயங்கள் • ஒரு இனிய இல்லறப் பயணம்
         </span>
 
-        <h2 className="font-serif text-[clamp(1.35rem,5.5vw,2.5rem)] font-bold gold-foil-text tracking-wide whitespace-nowrap mb-1">
+        <h2 className="font-serif text-[clamp(1.35rem,5.5vw,2.5rem)] font-bold gold-foil-text tracking-wide mb-1 text-center">
           The Groom &amp; Bride
         </h2>
-        <h2 className="font-tamil-heading text-[clamp(1.35rem,5.5vw,2.5rem)] font-bold gold-foil-text tracking-wide whitespace-nowrap">
+        <h2 className="font-tamil-heading text-[clamp(1.25rem,5vw,2.25rem)] font-bold gold-foil-text tracking-wide text-center">
           மணமகன் &amp; மணமகள்
         </h2>
 
@@ -61,11 +61,11 @@ export const CoupleIntro: React.FC = () => {
 
           <div className="w-16 h-px bg-[#c5a059]/40 my-2" />
 
-          {/* Parents Lineage (Strictly single line for both English and Tamil) */}
-          <p className="text-[clamp(11px,2.8vw,14px)] text-[#5c534b] font-sans leading-relaxed whitespace-nowrap mb-1">
+          {/* Parents Lineage (Natural wrapping, responsive sizing) */}
+          <p className="text-xs sm:text-sm text-[#5c534b] font-sans leading-relaxed mb-1 max-w-full">
             Son of Mr. V. Gnanasekar &amp; Mrs. G. Meena
           </p>
-          <p className="text-[clamp(10.5px,2.7vw,13.5px)] text-[#5c534b] font-tamil leading-relaxed whitespace-nowrap mb-3">
+          <p className="text-[clamp(12px,3vw,14px)] text-[#5c534b] font-tamil leading-relaxed mb-3 max-w-full">
             திரு. V. ஞானசேகர் &amp; திருமதி. G. மீனா அவர்களின் அன்பு மகன்
           </p>
 
@@ -100,11 +100,11 @@ export const CoupleIntro: React.FC = () => {
 
           <div className="w-16 h-px bg-[#c5a059]/40 my-2" />
 
-          {/* Parents Lineage (Strictly single line for both English and Tamil) */}
-          <p className="text-[clamp(11px,2.8vw,14px)] text-[#5c534b] font-sans leading-relaxed whitespace-nowrap mb-1">
+          {/* Parents Lineage (Natural wrapping, responsive sizing) */}
+          <p className="text-xs sm:text-sm text-[#5c534b] font-sans leading-relaxed mb-1 max-w-full">
             Daughter of Mr. S. Kabali &amp; Mrs. K. Sumathi
           </p>
-          <p className="text-[clamp(10.5px,2.7vw,13.5px)] text-[#5c534b] font-tamil leading-relaxed whitespace-nowrap mb-3">
+          <p className="text-[clamp(12px,3vw,14px)] text-[#5c534b] font-tamil leading-relaxed mb-3 max-w-full">
             திரு. S. கபாலி &amp; திருமதி. K. சுமதி அவர்களின் அன்பு மகள்
           </p>
 
