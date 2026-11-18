@@ -62,10 +62,10 @@ export const CoupleIntro: React.FC = () => {
           <div className="w-16 h-px bg-[#c5a059]/40 my-2" />
 
           {/* Parents Lineage (Single-line responsive sizing for English and Tamil) */}
-          <p className="text-[clamp(11px,2.9vw,13.5px)] text-[#5c534b] font-sans leading-relaxed mb-1 max-w-full">
+          <p className="text-[clamp(11px,2.9vw,13px)] text-[#5c534b] font-sans leading-relaxed mb-1 max-w-full whitespace-nowrap">
             Son of Mr. V. Gnanasekar &amp; Mrs. G. Meena
           </p>
-          <p className="text-[clamp(10.5px,2.8vw,13px)] text-[#5c534b] font-tamil leading-relaxed mb-3 max-w-full">
+          <p className="text-[clamp(9.5px,2.5vw,12px)] text-[#5c534b] font-tamil leading-relaxed mb-3 max-w-full whitespace-nowrap">
             திரு. V. ஞானசேகர் &amp; திருமதி. G. மீனா அவர்களின் அன்பு மகன்
           </p>
 
@@ -101,10 +101,10 @@ export const CoupleIntro: React.FC = () => {
           <div className="w-16 h-px bg-[#c5a059]/40 my-2" />
 
           {/* Parents Lineage (Single-line responsive sizing for English and Tamil) */}
-          <p className="text-[clamp(11px,2.9vw,13.5px)] text-[#5c534b] font-sans leading-relaxed mb-1 max-w-full">
+          <p className="text-[clamp(11px,2.9vw,13px)] text-[#5c534b] font-sans leading-relaxed mb-1 max-w-full whitespace-nowrap">
             Daughter of Mr. S. Kabali &amp; Mrs. K. Sumathi
           </p>
-          <p className="text-[clamp(10.5px,2.8vw,13px)] text-[#5c534b] font-tamil leading-relaxed mb-3 max-w-full">
+          <p className="text-[clamp(9.5px,2.5vw,12px)] text-[#5c534b] font-tamil leading-relaxed mb-3 max-w-full whitespace-nowrap">
             திரு. S. கபாலி &amp; திருமதி. K. சுமதி அவர்களின் அன்பு மகள்
           </p>
 
