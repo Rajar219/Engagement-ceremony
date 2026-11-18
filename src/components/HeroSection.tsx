@@ -8,32 +8,32 @@ interface HeroSectionProps {
   isVisible?: boolean;
 }
 
-// Delicate floral diamond ornament matching Reference Image 2: ─── ❀ ───
-const FloralDivider: React.FC<{ className?: string }> = ({ className = 'my-2 xs:my-2.5' }) => (
+// Delicate floral diamond ornament: ─── ❀ ───
+const FloralDivider: React.FC<{ className?: string }> = ({ className = 'my-1.5 xs:my-2' }) => (
   <div
-    className={`flex items-center justify-center gap-2 w-32 xs:w-40 sm:w-48 mx-auto ${className} select-none pointer-events-none`}
+    className={`flex items-center justify-center gap-2 w-36 xs:w-44 sm:w-52 mx-auto ${className} select-none pointer-events-none`}
   >
-    <div className="flex-1 h-[0.75px] bg-gradient-to-r from-transparent via-[#e6ca85]/50 to-[#e6ca85]" />
+    <div className="flex-1 h-[0.75px] bg-gradient-to-r from-transparent via-[#ffe082]/70 to-[#ffe082]" />
     <svg
-      className="w-5 h-3 text-[#f3dfa2] drop-shadow-[0_1px_3px_rgba(0,0,0,0.85)]"
+      className="w-5 h-3 text-[#ffe599] drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]"
       viewBox="0 0 24 14"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path d="M12 1L14 7L12 13L10 7L12 1Z" fill="#e6ca85" />
-      <circle cx="6" cy="7" r="1.3" fill="#e6ca85" />
-      <circle cx="18" cy="7" r="1.3" fill="#e6ca85" />
-      <path d="M1 7H4.5M19.5 7H23" stroke="#e6ca85" strokeWidth="0.8" strokeLinecap="round" />
+      <path d="M12 1L14 7L12 13L10 7L12 1Z" fill="#ffe082" />
+      <circle cx="6" cy="7" r="1.3" fill="#ffe082" />
+      <circle cx="18" cy="7" r="1.3" fill="#ffe082" />
+      <path d="M1 7H4.5M19.5 7H23" stroke="#ffe082" strokeWidth="0.8" strokeLinecap="round" />
     </svg>
-    <div className="flex-1 h-[0.75px] bg-gradient-to-l from-transparent via-[#e6ca85]/50 to-[#e6ca85]" />
+    <div className="flex-1 h-[0.75px] bg-gradient-to-l from-transparent via-[#ffe082]/70 to-[#ffe082]" />
   </div>
 );
 
-// Delicate intertwined double hearts matching Reference Image 2: ♡♡
-const IntertwinedHearts: React.FC<{ className?: string }> = ({ className = 'mt-2.5 xs:mt-3' }) => (
+// Delicate intertwined double hearts: ♡♡
+const IntertwinedHearts: React.FC<{ className?: string }> = ({ className = 'mt-2 xs:mt-2.5' }) => (
   <div className={`flex items-center justify-center ${className} select-none pointer-events-none`}>
     <svg
-      className="w-10 h-5 text-[#f3dfa2] drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]"
+      className="w-10 h-5 text-[#ffe599] drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]"
       viewBox="0 0 48 26"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -41,8 +41,8 @@ const IntertwinedHearts: React.FC<{ className?: string }> = ({ className = 'mt-2
       {/* Left Heart (tilted -8 deg) */}
       <path
         d="M17 21.5 C 17 21.5 6 14.5 6 8 C 6 4.2 9.2 2.2 12.6 3.8 C 14.6 4.8 16.2 6.5 17 7.4 C 17.8 6.5 19.4 4.8 21.4 3.8 C 24.8 2.2 28 4.2 28 8 C 28 14.5 17 21.5 17 21.5 Z"
-        stroke="#e6ca85"
-        strokeWidth="1.3"
+        stroke="#ffe082"
+        strokeWidth="1.4"
         strokeLinecap="round"
         strokeLinejoin="round"
         transform="rotate(-8 17 12)"
@@ -50,8 +50,8 @@ const IntertwinedHearts: React.FC<{ className?: string }> = ({ className = 'mt-2
       {/* Right Heart (tilted +8 deg, overlapping) */}
       <path
         d="M31 22 C 31 22 20 15 20 8.5 C 20 4.7 23.2 2.7 26.6 4.3 C 28.6 5.3 30.2 7 31 7.9 C 31.8 7 33.4 5.3 35.4 4.3 C 38.8 2.7 42 4.7 42 8.5 C 42 15 31 22 31 22 Z"
-        stroke="#f3dfa2"
-        strokeWidth="1.3"
+        stroke="#fff3cc"
+        strokeWidth="1.4"
         strokeLinecap="round"
         strokeLinejoin="round"
         transform="rotate(8 31 12)"
@@ -101,26 +101,39 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
     return () => observer.disconnect();
   }, [isVisible]);
 
-  // Warm pearl ivory text styling with subtle cinematic shadow for contrast against sky
-  const pearlTextStyle: React.CSSProperties = {
-    color: '#FFF8ED',
+  // Ultra-bright luminous white text styling with golden ambient radiance
+  const brightWhiteStyle: React.CSSProperties = {
+    color: '#FFFFFF',
     opacity: 1,
-    WebkitTextFillColor: '#FFF8ED',
-    WebkitTextStroke: '0.25px rgba(0, 0, 0, 0.55)',
-    textShadow: '0 2px 6px rgba(0, 0, 0, 0.85), 0 4px 14px rgba(0, 0, 0, 0.65)',
+    WebkitTextFillColor: '#FFFFFF',
+    WebkitTextStroke: '0',
+    textShadow:
+      '0 0 12px rgba(255, 235, 170, 0.75), 0 2px 4px rgba(0, 0, 0, 0.95), 0 4px 14px rgba(0, 0, 0, 0.85)',
+    filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.9))',
   };
 
-  const coupleNameStyle: React.CSSProperties = {
-    color: '#FFF9EE',
+  const brightGoldStyle: React.CSSProperties = {
+    color: '#FFF2C6',
     opacity: 1,
-    WebkitTextFillColor: '#FFF9EE',
-    WebkitTextStroke: '0.3px rgba(0, 0, 0, 0.6)',
+    WebkitTextFillColor: '#FFF2C6',
+    WebkitTextStroke: '0',
     textShadow:
-      '0 2px 10px rgba(0, 0, 0, 0.9), 0 4px 22px rgba(0, 0, 0, 0.75), 0 0 35px rgba(230, 202, 133, 0.25)',
-    fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif",
-    fontStyle: 'italic',
-    fontWeight: 600,
-    letterSpacing: '-0.01em',
+      '0 0 14px rgba(255, 215, 100, 0.8), 0 2px 4px rgba(0, 0, 0, 0.95), 0 4px 12px rgba(0, 0, 0, 0.85)',
+  };
+
+  // Stylish flowing script typography for couple names (Great Vibes / Allura / Alex Brush)
+  const stylishCoupleNameStyle: React.CSSProperties = {
+    color: '#FFFFFF',
+    opacity: 1,
+    WebkitTextFillColor: '#FFFFFF',
+    WebkitTextStroke: '0',
+    textShadow:
+      '0 0 16px rgba(255, 240, 185, 0.95), 0 0 32px rgba(255, 215, 120, 0.7), 0 2px 6px rgba(0, 0, 0, 0.95), 0 4px 16px rgba(0, 0, 0, 0.85)',
+    filter:
+      'drop-shadow(0 2px 6px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 20px rgba(255, 225, 140, 0.6))',
+    fontFamily: "'Great Vibes', 'Allura', 'Alex Brush', 'Pinyon Script', cursive",
+    fontWeight: 400,
+    letterSpacing: '0.02em',
   };
 
   return (
@@ -144,14 +157,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
         />
       </div>
 
-      {/* SUBTLE VIGNETTE FOR TEXT CONTRAST (Preserves curtains, palace, and architectural details) */}
-      <div className="absolute inset-0 z-[1] bg-[radial-gradient(ellipse_at_50%_40%,rgba(0,0,0,0.32)_0%,rgba(0,0,0,0)_72%)] pointer-events-none" />
-
       {/* FLOATING GOLDEN DUST PARTICLES */}
       <GoldenDustParticles />
 
       {/* 2. UNIFIED POSTER COMPOSITION (All content strictly ordered, centered, and harmoniously spaced) */}
-      <div className="relative z-10 w-full max-w-md mx-auto flex flex-col items-center text-center mt-[max(3rem,11.5svh)] sm:mt-[12svh] px-2">
+      <div className="relative z-10 w-full max-w-md mx-auto flex flex-col items-center text-center mt-[max(2.5rem,7.5svh)] sm:mt-[8svh] px-2">
         {/* FIRST – ENGAGEMENT TITLE */}
         <div
           className={`flex flex-col items-center gap-0.5 sm:gap-1 transition-all duration-700 ease-out delay-100 ${
@@ -159,67 +169,67 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
           }`}
         >
           <h2
-            className="font-serif uppercase tracking-[0.22em] sm:tracking-[0.28em] text-[clamp(12px,2.9vw,15px)] font-bold select-none text-center"
-            style={pearlTextStyle}
+            className="font-serif uppercase tracking-[0.24em] sm:tracking-[0.3em] text-[clamp(12px,2.9vw,15px)] font-bold select-none text-center"
+            style={brightWhiteStyle}
           >
             ENGAGEMENT CEREMONY
           </h2>
           <p
             className="font-tamil-heading text-[clamp(12px,2.9vw,15px)] font-bold tracking-[0.03em] select-none text-center"
-            style={pearlTextStyle}
+            style={brightWhiteStyle}
           >
             அன்புடன் அழைக்கிறோம்
           </p>
 
-          <FloralDivider className="mt-2 xs:mt-2.5 mb-1.5 xs:mb-2" />
+          <FloralDivider className="mt-1.5 xs:mt-2 mb-1 xs:mb-1.5" />
         </div>
 
-        {/* SECOND – COUPLE NAMES (Large, flowing, high-quality calligraphy serif actual website text) */}
+        {/* SECOND – COUPLE NAMES (Large, flowing stylish calligraphy script with radiant brightness) */}
         <div
-          className={`w-full max-w-sm sm:max-w-md mx-auto my-1 xs:my-1.5 sm:my-2 flex flex-col items-center justify-center transition-all duration-700 ease-out delay-300 ${
+          className={`w-full max-w-sm sm:max-w-md mx-auto my-0.5 xs:my-1 flex flex-col items-center justify-center transition-all duration-700 ease-out delay-300 ${
             mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <h1
-            className="text-[clamp(2.75rem,9.5vw,4.5rem)] leading-[1.05] select-none"
-            style={coupleNameStyle}
+            className="text-[clamp(3.4rem,11.5vw,5.5rem)] leading-[1.1] select-none py-0.5"
+            style={stylishCoupleNameStyle}
           >
             Vallarasu
           </h1>
 
           {/* Ampersand separator: — & — */}
-          <div className="flex items-center justify-center gap-2.5 sm:gap-3 w-36 xs:w-44 sm:w-52 mx-auto my-1 xs:my-1.5 select-none pointer-events-none">
-            <div className="flex-1 h-[0.75px] bg-gradient-to-r from-transparent via-[#e6ca85]/60 to-[#e6ca85]" />
+          <div className="flex items-center justify-center gap-2.5 sm:gap-3 w-36 xs:w-44 sm:w-52 mx-auto my-0.5 xs:my-1 select-none pointer-events-none">
+            <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent via-[#ffe082]/70 to-[#ffe082]" />
             <span
-              className="font-serif italic text-lg xs:text-xl sm:text-2xl text-[#f3dfa2] font-normal leading-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]"
+              className="font-serif italic text-lg xs:text-xl sm:text-2xl text-[#ffe599] font-normal leading-none"
               style={{
-                WebkitTextStroke: '0.2px rgba(0, 0, 0, 0.5)',
+                textShadow: '0 0 12px rgba(255, 225, 120, 0.8), 0 2px 4px rgba(0, 0, 0, 0.9)',
               }}
             >
               &amp;
             </span>
-            <div className="flex-1 h-[0.75px] bg-gradient-to-l from-transparent via-[#e6ca85]/60 to-[#e6ca85]" />
+            <div className="flex-1 h-[1px] bg-gradient-to-l from-transparent via-[#ffe082]/70 to-[#ffe082]" />
           </div>
 
           <h1
-            className="text-[clamp(2.75rem,9.5vw,4.5rem)] leading-[1.05] select-none"
-            style={coupleNameStyle}
+            className="text-[clamp(3.4rem,11.5vw,5.5rem)] leading-[1.1] select-none py-0.5"
+            style={stylishCoupleNameStyle}
           >
             Priyanka
           </h1>
 
-          <FloralDivider className="mt-2.5 xs:mt-3 mb-1.5 xs:mb-2" />
+          <FloralDivider className="mt-1.5 xs:mt-2 mb-1 xs:mb-1.5" />
         </div>
 
         {/* THIRD – CEREMONY DESCRIPTION & FOURTH – DECORATION */}
         <div
-          className={`max-w-[300px] xs:max-w-[340px] sm:max-w-md mx-auto px-2 mt-2 xs:mt-2.5 text-center transition-all duration-700 ease-out delay-500 ${
+          className={`max-w-[300px] xs:max-w-[340px] sm:max-w-md mx-auto px-2 mt-1 xs:mt-1.5 text-center transition-all duration-700 ease-out delay-500 ${
             mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
           }`}
         >
           <p
-            className="font-serif italic font-medium text-[clamp(13px,3.1vw,15px)] leading-[1.5] xs:leading-[1.55] select-none text-[#FFF8ED]"
-            style={pearlTextStyle}
+            className="font-serif italic font-medium text-[clamp(13px,3.1vw,15px)] leading-[1.45] xs:leading-[1.5] select-none text-[#FFFFFF]"
+            style={brightWhiteStyle}
           >
             &ldquo;Two hearts, one journey,
             <br />
@@ -229,33 +239,86 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
           </p>
 
           {/* FOURTH – DECORATION: Delicate intertwined double heart ornament beneath quotation */}
-          <IntertwinedHearts className="mt-2.5 xs:mt-3" />
+          <IntertwinedHearts className="mt-1.5 xs:mt-2" />
+        </div>
+
+        {/* NEWLY FILLED SPACE: CEREMONY DATE, TIME & VENUE BADGE (Elegantly balances the lower space) */}
+        <div
+          className={`mt-2.5 xs:mt-3 sm:mt-4 w-full max-w-xs xs:max-w-sm sm:max-w-md mx-auto flex flex-col items-center gap-1 transition-all duration-700 ease-out delay-700 ${
+            mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
+          }`}
+        >
+          {/* Subtle Top Accent */}
+          <div className="flex items-center justify-center gap-2 w-28 xs:w-36 mx-auto select-none pointer-events-none">
+            <div className="flex-1 h-[0.75px] bg-gradient-to-r from-transparent via-[#ffe082]/60 to-[#ffe082]" />
+            <span className="text-[#ffe082] text-xs">✦</span>
+            <div className="flex-1 h-[0.75px] bg-gradient-to-l from-transparent via-[#ffe082]/60 to-[#ffe082]" />
+          </div>
+
+          {/* Date & Day */}
+          <div className="flex flex-col items-center">
+            <p
+              className="font-serif uppercase tracking-[0.22em] sm:tracking-[0.26em] text-[clamp(11.5px,2.7vw,14px)] font-bold text-[#FFFFFF] select-none text-center"
+              style={brightWhiteStyle}
+            >
+              SUNDAY • 13TH DECEMBER 2026
+            </p>
+            <p
+              className="font-tamil-heading text-[clamp(11.5px,2.7vw,14px)] font-bold tracking-[0.03em] text-[#FFFFFF] select-none text-center mt-0.5"
+              style={brightWhiteStyle}
+            >
+              ஞாயிறு, 13 டிசம்பர் 2026
+            </p>
+          </div>
+
+          {/* Time & Venue */}
+          <div className="flex flex-col items-center mt-0.5">
+            <p
+              className="font-serif tracking-[0.16em] sm:tracking-[0.2em] text-[clamp(10.5px,2.4vw,12.5px)] text-[#FFF2C6] font-semibold uppercase select-none text-center"
+              style={brightGoldStyle}
+            >
+              6:00 PM ONWARDS • RSM BANQUET HALL
+            </p>
+            <p
+              className="font-tamil text-[clamp(10.5px,2.4vw,12.5px)] text-[#FFF2C6] font-medium tracking-[0.02em] select-none text-center mt-0.5"
+              style={brightGoldStyle}
+            >
+              மாலை 6:00 மணி • திருவல்லிக்கேணி, சென்னை
+            </p>
+          </div>
+
+          {/* Subtle Bottom Accent */}
+          <div className="flex items-center justify-center gap-2 w-28 xs:w-36 mx-auto mt-0.5 select-none pointer-events-none">
+            <div className="flex-1 h-[0.75px] bg-gradient-to-r from-transparent via-[#ffe082]/60 to-[#ffe082]" />
+            <span className="text-[#ffe082] text-xs">✦</span>
+            <div className="flex-1 h-[0.75px] bg-gradient-to-l from-transparent via-[#ffe082]/60 to-[#ffe082]" />
+          </div>
         </div>
       </div>
 
       {/* FIFTH – EXPLORE INDICATOR (Pinned near the bottom over the terrace floor) */}
       <div
-        className={`absolute bottom-[max(1.25rem,env(safe-area-inset-bottom))] left-0 right-0 flex flex-col items-center z-10 transition-all duration-700 ease-out delay-700 ${
+        className={`absolute bottom-[max(1.25rem,env(safe-area-inset-bottom))] left-0 right-0 flex flex-col items-center z-10 transition-all duration-700 ease-out delay-1000 ${
           mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
         }`}
       >
         <a
           href="#couple-section"
-          className="text-xs text-[#FFF8ED] hover:text-white flex flex-col items-center gap-0.5 transition-colors group cursor-pointer"
+          className="text-xs text-[#FFFFFF] hover:text-[#FFF2C6] flex flex-col items-center gap-0.5 transition-colors group cursor-pointer"
         >
           <span
             className="tracking-[0.2em] uppercase text-[10px] sm:text-[11px] font-sans font-semibold"
-            style={pearlTextStyle}
+            style={brightWhiteStyle}
           >
             EXPLORE INVITATION
           </span>
           <span
             className="text-[10px] sm:text-[11px] font-tamil font-medium tracking-[0.02em]"
-            style={pearlTextStyle}
+            style={brightWhiteStyle}
           >
             அழைப்பிதழை காண்க
           </span>
-          <ChevronDown className="w-4 h-4 animate-bounce text-[#f3dfa2] group-hover:text-white drop-shadow-md mt-0.5" />
+          <ChevronDown className="w-4 h-4 animate-bounce text-[#ffe082] group-hover:text-white drop-shadow-md mt-0.5" />
         </a>
       </div>
     </section>
