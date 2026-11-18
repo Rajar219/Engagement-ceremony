@@ -40,7 +40,7 @@ export const CoupleIntro: React.FC = () => {
       {/* Couple Profile Cards (Luxury Editorial Stationery Style — Zero Glassmorphism) */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 my-6 text-center">
         {/* GROOM CARD */}
-        <div className="luxury-card p-8 sm:p-10 flex flex-col items-center group transition-all duration-300 hover:shadow-2xl">
+        <div className="luxury-card px-4 py-8 sm:px-8 sm:py-10 flex flex-col items-center group transition-all duration-300 hover:shadow-2xl">
           <CornerOrnaments color="text-[#c5a059]/40" />
 
           {/* Role (English line, then Tamil line, matching size) */}
@@ -61,11 +61,11 @@ export const CoupleIntro: React.FC = () => {
 
           <div className="w-16 h-px bg-[#c5a059]/40 my-2" />
 
-          {/* Parents Lineage (English line, then Tamil line, matching size) */}
-          <p className="text-xs sm:text-sm text-[#5c534b] font-sans leading-relaxed mb-1">
+          {/* Parents Lineage (Strictly single line for both English and Tamil) */}
+          <p className="text-[clamp(11px,2.8vw,14px)] text-[#5c534b] font-sans leading-relaxed whitespace-nowrap mb-1">
             Son of Mr. V. Gnanasekar &amp; Mrs. G. Meena
           </p>
-          <p className="text-xs sm:text-sm text-[#5c534b] font-tamil leading-relaxed mb-3">
+          <p className="text-[clamp(10.5px,2.7vw,13.5px)] text-[#5c534b] font-tamil leading-relaxed whitespace-nowrap mb-3">
             திரு. V. ஞானசேகர் &amp; திருமதி. G. மீனா அவர்களின் அன்பு மகன்
           </p>
 
@@ -79,7 +79,7 @@ export const CoupleIntro: React.FC = () => {
         </div>
 
         {/* BRIDE CARD */}
-        <div className="luxury-card p-8 sm:p-10 flex flex-col items-center group transition-all duration-300 hover:shadow-2xl">
+        <div className="luxury-card px-4 py-8 sm:px-8 sm:py-10 flex flex-col items-center group transition-all duration-300 hover:shadow-2xl">
           <CornerOrnaments color="text-[#c5a059]/40" />
 
           {/* Role (English line, then Tamil line, matching size) */}
@@ -100,11 +100,11 @@ export const CoupleIntro: React.FC = () => {
 
           <div className="w-16 h-px bg-[#c5a059]/40 my-2" />
 
-          {/* Parents Lineage (English line, then Tamil line, matching size) */}
-          <p className="text-xs sm:text-sm text-[#5c534b] font-sans leading-relaxed mb-1">
+          {/* Parents Lineage (Strictly single line for both English and Tamil) */}
+          <p className="text-[clamp(11px,2.8vw,14px)] text-[#5c534b] font-sans leading-relaxed whitespace-nowrap mb-1">
             Daughter of Mr. S. Kabali &amp; Mrs. K. Sumathi
           </p>
-          <p className="text-xs sm:text-sm text-[#5c534b] font-tamil leading-relaxed mb-3">
+          <p className="text-[clamp(10.5px,2.7vw,13.5px)] text-[#5c534b] font-tamil leading-relaxed whitespace-nowrap mb-3">
             திரு. S. கபாலி &amp; திருமதி. K. சுமதி அவர்களின் அன்பு மகள்
           </p>
 

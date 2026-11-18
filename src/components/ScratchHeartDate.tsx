@@ -217,10 +217,10 @@ export const ScratchHeartDate: React.FC = () => {
           சுப முகூர்த்த நாள்
         </span>
 
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold gold-foil-text tracking-wide mb-1">
+        <h2 className="text-[clamp(1.35rem,5.5vw,2.5rem)] font-serif font-bold gold-foil-text tracking-wide whitespace-nowrap mb-1">
           Save the Date
         </h2>
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-tamil-heading font-bold gold-foil-text tracking-wide">
+        <h2 className="text-[clamp(1.1rem,4.5vw,2.25rem)] font-tamil-heading font-bold gold-foil-text tracking-wide whitespace-nowrap">
           சுப தேதியைக் குறித்துக் கொள்ளுங்கள்
         </h2>
 
@@ -258,35 +258,38 @@ export const ScratchHeartDate: React.FC = () => {
         className="relative w-[300px] h-[280px] mx-auto filter drop-shadow-[0_16px_36px_rgba(35,28,24,0.18)] select-none my-4"
         style={{ willChange: 'transform' }}
       >
-        {/* UNDERLYING REVEALED DATE CARD: Strict separate lines for EN and TA */}
+        {/* UNDERLYING REVEALED DATE CARD: Regal Royal Purple Background with Date & Time Only */}
         <div
-          className="absolute inset-0 bg-gradient-to-br from-[#241d18] via-[#1c1613] to-[#140f0c] border-2 border-[#c5a059]/60 flex flex-col items-center justify-center p-5 text-center select-none"
+          className="absolute inset-0 bg-gradient-to-br from-[#380e50] via-[#240636] to-[#150222] border-2 border-[#c5a059]/60 flex flex-col items-center justify-center p-5 text-center select-none shadow-[inset_0_0_30px_rgba(147,51,234,0.35)]"
           style={{ clipPath: 'url(#revealHeartClipVP)' }}
         >
-          <span className="text-[11px] sm:text-xs font-serif font-bold tracking-[0.2em] text-[#c5a059] uppercase block">
+          {/* Subtle Royal Purple Glow */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(192,132,252,0.22),transparent_70%)] pointer-events-none" />
+
+          {/* Day: English & Tamil */}
+          <span className="relative z-10 text-[11px] sm:text-xs font-serif font-bold tracking-[0.24em] text-[#ffe599] uppercase block drop-shadow-[0_1px_3px_rgba(0,0,0,0.85)]">
             SUNDAY
           </span>
-          <span className="text-[11px] sm:text-xs font-tamil-serif font-bold text-[#c5a059] block mb-0.5">
+          <span className="relative z-10 text-[11px] sm:text-xs font-tamil-serif font-bold text-[#ffe599] block mb-1 drop-shadow-[0_1px_3px_rgba(0,0,0,0.85)]">
             ஞாயிற்றுக்கிழமை
           </span>
 
-          <div className="my-1.5 border-t border-b border-[#c5a059]/40 py-2 w-4/5 flex flex-col items-center justify-center">
-            <h4 className="text-3xl sm:text-4xl font-serif font-black text-[#faf8f4] leading-none tracking-tight">
+          {/* Date: 13 • 12 • 2026 */}
+          <div className="relative z-10 my-1.5 border-t border-b border-[#c5a059]/60 py-2.5 w-4/5 flex flex-col items-center justify-center">
+            <h4 className="text-3xl sm:text-4xl font-serif font-black text-[#ffffff] leading-none tracking-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
               13 • 12 • 2026
             </h4>
           </div>
 
-          <div className="flex flex-col items-center text-[11px] text-[#d4c3b3] font-sans mt-0.5">
-            <span>6:00 PM – 9:00 PM IST</span>
-            <span className="font-tamil-sans text-[10px]">மாலை 6:00 – 9:00 மணி</span>
+          {/* Time: English & Tamil (Inside heart Date & Time is enough, venue removed) */}
+          <div className="relative z-10 flex flex-col items-center text-[11.5px] sm:text-xs text-[#f3e8ff] font-sans mt-1">
+            <span className="font-semibold tracking-wider text-[#ffe599] drop-shadow-[0_1px_3px_rgba(0,0,0,0.85)]">
+              6:00 PM – 9:00 PM IST
+            </span>
+            <span className="font-tamil-sans text-[11px] sm:text-xs text-[#f3e8ff] font-medium drop-shadow-[0_1px_3px_rgba(0,0,0,0.85)] mt-0.5">
+              மாலை 6:00 – 9:00 மணி
+            </span>
           </div>
-
-          <span className="text-[10px] text-[#c5a059]/90 font-medium font-sans mt-1">
-            RSM Banquet Hall, Chennai
-          </span>
-          <span className="text-[10px] text-[#c5a059]/90 font-medium font-tamil-sans">
-            ஆர்.எஸ்.எம் பேங்க்வெட் ஹால், சென்னை
-          </span>
         </div>
 
         {/* SCRATCHABLE CANVAS OVERLAY */}
