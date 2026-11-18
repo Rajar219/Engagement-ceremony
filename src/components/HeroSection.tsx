@@ -207,6 +207,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
           >
             Priyanka
           </h1>
+
+          <FloralDivider className="mt-2.5 xs:mt-3 mb-1.5 xs:mb-2" />
         </div>
 
         {/* THIRD – CEREMONY DESCRIPTION & FOURTH – DECORATION */}
