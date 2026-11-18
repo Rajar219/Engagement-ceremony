@@ -130,7 +130,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
   return (
     <section
       id="hero-section"
-      className="relative h-[100svh] min-h-[100svh] w-full flex flex-col items-center justify-start overflow-hidden px-4"
+      className="relative h-[100svh] min-h-[100svh] w-full flex flex-col items-center justify-between overflow-hidden px-4 select-text"
     >
       {/* 1. ORIGINAL BACKGROUND (Cinematic purple curtains, palace, chandeliers & clouds video) */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -151,95 +151,95 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
       {/* FLOATING GOLDEN DUST PARTICLES */}
       <GoldenDustParticles />
 
-      {/* 2. UNIFIED POSTER COMPOSITION (All content strictly ordered, centered, and harmoniously spaced) */}
-      <div className="relative z-10 w-full max-w-md mx-auto flex flex-col items-center text-center mt-[max(1.75rem,5svh)] sm:mt-[6.5svh] px-3">
-        {/* 1 & 2: WITH THE BLESSINGS OF OUR FAMILIES / எங்கள் குடும்பத்தினரின் நல்லாசியுடன் */}
+      {/* 2. UNIFIED POSTER COMPOSITION (Evenly distributed vertical spacing inside the architectural arch) */}
+      <div className="relative z-10 w-full max-w-sm sm:max-w-md mx-auto flex-1 flex flex-col items-center justify-evenly text-center pt-[max(1.75rem,5svh)] pb-2 px-3">
+        {/* 1, 2 & 3: WITH THE BLESSINGS OF OUR FAMILIES / எங்கள் குடும்பத்தினரின் நல்லாசியுடன் / Decorative Divider */}
         <div
-          className={`flex flex-col items-center gap-0.5 transition-all duration-700 ease-out delay-100 ${
+          className={`flex flex-col items-center gap-1 transition-all duration-700 ease-out delay-100 ${
             mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
           }`}
         >
           <span
-            className="font-serif uppercase tracking-[0.24em] sm:tracking-[0.28em] text-[clamp(11px,2.6vw,13.5px)] font-bold text-center"
+            className="font-serif uppercase tracking-[0.26em] sm:tracking-[0.28em] text-[clamp(11.5px,2.8vw,14px)] font-bold text-center"
             style={brightWhiteStyle}
           >
             WITH THE BLESSINGS OF OUR FAMILIES
           </span>
           <span
-            className="font-tamil-serif text-[clamp(11px,2.6vw,13.5px)] font-bold tracking-[0.02em] text-center"
+            className="font-tamil-serif text-[clamp(11.5px,2.8vw,14px)] font-bold tracking-[0.03em] text-center"
             style={brightWhiteStyle}
           >
             எங்கள் குடும்பத்தினரின் நல்லாசியுடன்
           </span>
 
-          <FloralDivider className="mt-1 xs:mt-1.5 mb-0.5 xs:mb-1" />
+          <FloralDivider className="mt-2 mb-1" />
         </div>
 
-        {/* 3 & 4: COUPLE NAMES (Large, flowing stylish calligraphy script) */}
+        {/* 4, 5 & 6: VALLARASU & PRIYANKA (Grand centerpiece) / Small elegant decorative separator */}
         <div
-          className={`w-full max-w-sm sm:max-w-md mx-auto my-0.5 xs:my-1 flex flex-col items-center justify-center transition-all duration-700 ease-out delay-300 ${
+          className={`w-full flex flex-col items-center justify-center my-0.5 transition-all duration-700 ease-out delay-300 ${
             mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <h1
-            className="couple-script-name text-[clamp(3.1rem,10.5vw,5rem)] leading-[1.08] py-0.5"
+            className="couple-script-name text-[clamp(3.5rem,12vw,5.5rem)] leading-[1.05] py-0.5 tracking-wide text-center"
             style={stylishCoupleNameStyle}
           >
             Vallarasu
           </h1>
 
-          {/* Ampersand separator: — & — */}
-          <div className="flex items-center justify-center gap-2.5 sm:gap-3 w-32 xs:w-40 sm:w-48 mx-auto my-0.5 pointer-events-none">
-            <div className="flex-1 h-[0.75px] bg-gradient-to-r from-transparent via-[#ffe082]/70 to-[#ffe082]" />
+          {/* Ampersand separator: ── & ── */}
+          <div className="flex items-center justify-center gap-3 w-36 xs:w-44 sm:w-52 mx-auto my-1 pointer-events-none">
+            <div className="flex-1 h-[0.75px] bg-gradient-to-r from-transparent via-[#ffe082]/75 to-[#ffe082]" />
             <span
-              className="font-serif italic text-base xs:text-lg sm:text-xl text-[#ffe599] font-normal leading-none"
+              className="font-serif italic text-lg xs:text-xl sm:text-2xl text-[#ffe599] font-normal leading-none"
               style={{
-                textShadow: '0 0 12px rgba(255, 225, 120, 0.8), 0 2px 4px rgba(0, 0, 0, 0.9)',
+                textShadow: '0 0 14px rgba(255, 225, 120, 0.9), 0 2px 4px rgba(0, 0, 0, 0.95)',
               }}
             >
               &amp;
             </span>
-            <div className="flex-1 h-[0.75px] bg-gradient-to-l from-transparent via-[#ffe082]/70 to-[#ffe082]" />
+            <div className="flex-1 h-[0.75px] bg-gradient-to-l from-transparent via-[#ffe082]/75 to-[#ffe082]" />
           </div>
 
           <h1
-            className="couple-script-name text-[clamp(3.1rem,10.5vw,5rem)] leading-[1.08] py-0.5"
+            className="couple-script-name text-[clamp(3.5rem,12vw,5.5rem)] leading-[1.05] py-0.5 tracking-wide text-center"
             style={stylishCoupleNameStyle}
           >
             Priyanka
           </h1>
 
-          <FloralDivider className="mt-1 xs:mt-1.5 mb-0.5 xs:mb-1" />
+          <FloralDivider className="mt-2 mb-1" />
         </div>
 
-        {/* 5 & 6: ENGAGEMENT CEREMONY / திருமண நிச்சயதார்த்த விழா */}
+        {/* 7 & 8: ENGAGEMENT CEREMONY / திருமண நிச்சயதார்த்த விழா */}
         <div
-          className={`flex flex-col items-center gap-0.5 transition-all duration-700 ease-out delay-500 ${
+          className={`flex flex-col items-center gap-1 transition-all duration-700 ease-out delay-500 ${
             mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
           }`}
         >
           <h2
-            className="font-serif uppercase tracking-[0.24em] sm:tracking-[0.28em] text-[clamp(12px,2.9vw,15px)] font-bold text-center"
+            className="font-serif uppercase tracking-[0.28em] sm:tracking-[0.3em] text-[clamp(13px,3.2vw,16.5px)] font-bold text-center"
             style={brightWhiteStyle}
           >
             ENGAGEMENT CEREMONY
           </h2>
           <h2
-            className="font-tamil-heading text-[clamp(12px,2.9vw,15px)] font-bold tracking-[0.03em] text-center"
+            className="font-tamil-heading text-[clamp(13px,3.2vw,16.5px)] font-bold tracking-[0.04em] text-center"
             style={brightWhiteStyle}
           >
             திருமண நிச்சயதார்த்த விழா
           </h2>
         </div>
 
-        {/* 7 & 8: CEREMONY DESCRIPTION (Two hearts, one journey... & Tamil translation) */}
+        {/* 9, 10 & 11: SHORT ROMANTIC INVITATION QUOTE & ELEGANT SMALL HEART ORNAMENT */}
         <div
-          className={`max-w-[300px] xs:max-w-[340px] sm:max-w-md mx-auto px-2 mt-2 xs:mt-2.5 text-center transition-all duration-700 ease-out delay-700 ${
+          className={`max-w-[310px] xs:max-w-[350px] sm:max-w-md mx-auto px-2 flex flex-col items-center text-center transition-all duration-700 ease-out delay-700 ${
             mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
           }`}
         >
           <p
-            className="font-serif italic font-medium text-[clamp(11.5px,2.7vw,13.5px)] leading-[1.4] text-[#FFFFFF]"
+            className="font-serif italic font-medium text-[clamp(12px,2.9vw,14.5px)] leading-[1.45] text-[#FFFFFF]"
             style={brightWhiteStyle}
           >
             &ldquo;Two hearts, one journey,
@@ -248,7 +248,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
           </p>
 
           <p
-            className="font-tamil font-medium text-[clamp(11px,2.5vw,13px)] leading-[1.5] text-[#FFFFFF] mt-1"
+            className="font-tamil font-medium text-[clamp(11.5px,2.7vw,13.5px)] leading-[1.55] text-[#FFFFFF] mt-1.5"
             style={brightWhiteStyle}
           >
             &ldquo;இரு இதயங்கள், ஒரு பயணம்,
@@ -256,40 +256,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
             வாழ்நாள் முழுமைக்குமான இணைவு இங்கு தொடங்குகிறது...&rdquo;
           </p>
 
-          {/* Delicate intertwined double hearts */}
-          <IntertwinedHearts className="mt-1.5 xs:mt-2" />
-        </div>
-
-        {/* 9: AUSPICIOUS CEREMONY HIGHLIGHT (Fills lower empty space inside the arch) */}
-        <div
-          className={`w-full max-w-[300px] xs:max-w-[340px] mx-auto mt-2 xs:mt-2.5 px-3.5 py-2 xs:py-2.5 rounded-2xl bg-[#1c1613]/55 border border-[#ffe082]/45 backdrop-blur-[2px] shadow-[0_6px_20px_rgba(0,0,0,0.6)] flex flex-col items-center text-center transition-all duration-700 ease-out delay-850 ${
-            mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
-          }`}
-        >
-          <div className="flex items-center gap-1.5 text-[#ffe599] text-[9.5px] xs:text-[10.5px] font-serif font-bold uppercase tracking-[0.22em]">
-            <span>✦</span>
-            <span>SUNDAY, 13TH DECEMBER 2026</span>
-            <span>✦</span>
-          </div>
-
-          <div className="text-[10px] xs:text-[11px] font-tamil-serif font-semibold text-[#ffe599] mt-0.5 tracking-wide">
-            ஞாயிற்றுக்கிழமை, 13 டிசம்பர் 2026
-          </div>
-
-          <div className="w-20 h-[0.5px] bg-gradient-to-r from-transparent via-[#ffe082]/70 to-transparent my-1" />
-
-          <div className="text-[10.5px] xs:text-[11.5px] font-sans font-medium text-[#ffffff] tracking-wide">
-            Evening 6:00 PM Onwards
-          </div>
-          <div className="text-[10px] xs:text-[11px] font-tamil font-medium text-[#f5e7c4]">
-            RSM Banquet Hall, Triplicane, Chennai
-          </div>
+          {/* 11: Elegant small intertwined heart ornament */}
+          <IntertwinedHearts className="mt-2.5 xs:mt-3" />
         </div>
       </div>
 
-      {/* FIFTH – EXPLORE INDICATOR (Pinned near the bottom over the terrace floor) */}
+      {/* EXPLORE INVITATION INDICATOR (Pinned comfortably above safe area bottom) */}
       <div
-        className={`absolute bottom-[max(1.25rem,env(safe-area-inset-bottom))] left-0 right-0 flex flex-col items-center z-10 transition-all duration-700 ease-out delay-1000 ${
+        className={`w-full pb-[max(1.25rem,env(safe-area-inset-bottom))] pt-2 flex flex-col items-center z-10 transition-all duration-700 ease-out delay-1000 ${
           mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
         }`}
       >
@@ -298,13 +272,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
           className="text-xs text-[#FFFFFF] hover:text-[#FFF2C6] flex flex-col items-center gap-0.5 transition-colors group cursor-pointer"
         >
           <span
-            className="tracking-[0.2em] uppercase text-[10px] sm:text-[11px] font-sans font-semibold"
+            className="tracking-[0.22em] uppercase text-[10.5px] sm:text-[11.5px] font-sans font-semibold"
             style={brightWhiteStyle}
           >
             EXPLORE INVITATION
           </span>
           <span
-            className="text-[10px] sm:text-[11px] font-tamil font-medium tracking-[0.02em]"
+            className="text-[10px] sm:text-[11px] font-tamil font-medium tracking-[0.03em]"
             style={brightWhiteStyle}
           >
             அழைப்பிதழை காண்க
