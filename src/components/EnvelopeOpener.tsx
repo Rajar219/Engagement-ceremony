@@ -102,33 +102,35 @@ export const EnvelopeOpener: React.FC<EnvelopeOpenerProps> = ({ onOpenComplete, 
 
   return (
     <div
-      className={`fixed inset-0 z-50 h-[100dvh] w-full bg-[#1c1613] overflow-hidden select-none transition-opacity duration-700 ease-out cursor-pointer ${
+      className={`fixed inset-0 z-50 h-[100dvh] w-full flex items-center justify-center bg-[#16110e] overflow-hidden transition-opacity duration-700 ease-out cursor-pointer ${
         isFading ? 'opacity-0 pointer-events-none' : 'opacity-100'
       }`}
       style={{ willChange: 'opacity' }}
       onClick={handleUserTrigger}
       onTouchStart={handleUserTrigger}
     >
-      {/* 1. CINEMATIC DIRECT SEAL VIDEO & POSTER */}
-      <video
-        ref={introVideoRef}
-        src={videoSrc}
-        poster={posterSrc}
-        muted
-        playsInline
-        // @ts-ignore - WebKit iOS attribute
-        webkit-playsinline="true"
-        preload="auto"
-        onTimeUpdate={handleTimeUpdate}
-        onEnded={finishIntroAndRevealHero}
-        className="w-full h-full object-cover"
-      />
+      {/* Centered Mobile Envelope Frame (Max 430px) */}
+      <div className="relative w-full max-w-[430px] h-[100dvh] bg-[#1c1613] overflow-hidden shadow-2xl">
+        {/* 1. CINEMATIC DIRECT SEAL VIDEO & POSTER */}
+        <video
+          ref={introVideoRef}
+          src={videoSrc}
+          poster={posterSrc}
+          muted
+          playsInline
+          // @ts-ignore - WebKit iOS attribute
+          webkit-playsinline="true"
+          preload="auto"
+          onTimeUpdate={handleTimeUpdate}
+          onEnded={finishIntroAndRevealHero}
+          className="w-full h-full object-cover"
+        />
 
-      {/* 2. DIRECT INTERACTIVE SEAL HOTSPOT & RADIANT TAP-TO-OPEN CALL-TO-ACTION */}
-      <div
-        className="absolute inset-0 z-30 flex flex-col items-center justify-center pointer-events-none"
-        aria-label="Interactive V&P Wax Seal"
-      >
+        {/* 2. DIRECT INTERACTIVE SEAL HOTSPOT & RADIANT TAP-TO-OPEN CALL-TO-ACTION */}
+        <div
+          className="absolute inset-0 z-30 flex flex-col items-center justify-center pointer-events-none"
+          aria-label="Interactive V&P Wax Seal"
+        >
         {/* Seal Hotspot Button */}
         <button
           type="button"
@@ -188,5 +190,6 @@ export const EnvelopeOpener: React.FC<EnvelopeOpenerProps> = ({ onOpenComplete, 
         )}
       </div>
     </div>
-  );
+  </div>
+);
 };

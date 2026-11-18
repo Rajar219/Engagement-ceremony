@@ -33,7 +33,7 @@ export const DirectoryAndRSVPCard: React.FC = () => {
         {/* 2-Column Key-Value Directory Rows (Strict Rule: English line, then Tamil line) */}
         <div className="relative z-10 space-y-4">
           {/* Row 1: Groom's Family */}
-          <div className="p-4 sm:p-5 rounded-2xl bg-[#faf8f4] border border-[#c5a059]/25 flex flex-col sm:flex-row sm:items-center justify-between gap-2 shadow-sm">
+          <div className="p-4 sm:p-5 rounded-2xl bg-[#faf8f4] border border-[#c5a059]/25 flex flex-col gap-1.5 shadow-sm">
             <div className="flex flex-col min-w-0">
               <span className="text-xs sm:text-sm font-serif font-bold text-[#231c18] tracking-wide">
                 Groom&apos;s Family
@@ -42,7 +42,7 @@ export const DirectoryAndRSVPCard: React.FC = () => {
                 மணமகன் இல்லத்தார்
               </span>
             </div>
-            <div className="flex flex-col sm:text-right min-w-0">
+            <div className="flex flex-col min-w-0">
               <span className="text-xs sm:text-sm font-sans text-[#5a4a42]">
                 Mr. V. Gnanasekar &amp; Family
               </span>
@@ -53,7 +53,7 @@ export const DirectoryAndRSVPCard: React.FC = () => {
           </div>
 
           {/* Row 2: Bride's Family */}
-          <div className="p-4 sm:p-5 rounded-2xl bg-[#faf8f4] border border-[#c5a059]/25 flex flex-col sm:flex-row sm:items-center justify-between gap-2 shadow-sm">
+          <div className="p-4 sm:p-5 rounded-2xl bg-[#faf8f4] border border-[#c5a059]/25 flex flex-col gap-1.5 shadow-sm">
             <div className="flex flex-col min-w-0">
               <span className="text-xs sm:text-sm font-serif font-bold text-[#231c18] tracking-wide">
                 Bride&apos;s Family
@@ -62,7 +62,7 @@ export const DirectoryAndRSVPCard: React.FC = () => {
                 மணமகள் இல்லத்தார்
               </span>
             </div>
-            <div className="flex flex-col sm:text-right min-w-0">
+            <div className="flex flex-col min-w-0">
               <span className="text-xs sm:text-sm font-sans text-[#5a4a42]">
                 Mr. S. Kabali &amp; Family
               </span>
@@ -73,7 +73,7 @@ export const DirectoryAndRSVPCard: React.FC = () => {
           </div>
 
           {/* Row 3: Relatives & Friends */}
-          <div className="p-4 sm:p-5 rounded-2xl bg-[#faf8f4] border border-[#c5a059]/25 flex flex-col sm:flex-row sm:items-center justify-between gap-2 shadow-sm">
+          <div className="p-4 sm:p-5 rounded-2xl bg-[#faf8f4] border border-[#c5a059]/25 flex flex-col gap-1.5 shadow-sm">
             <div className="flex flex-col min-w-0">
               <span className="text-xs sm:text-sm font-serif font-bold text-[#231c18] tracking-wide">
                 Relatives &amp; Well-Wishers
@@ -82,7 +82,7 @@ export const DirectoryAndRSVPCard: React.FC = () => {
                 உற்றார், உறவினர்கள் மற்றும் நண்பர்கள்
               </span>
             </div>
-            <div className="flex flex-col sm:text-right min-w-0">
+            <div className="flex flex-col min-w-0">
               <span className="text-xs sm:text-sm font-sans text-[#5a4a42]">
                 All Near and Dear Ones
               </span>

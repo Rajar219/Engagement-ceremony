@@ -65,7 +65,7 @@ END:VCALENDAR`;
 
       {/* Date & Time Highlight Card */}
       <div className="w-full p-6 sm:p-8 rounded-3xl bg-gradient-to-b from-[#220a10] to-[#140508] border border-gold-500/40 shadow-2xl mb-12">
-        <div className="flex flex-col md:flex-row items-center justify-around gap-6">
+        <div className="flex flex-col items-center justify-around gap-6">
           <div className="flex items-center gap-4 text-left">
             <div className="w-14 h-14 rounded-2xl bg-gold-500/20 border border-gold-400/50 flex items-center justify-center shrink-0 text-gold-300">
               <Calendar className="w-7 h-7" />

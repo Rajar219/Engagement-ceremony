@@ -57,7 +57,7 @@ export const BlessingsFamilyCard: React.FC = () => {
             </h3>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 gap-6">
             {/* Groom's Family */}
             <div className="space-y-1 min-w-0">
               <span className="text-xs uppercase tracking-widest text-[#a88136] font-sans font-semibold block">

@@ -86,7 +86,7 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({ autoPlayTrigger }) => 
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-40 flex items-center gap-2">
+    <div className="fixed bottom-6 z-40 flex items-center justify-end px-4 w-full max-w-[430px] left-1/2 -translate-x-1/2 pointer-events-none">
       <audio
         ref={audioRef}
         src={audioSrc}
@@ -94,11 +94,11 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({ autoPlayTrigger }) => 
         preload="auto"
       />
 
-      {/* Floating Audio Control Button (Zero Glassmorphism) */}
+      {/* Floating Audio Control Button */}
       <button
         onClick={togglePlay}
         aria-label={isPlaying ? 'Pause music' : 'Play music'}
-        className="group relative flex items-center gap-2.5 px-3.5 py-2.5 rounded-full bg-[#ffffff] hover:bg-[#faf8f4] border border-[#c5a059]/50 shadow-[0_8px_24px_rgba(35,28,24,0.14)] hover:shadow-[0_8px_30px_rgba(197,160,89,0.35)] transition-all duration-300 cursor-pointer"
+        className="pointer-events-auto group relative flex items-center gap-2.5 px-3.5 py-2.5 rounded-full bg-[#ffffff] hover:bg-[#faf8f4] border border-[#c5a059]/50 shadow-[0_8px_24px_rgba(35,28,24,0.14)] hover:shadow-[0_8px_30px_rgba(197,160,89,0.35)] transition-all duration-300 cursor-pointer"
       >
         {/* Equalizer Wave / Icon */}
         {isPlaying ? (
@@ -111,7 +111,7 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({ autoPlayTrigger }) => 
           <VolumeX className="w-4 h-4 text-[#a88136]" />
         )}
 
-        <span className="text-[11px] font-sans uppercase tracking-wider text-[#231c18] font-semibold hidden sm:inline">
+        <span className="text-[11px] font-sans uppercase tracking-wider text-[#231c18] font-semibold">
           {isPlaying ? 'Music On' : 'Play Music'}
         </span>
       </button>

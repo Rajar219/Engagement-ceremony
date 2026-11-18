@@ -130,7 +130,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
   return (
     <section
       id="hero-section"
-      className="relative h-[100svh] min-h-[100svh] w-full flex flex-col items-center justify-start overflow-hidden px-4 select-none"
+      className="relative h-[100svh] min-h-[100svh] w-full flex flex-col items-center justify-start overflow-hidden px-4"
     >
       {/* 1. ORIGINAL BACKGROUND (Cinematic purple curtains, palace, chandeliers & clouds video) */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -160,13 +160,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
           }`}
         >
           <span
-            className="font-serif uppercase tracking-[0.24em] sm:tracking-[0.28em] text-[clamp(11px,2.6vw,13.5px)] font-bold select-none text-center"
+            className="font-serif uppercase tracking-[0.24em] sm:tracking-[0.28em] text-[clamp(11px,2.6vw,13.5px)] font-bold text-center"
             style={brightWhiteStyle}
           >
             WITH THE BLESSINGS OF OUR FAMILIES
           </span>
           <span
-            className="font-tamil-serif text-[clamp(11px,2.6vw,13.5px)] font-bold tracking-[0.02em] select-none text-center"
+            className="font-tamil-serif text-[clamp(11px,2.6vw,13.5px)] font-bold tracking-[0.02em] text-center"
             style={brightWhiteStyle}
           >
             எங்கள் குடும்பத்தினரின் நல்லாசியுடன்
@@ -182,14 +182,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
           }`}
         >
           <h1
-            className="couple-script-name text-[clamp(3.1rem,10.5vw,5rem)] leading-[1.08] select-none py-0.5"
+            className="couple-script-name text-[clamp(3.1rem,10.5vw,5rem)] leading-[1.08] py-0.5"
             style={stylishCoupleNameStyle}
           >
             Vallarasu
           </h1>
 
           {/* Ampersand separator: — & — */}
-          <div className="flex items-center justify-center gap-2.5 sm:gap-3 w-32 xs:w-40 sm:w-48 mx-auto my-0.5 select-none pointer-events-none">
+          <div className="flex items-center justify-center gap-2.5 sm:gap-3 w-32 xs:w-40 sm:w-48 mx-auto my-0.5 pointer-events-none">
             <div className="flex-1 h-[0.75px] bg-gradient-to-r from-transparent via-[#ffe082]/70 to-[#ffe082]" />
             <span
               className="font-serif italic text-base xs:text-lg sm:text-xl text-[#ffe599] font-normal leading-none"
@@ -203,7 +203,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
           </div>
 
           <h1
-            className="couple-script-name text-[clamp(3.1rem,10.5vw,5rem)] leading-[1.08] select-none py-0.5"
+            className="couple-script-name text-[clamp(3.1rem,10.5vw,5rem)] leading-[1.08] py-0.5"
             style={stylishCoupleNameStyle}
           >
             Priyanka
@@ -219,13 +219,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
           }`}
         >
           <h2
-            className="font-serif uppercase tracking-[0.24em] sm:tracking-[0.28em] text-[clamp(12px,2.9vw,15px)] font-bold select-none text-center"
+            className="font-serif uppercase tracking-[0.24em] sm:tracking-[0.28em] text-[clamp(12px,2.9vw,15px)] font-bold text-center"
             style={brightWhiteStyle}
           >
             ENGAGEMENT CEREMONY
           </h2>
           <h2
-            className="font-tamil-heading text-[clamp(12px,2.9vw,15px)] font-bold tracking-[0.03em] select-none text-center"
+            className="font-tamil-heading text-[clamp(12px,2.9vw,15px)] font-bold tracking-[0.03em] text-center"
             style={brightWhiteStyle}
           >
             திருமண நிச்சயதார்த்த விழா
@@ -239,7 +239,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
           }`}
         >
           <p
-            className="font-serif italic font-medium text-[clamp(11.5px,2.7vw,13.5px)] leading-[1.4] select-none text-[#FFFFFF]"
+            className="font-serif italic font-medium text-[clamp(11.5px,2.7vw,13.5px)] leading-[1.4] text-[#FFFFFF]"
             style={brightWhiteStyle}
           >
             &ldquo;Two hearts, one journey,
@@ -248,7 +248,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
           </p>
 
           <p
-            className="font-tamil font-medium text-[clamp(11px,2.5vw,13px)] leading-[1.5] select-none text-[#FFFFFF] mt-1"
+            className="font-tamil font-medium text-[clamp(11px,2.5vw,13px)] leading-[1.5] text-[#FFFFFF] mt-1"
             style={brightWhiteStyle}
           >
             &ldquo;இரு இதயங்கள், ஒரு பயணம்,

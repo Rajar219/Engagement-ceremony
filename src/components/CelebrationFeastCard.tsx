@@ -78,7 +78,7 @@ export const CelebrationFeastCard: React.FC = () => {
             return (
               <div
                 key={idx}
-                className="p-4 sm:p-5 rounded-2xl bg-[#faf8f4] border border-[#c5a059]/25 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-sm hover:border-[#c5a059]/45 transition-colors"
+                className="p-4 sm:p-5 rounded-2xl bg-[#faf8f4] border border-[#c5a059]/25 flex flex-col gap-3 shadow-sm hover:border-[#c5a059]/45 transition-colors"
               >
                 <div className="flex items-start gap-3.5">
                   <div className="w-11 h-11 rounded-xl bg-[#c5a059]/15 border border-[#c5a059]/30 flex items-center justify-center shrink-0 text-[#a88136]">

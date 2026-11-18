@@ -255,12 +255,12 @@ export const ScratchHeartDate: React.FC = () => {
       {/* SCRATCH CONTAINER (GOLD-METALLIC RIMMED HEART CARD) */}
       <div
         ref={containerRef}
-        className="relative w-[300px] max-w-[calc(100vw-32px)] h-[280px] mx-auto filter drop-shadow-[0_16px_36px_rgba(35,28,24,0.18)] select-none my-4"
+        className="relative w-[300px] max-w-[calc(100vw-32px)] h-[280px] mx-auto filter drop-shadow-[0_16px_36px_rgba(35,28,24,0.18)] my-4"
         style={{ willChange: 'transform' }}
       >
         {/* UNDERLYING REVEALED DATE CARD: Regal Royal Purple Background with Date & Time Only */}
         <div
-          className="absolute inset-0 bg-gradient-to-br from-[#380e50] via-[#240636] to-[#150222] border-2 border-[#c5a059]/60 flex flex-col items-center justify-center p-5 text-center select-none shadow-[inset_0_0_30px_rgba(147,51,234,0.35)]"
+          className="absolute inset-0 bg-gradient-to-br from-[#380e50] via-[#240636] to-[#150222] border-2 border-[#c5a059]/60 flex flex-col items-center justify-center p-5 text-center shadow-[inset_0_0_30px_rgba(147,51,234,0.35)]"
           style={{ clipPath: 'url(#revealHeartClipVP)' }}
         >
           {/* Subtle Royal Purple Glow */}

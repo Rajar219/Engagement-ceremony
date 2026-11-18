@@ -400,6 +400,56 @@ body {
   background: #a88136;
 }
 
+/* -------------------------------------------------------------
+ * 1. FORCED MOBILE VIEWPORT & GLOBAL TEXT SELECTION SYSTEM
+ * ----------------------------------------------------------- */
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.invitation-wrapper {
+  width: 100%;
+  max-width: 430px;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin-inline: auto;
+  overflow-x: hidden;
+  position: relative;
+  background-color: #faf8f4;
+  box-shadow: 0 0 50px rgba(35, 28, 24, 0.14), 0 0 2px rgba(197, 160, 89, 0.3);
+}
+
+/* Complete PC & mobile text selection enabled for easy copying */
+.invitation-wrapper,
+.invitation-wrapper * {
+  -webkit-user-select: text !important;
+  user-select: text !important;
+}
+
+/* Maintain proper button and link pointer behavior */
+button,
+a,
+input,
+textarea,
+select {
+  cursor: pointer;
+}
+
+/* Scratch canvas touch/pointer interaction */
+canvas {
+  touch-action: none;
+  -webkit-user-select: none !important;
+  user-select: none !important;
+}
+
 /* Stylish flowing calligraphy script for couple names */
 .couple-script-name {
   font-family: 'Great Vibes', 'Allura', 'Alex Brush', 'Pinyon Script', cursive !important;

@@ -198,7 +198,7 @@ export const WishesWall: React.FC = () => {
           </div>
         )}
 
-        <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+        <div className="relative z-10 grid grid-cols-1 gap-4 mb-4">
           <div>
             <label className="block text-[11px] uppercase tracking-wider text-[#5c534b] font-semibold mb-1 font-tamil-sans">
               {language === 'ta' ? 'தங்கள் பெயர் *' : 'Your Name *'}
@@ -267,7 +267,7 @@ export const WishesWall: React.FC = () => {
           </span>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
+        <div className="grid grid-cols-1 gap-4 text-left">
           {wishes.map((w) => {
             const isLiked = Boolean(likedMap[w.id]);
             return (

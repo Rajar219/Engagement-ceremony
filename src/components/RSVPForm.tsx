@@ -345,7 +345,7 @@ export const RSVPForm: React.FC = () => {
             <label className="block text-xs uppercase tracking-wider text-[#c5a059] font-semibold mb-3 font-tamil-sans">
               {t.rsvpPrompt}
             </label>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 gap-3">
               {/* Option 1: Both Events */}
               <button
                 type="button"
@@ -413,7 +413,7 @@ export const RSVPForm: React.FC = () => {
           </div>
 
           {/* Guest Information: Name, Mobile, Email */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+          <div className="grid grid-cols-1 gap-4 mb-4">
             <div>
               <label className="block text-xs uppercase tracking-wider text-champagne-300 font-semibold mb-2 font-tamil-sans">
                 {t.labelName}

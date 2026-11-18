@@ -37,8 +37,8 @@ export const CoupleIntro: React.FC = () => {
         </p>
       </div>
 
-      {/* Couple Profile Cards (Luxury Editorial Stationery Style — Zero Glassmorphism) */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 my-6 text-center">
+      {/* Couple Profile Cards (Single-column mobile stack on all screens) */}
+      <div className="grid grid-cols-1 gap-6 my-6 text-center">
         {/* GROOM CARD */}
         <div className="luxury-card h-full px-4 py-8 sm:px-8 sm:py-10 flex flex-col items-center justify-between group transition-all duration-300 hover:shadow-2xl">
           <CornerOrnaments color="text-[#c5a059]/40" />

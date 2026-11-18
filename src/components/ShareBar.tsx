@@ -44,8 +44,8 @@ export const ShareBar: React.FC<ShareBarProps> = ({ onReopenEnvelope }) => {
   return (
     <section id="share-section" className="w-full py-12 px-4 max-w-2xl mx-auto text-center">
       {/* 12. INVITATION SHARING (LUXURY STATIONERY CARD) */}
-      <div className="luxury-card p-6 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div className="text-left flex flex-col gap-0.5">
+      <div className="luxury-card p-6 shadow-xl flex flex-col items-center justify-between gap-4 text-center">
+        <div className="flex flex-col items-center gap-0.5 text-center">
           <h4 className="font-serif font-bold text-[#231c18] text-base">
             Share this Invitation
           </h4>
@@ -60,7 +60,7 @@ export const ShareBar: React.FC<ShareBarProps> = ({ onReopenEnvelope }) => {
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2.5 w-full sm:w-auto">
+        <div className="flex flex-col sm:flex-row items-center gap-2.5 w-full">
           <button
             onClick={handleShareWhatsApp}
             className="flex-1 sm:flex-none px-4 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 active:scale-95 font-tamil-sans cursor-pointer shadow-sm"

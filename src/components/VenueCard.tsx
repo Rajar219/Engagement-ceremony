@@ -59,7 +59,7 @@ export const VenueCard: React.FC = () => {
       <div className="luxury-card p-6 sm:p-10 shadow-xl text-left overflow-hidden">
         <CornerOrnaments color="text-[#c5a059]/40" />
 
-        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-[#c5a059]/20">
+        <div className="relative z-10 flex flex-col gap-6 pb-6 border-b border-[#c5a059]/20">
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#f4efe6] text-[#8e6c2e] text-xs font-semibold uppercase tracking-wider mb-3">
               <Building className="w-3.5 h-3.5" />
@@ -81,18 +81,17 @@ export const VenueCard: React.FC = () => {
               </div>
             </div>
 
-            <div className="mt-3 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 text-xs text-[#766c62] bg-[#fbf9f4] px-3.5 py-2 rounded-lg border border-[#c5a059]/25 w-fit">
+            <div className="mt-3 flex flex-col gap-1 text-xs text-[#766c62] bg-[#fbf9f4] px-3.5 py-2 rounded-lg border border-[#c5a059]/25 w-full">
               <div className="flex items-center gap-1.5 font-sans">
                 <Info className="w-3.5 h-3.5 text-[#8e6c2e] shrink-0" />
                 <span>Landmark: Near Hotel Viveka, Triplicane</span>
               </div>
-              <span className="hidden sm:inline text-[#c5a059]/40">•</span>
               <span className="font-tamil">அடையாளம்: ஹோட்டல் விவேகா அருகில்</span>
             </div>
           </div>
 
           {/* Action Buttons */}
-          <div className="flex flex-wrap md:flex-col gap-3 shrink-0">
+          <div className="flex flex-col gap-2.5 w-full">
             <a
               href={mapSearchUrl}
               target="_blank"

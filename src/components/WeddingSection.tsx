@@ -40,7 +40,7 @@ export const WeddingSection: React.FC = () => {
         </div>
 
         {/* Configurable Announcement Details */}
-        <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md mx-auto my-6 text-left">
+        <div className="relative z-10 grid grid-cols-1 gap-4 max-w-md mx-auto my-6 text-left">
           {/* Muhurtham Date Box */}
           <div className="p-4 rounded-2xl bg-[#faf8f4] border border-[#c5a059]/35 flex flex-col items-center text-center shadow-sm">
             <Calendar className="w-5 h-5 text-[#8e6c2e] mb-1.5" />

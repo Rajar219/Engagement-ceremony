@@ -68,7 +68,7 @@ export const MomentsGallery: React.FC = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+      <div className="grid grid-cols-1 gap-6 text-left">
         {moments.map((item, idx) => (
           <div
             key={idx}
