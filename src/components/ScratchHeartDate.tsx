@@ -76,6 +76,112 @@ export const ScratchHeartDate: React.FC = () => {
     initCanvas();
   }, [initCanvas]);
 
+  // Full-page pyrotechnics and grand celebration blast
+  const triggerFullPagePyros = useCallback(() => {
+    try {
+      const count = 180;
+      const defaults = {
+        origin: { y: 0.68 },
+        zIndex: 99999,
+      };
+
+      const fire = (particleRatio: number, opts: confetti.Options) => {
+        confetti({
+          ...defaults,
+          ...opts,
+          particleCount: Math.floor(count * particleRatio),
+        });
+      };
+
+      // 1. Initial explosive multi-color pyro blast
+      fire(0.25, {
+        spread: 30,
+        startVelocity: 60,
+        colors: ['#ffd700', '#ffea75', '#ffffff'],
+      });
+      fire(0.2, {
+        spread: 65,
+        colors: ['#e0b0ff', '#ba55d3', '#9370db'],
+      });
+      fire(0.35, {
+        spread: 110,
+        decay: 0.91,
+        scalar: 0.9,
+        colors: ['#ffd700', '#ffffff', '#ff69b4', '#ffe4e1'],
+      });
+      fire(0.1, {
+        spread: 130,
+        startVelocity: 30,
+        decay: 0.92,
+        colors: ['#f5d77f', '#d4af37'],
+      });
+      fire(0.1, {
+        spread: 130,
+        startVelocity: 48,
+        colors: ['#ffffff', '#ffd700', '#c5a059'],
+      });
+
+      // 2. Full-Page Dual Cannon Pyros (Shooting from bottom-left & bottom-right across the entire page for 3 seconds)
+      const endTime = Date.now() + 3000;
+      const pyroColors = ['#ffd700', '#ffffff', '#c5a059', '#e0b0ff', '#ff69b4', '#b388ff', '#ffecb3'];
+
+      const runPyros = () => {
+        // Left cannon shooting up diagonally across screen
+        confetti({
+          particleCount: 5,
+          angle: 60,
+          spread: 60,
+          startVelocity: 55,
+          origin: { x: 0, y: 0.85 },
+          colors: pyroColors,
+          zIndex: 99999,
+        });
+
+        // Right cannon shooting up diagonally across screen
+        confetti({
+          particleCount: 5,
+          angle: 120,
+          spread: 60,
+          startVelocity: 55,
+          origin: { x: 1, y: 0.85 },
+          colors: pyroColors,
+          zIndex: 99999,
+        });
+
+        // Cascading aerial firework bursts across the full page
+        if (Math.random() < 0.4) {
+          confetti({
+            particleCount: 8,
+            angle: 90,
+            spread: 100,
+            startVelocity: 35,
+            origin: {
+              x: 0.15 + Math.random() * 0.7,
+              y: 0.2 + Math.random() * 0.35,
+            },
+            colors: pyroColors,
+            zIndex: 99999,
+          });
+        }
+
+        if (Date.now() < endTime) {
+          requestAnimationFrame(runPyros);
+        }
+      };
+
+      requestAnimationFrame(runPyros);
+    } catch (e) {
+      console.error(e);
+    }
+  }, []);
+
+  const revealFully = useCallback(() => {
+    setIsRevealed(true);
+    setScratchPercent(100);
+    hasTriggeredConfettiRef.current = true;
+    triggerFullPagePyros();
+  }, [triggerFullPagePyros]);
+
   // Calculate percentage scratched (lightweight sample step 32)
   const calculateProgress = useCallback(() => {
     const canvas = canvasRef.current;
@@ -104,7 +210,7 @@ export const ScratchHeartDate: React.FC = () => {
         revealFully();
       }
     } catch (e) {}
-  }, [isRevealed]);
+  }, [isRevealed, revealFully]);
 
   const requestProgressCalculation = useCallback(() => {
     if (progressPendingRef.current || isRevealed) return;
@@ -132,21 +238,6 @@ export const ScratchHeartDate: React.FC = () => {
     },
     [isRevealed, requestProgressCalculation]
   );
-
-  const revealFully = () => {
-    setIsRevealed(true);
-    setScratchPercent(100);
-    hasTriggeredConfettiRef.current = true;
-
-    try {
-      confetti({
-        particleCount: 75,
-        spread: 75,
-        origin: { y: 0.65 },
-        colors: ['#d4af37', '#bc95e0', '#ffffff', '#e8daf5', '#f5e6a2'],
-      });
-    } catch (e) {}
-  };
 
   // Dedicated Native Touch Listeners with { passive: false } to eliminate iOS/Android page scroll jumps
   useEffect(() => {
@@ -213,14 +304,14 @@ export const ScratchHeartDate: React.FC = () => {
         <span className="text-xs sm:text-sm text-[#8e6c2e] font-semibold uppercase tracking-[0.25em] font-serif block mb-0.5">
           Mark Your Calendar
         </span>
-        <span className="text-xs sm:text-sm text-[#8e6c2e] font-semibold font-tamil-serif block mb-2">
+        <span className="text-xs sm:text-sm text-[#8e6c2e] font-semibold font-tamil block mb-2">
           சுப முகூர்த்த நாள்
         </span>
 
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold gold-foil-text tracking-wide mb-1 text-center">
           Save the Date
         </h2>
-        <h2 className="text-[clamp(15px,4.2vw,22px)] font-tamil-heading font-bold gold-foil-text tracking-wide text-center max-w-sm mx-auto leading-relaxed">
+        <h2 className="text-[clamp(13px,3.6vw,17px)] font-tamil font-bold gold-foil-text tracking-wide text-center max-w-sm mx-auto leading-relaxed">
           சுப தேதியைக் குறித்துக் கொள்ளுங்கள்
         </h2>
 
@@ -231,7 +322,7 @@ export const ScratchHeartDate: React.FC = () => {
           <p className="text-xs sm:text-sm text-[#5a4a42] font-serif italic">
             Scratch the golden seal below to reveal our engagement date
           </p>
-          <p className="text-xs sm:text-sm text-[#5a4a42] font-tamil-body leading-relaxed">
+          <p className="text-[11.5px] sm:text-xs text-[#5a4a42] font-tamil leading-relaxed">
             எங்கள் திருமண நிச்சயதார்த்த நன்னாளை அறிய பொன் முத்திரையைத் தேய்க்கவும்
           </p>
         </div>
@@ -266,13 +357,15 @@ export const ScratchHeartDate: React.FC = () => {
           {/* Subtle Royal Purple Glow */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(192,132,252,0.22),transparent_70%)] pointer-events-none" />
 
-          {/* Day: English & Tamil */}
-          <span className="relative z-10 text-[11px] sm:text-xs font-serif font-bold tracking-[0.24em] text-[#ffe599] uppercase block drop-shadow-[0_1px_3px_rgba(0,0,0,0.85)]">
-            SUNDAY
-          </span>
-          <span className="relative z-10 text-[11px] sm:text-xs font-tamil-serif font-bold text-[#ffe599] block mb-1 drop-shadow-[0_1px_3px_rgba(0,0,0,0.85)]">
-            ஞாயிற்றுக்கிழமை
-          </span>
+          {/* Day: English & Tamil - Highly visible crisp ivory & gold */}
+          <div className="relative z-10 flex flex-col items-center pt-1 mb-0.5">
+            <span className="px-3.5 py-0.5 rounded-full bg-white/15 border border-[#c5a059]/50 text-[#ffffff] font-serif font-black text-xs sm:text-sm tracking-[0.28em] uppercase block drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
+              SUNDAY
+            </span>
+            <span className="text-[11px] sm:text-xs font-tamil font-semibold text-[#ffe599] block mt-1 drop-shadow-[0_1px_4px_rgba(0,0,0,0.95)]">
+              ஞாயிற்றுக்கிழமை
+            </span>
+          </div>
 
           {/* Date: 13 • 12 • 2026 */}
           <div className="relative z-10 my-1.5 border-t border-b border-[#c5a059]/60 py-2.5 w-4/5 flex flex-col items-center justify-center">

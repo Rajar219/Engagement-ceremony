@@ -34,14 +34,14 @@ export const MainCeremonyCard: React.FC = () => {
           <span className="text-xs sm:text-sm text-[#c5a059] font-semibold uppercase tracking-[0.25em] font-serif block mb-0.5">
             Auspicious Occasion
           </span>
-          <span className="text-xs sm:text-sm text-[#c5a059] font-semibold font-tamil-serif block mb-3">
+          <span className="text-xs sm:text-sm text-[#c5a059] font-semibold font-tamil block mb-3">
             சுபமுகூர்த்த வைபவம்
           </span>
 
           <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold gold-foil-text tracking-wide mb-1">
             The Engagement Ceremony
           </h2>
-          <h2 className="font-tamil-heading text-2xl sm:text-3xl md:text-4xl font-bold gold-foil-text tracking-wide">
+          <h2 className="font-tamil text-lg sm:text-xl md:text-2xl font-bold gold-foil-text tracking-wide">
             திருமண நிச்சயதார்த்த விழா
           </h2>
 
@@ -61,14 +61,14 @@ export const MainCeremonyCard: React.FC = () => {
               <span className="text-xs uppercase tracking-widest text-[#c5a059]/90 font-sans font-semibold block">
                 Date &amp; Day
               </span>
-              <span className="text-xs text-[#c5a059]/90 font-tamil-sans font-semibold block mb-1">
+              <span className="text-[11px] text-[#c5a059]/90 font-tamil font-medium block mb-1">
                 மங்கல நன்னாள்
               </span>
 
               <h4 className="font-serif text-base sm:text-lg font-bold text-[#faf8f4]">
                 Sunday, 13th December 2026
               </h4>
-              <h4 className="font-tamil-heading text-base sm:text-lg font-bold text-[#faf8f4]">
+              <h4 className="font-tamil text-xs sm:text-[13.5px] font-medium text-[#e2d5c3] mt-0.5 leading-snug">
                 ஞாயிற்றுக்கிழமை, 13 டிசம்பர் 2026
               </h4>
             </div>
@@ -83,14 +83,14 @@ export const MainCeremonyCard: React.FC = () => {
               <span className="text-xs uppercase tracking-widest text-[#c5a059]/90 font-sans font-semibold block">
                 Auspicious Time
               </span>
-              <span className="text-xs text-[#c5a059]/90 font-tamil-sans font-semibold block mb-1">
+              <span className="text-[11px] text-[#c5a059]/90 font-tamil font-medium block mb-1">
                 சுபமுகூர்த்த நேரம்
               </span>
 
               <h4 className="font-serif text-base sm:text-lg font-bold text-[#faf8f4]">
                 Evening 6:00 PM to 9:00 PM IST
               </h4>
-              <h4 className="font-tamil-heading text-base sm:text-lg font-bold text-[#faf8f4]">
+              <h4 className="font-tamil text-xs sm:text-[13.5px] font-medium text-[#e2d5c3] mt-0.5 leading-snug">
                 மாலை 6:00 மணி முதல் 9:00 மணி வரை
               </h4>
             </div>
@@ -105,21 +105,21 @@ export const MainCeremonyCard: React.FC = () => {
               <span className="text-xs uppercase tracking-widest text-[#c5a059]/90 font-sans font-semibold block">
                 Ceremony Venue
               </span>
-              <span className="text-xs text-[#c5a059]/90 font-tamil-sans font-semibold block mb-1">
+              <span className="text-[11px] text-[#c5a059]/90 font-tamil font-medium block mb-1">
                 விழா நடைபெறும் இடம்
               </span>
 
               <h4 className="font-serif text-base sm:text-lg font-bold text-[#faf8f4]">
                 RSM Banquet Hall
               </h4>
-              <h4 className="font-tamil-heading text-base sm:text-lg font-bold text-[#faf8f4] mb-1">
+              <h4 className="font-tamil text-xs sm:text-[13.5px] font-medium text-[#e2d5c3] mt-0.5 mb-1.5 leading-snug">
                 ஆர்.எஸ்.எம் பேங்க்வெட் ஹால்
               </h4>
 
-              <p className="text-xs sm:text-sm text-[#d4c3b3] font-sans">
+              <p className="text-xs sm:text-[13px] text-[#d4c3b3] font-sans">
                 35/37, Dr Besant Road, Near Hotel Viveka, Triplicane, Chennai – 600005
               </p>
-              <p className="text-xs sm:text-sm text-[#d4c3b3] font-tamil">
+              <p className="text-[11px] sm:text-xs text-[#c0b09f] font-tamil leading-relaxed">
                 35/37, டாக்டர் பெசன்ட் சாலை, விவேகா ஹோட்டல் அருகில், திருவல்லிக்கேணி, சென்னை - 600005
               </p>
             </div>
