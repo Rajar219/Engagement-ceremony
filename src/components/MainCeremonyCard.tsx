@@ -10,6 +10,9 @@ export const MainCeremonyCard: React.FC = () => {
   )}`;
 
   const handleAddToCalendar = () => {
+    try {
+      window.dispatchEvent(new CustomEvent('stop-invitation-music'));
+    } catch (e) {}
     const title = encodeURIComponent(`Engagement Ceremony: G. Vallarasu & K. Priyanka`);
     const details = encodeURIComponent(
       `Cordially inviting you to the auspicious Engagement Ceremony of G. Vallarasu & K. Priyanka at RSM Banquet Hall, Triplicane, Chennai.`
@@ -133,6 +136,11 @@ export const MainCeremonyCard: React.FC = () => {
             href={mapSearchUrl}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => {
+              try {
+                window.dispatchEvent(new CustomEvent('stop-invitation-music'));
+              } catch (e) {}
+            }}
             className="shimmer-sweep w-full py-3.5 px-6 rounded-2xl bg-gradient-to-r from-[#b08b41] via-[#c5a059] to-[#99732f] hover:from-[#c5a059] hover:to-[#b08b41] text-[#1c1613] font-bold text-xs sm:text-sm tracking-wider uppercase shadow-[0_0_20px_rgba(197,160,89,0.35)] border border-[#f4e8c8]/40 flex flex-col items-center justify-center gap-0.5 active:scale-[0.99] transition-all cursor-pointer"
           >
             <div className="flex items-center gap-2">

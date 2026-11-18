@@ -37,6 +37,9 @@ export default function InvitationPage() {
 
   const handleReopenEnvelope = () => {
     setIsEnvelopeOpened(false);
+    try {
+      window.dispatchEvent(new CustomEvent('stop-invitation-music'));
+    } catch (e) {}
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 

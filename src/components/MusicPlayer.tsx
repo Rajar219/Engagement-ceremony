@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
-import { Volume2, VolumeX, Music } from 'lucide-react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
+import { VolumeX } from 'lucide-react';
 import { invitationConfig } from '@/config/invitation.config';
 
 interface MusicPlayerProps {
@@ -11,22 +11,31 @@ interface MusicPlayerProps {
 export const MusicPlayer: React.FC<MusicPlayerProps> = ({ autoPlayTrigger }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const wasPlayingBeforeHiddenRef = useRef(false);
+  const hasEverStartedRef = useRef(false);
 
   const audioSrc = invitationConfig.media.music.src || '/assets/music/invitation-theme.mp3';
 
-  const playMusic = () => {
+  const stopMusic = useCallback(() => {
     if (audioRef.current) {
+      audioRef.current.pause();
+      setIsPlaying(false);
+    }
+  }, []);
+
+  const playMusic = useCallback(() => {
+    if (audioRef.current) {
+      audioRef.current.loop = true;
       audioRef.current
         .play()
         .then(() => {
           setIsPlaying(true);
+          hasEverStartedRef.current = true;
         })
         .catch((err) => {
           console.warn('Audio play request prevented:', err);
         });
     }
-  };
+  }, []);
 
   // Immediate synchronous play handler for user interactions (e.g. seal tapping)
   useEffect(() => {
@@ -34,41 +43,66 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({ autoPlayTrigger }) => 
       playMusic();
     };
 
+    const handleImmediateStop = () => {
+      stopMusic();
+    };
+
     window.addEventListener('play-invitation-music', handleImmediatePlay);
+    window.addEventListener('stop-invitation-music', handleImmediateStop);
+
     return () => {
       window.removeEventListener('play-invitation-music', handleImmediatePlay);
+      window.removeEventListener('stop-invitation-music', handleImmediateStop);
     };
-  }, []);
+  }, [playMusic, stopMusic]);
 
   // Autoplay after visitor interaction (e.g. seal breaking)
   useEffect(() => {
     if (autoPlayTrigger && audioRef.current) {
       playMusic();
     }
-  }, [autoPlayTrigger]);
+  }, [autoPlayTrigger, playMusic]);
 
-  // Page visibility listener: stop audio when user leaves or switches tab, resume on return
+  // If user navigates away, clicks out, or switches tabs/apps, and then comes back without closing browser:
+  // Music must stop immediately and NOT auto-resume.
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (document.hidden) {
-        if (audioRef.current && !audioRef.current.paused) {
-          wasPlayingBeforeHiddenRef.current = true;
-          audioRef.current.pause();
-          setIsPlaying(false);
-        }
+        stopMusic();
       } else {
-        if (wasPlayingBeforeHiddenRef.current && audioRef.current) {
-          audioRef.current.play().then(() => {
-            setIsPlaying(true);
-            wasPlayingBeforeHiddenRef.current = false;
-          }).catch(() => {});
+        // If returning to the tab/window, stop music immediately
+        if (hasEverStartedRef.current) {
+          stopMusic();
         }
       }
     };
 
+    const handleWindowBlur = () => {
+      stopMusic();
+    };
+
+    const handlePageHide = () => {
+      stopMusic();
+    };
+
+    const handlePageShow = () => {
+      if (hasEverStartedRef.current) {
+        stopMusic();
+      }
+    };
+
     document.addEventListener('visibilitychange', handleVisibilityChange);
-    return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
-  }, []);
+    window.addEventListener('pagehide', handlePageHide);
+    window.addEventListener('pageshow', handlePageShow);
+    window.addEventListener('blur', handleWindowBlur);
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      window.removeEventListener('pagehide', handlePageHide);
+      window.removeEventListener('pageshow', handlePageShow);
+      window.removeEventListener('blur', handleWindowBlur);
+    };
+  }, [stopMusic]);
 
   const togglePlay = () => {
     if (!audioRef.current) return;
@@ -77,11 +111,16 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({ autoPlayTrigger }) => 
       audioRef.current.pause();
       setIsPlaying(false);
     } else {
-      audioRef.current.play().then(() => {
-        setIsPlaying(true);
-      }).catch((e) => {
-        console.error('Audio play error:', e);
-      });
+      audioRef.current.loop = true;
+      audioRef.current
+        .play()
+        .then(() => {
+          setIsPlaying(true);
+          hasEverStartedRef.current = true;
+        })
+        .catch((e) => {
+          console.error('Audio play error:', e);
+        });
     }
   };
 
