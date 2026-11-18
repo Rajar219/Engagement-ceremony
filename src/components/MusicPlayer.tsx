@@ -25,6 +25,7 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({ autoPlayTrigger }) => 
   const playMusic = useCallback(() => {
     if (audioRef.current) {
       audioRef.current.loop = true;
+      audioRef.current.volume = 1;
       audioRef.current
         .play()
         .then(() => {
