@@ -5,7 +5,6 @@ import { LanguageProvider } from '@/context/LanguageContext';
 import { EnvelopeOpener } from '@/components/EnvelopeOpener';
 import { NavigationBar } from '@/components/NavigationBar';
 import { HeroSection } from '@/components/HeroSection';
-import { CoupleIntro } from '@/components/CoupleIntro';
 import { ScratchHeartDate } from '@/components/ScratchHeartDate';
 import { MainCeremonyCard } from '@/components/MainCeremonyCard';
 import { BlessingsFamilyCard } from '@/components/BlessingsFamilyCard';
@@ -56,16 +55,6 @@ export default function InvitationPage() {
 
         {/* SECTION 1: HERO SECTION WITH EDITORIAL COUPLE NAME CENTERPIECE & VIDEO BACKGROUND */}
         <HeroSection isVisible={isEnvelopeOpened} />
-
-        {/* Refined Gilded Divider */}
-        <div className="w-full max-w-4xl mx-auto px-4 py-4">
-          <div className="ornament-divider text-[#c5a059]/40 font-serif text-sm">
-            ❦
-          </div>
-        </div>
-
-        {/* BRIDE & GROOM INTRODUCTION WITH PARENT LINEAGE */}
-        <CoupleIntro />
 
         {/* Refined Gilded Divider */}
         <div className="w-full max-w-4xl mx-auto px-4 py-4">

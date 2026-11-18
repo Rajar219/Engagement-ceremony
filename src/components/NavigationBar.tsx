@@ -33,7 +33,6 @@ export const NavigationBar: React.FC<NavigationBarProps> = ({ isVisible }) => {
   }
 
   const navLinks = [
-    { labelEn: 'Couple', labelTa: 'மணமக்கள்', href: '#couple-section' },
     { labelEn: 'Ceremony', labelTa: 'நிச்சயதார்த்தம்', href: '#ceremony-section' },
     { labelEn: 'Family', labelTa: 'குடும்பம்', href: '#blessings-section' },
     { labelEn: 'Venue', labelTa: 'மண்டபம்', href: '#venue-section' },
