@@ -111,7 +111,7 @@ const translationsData: Record<LanguageMode, Translations> = {
     skipIntro: 'Skip • தவிர் ➔',
 
     heroSubtitle: 'WITH DIVINE BLESSINGS OF OUR ELDERS & FAMILY / பெரியோர்கள் மற்றும் குடும்பத்தினரின் நல்லாசியுடன்',
-    groomName: 'G. Vallarasu',
+    groomName: 'G. Vallalarasu',
     groomNameTamil: 'ஞா. வள்ளலரசு',
     brideName: 'K. Priyanka',
     brideNameTamil: 'க. பிரியங்கா',
@@ -136,7 +136,7 @@ const translationsData: Record<LanguageMode, Translations> = {
     addCalendarBtn: 'Add to Calendar • நாட்காட்டியில் சேர்க்க',
 
     blessingsSectionHeader: 'Blessings & Family Invitation • குடும்பத்தினரின் நல்வரவேற்பு',
-    blessingsVerse: 'With hearts full of gratitude and love, we invite you to grace the sacred union of G. Vallarasu and K. Priyanka with your warm presence and heartfelt prayers.',
+    blessingsVerse: 'With hearts full of gratitude and love, we invite you to grace the sacred union of G. Vallalarasu and K. Priyanka with your warm presence and heartfelt prayers.',
     blessingsVerseTamil: 'அன்பும் பண்பும் நிறைந்த எங்கள் இல்லத்து மணமக்கள் ஞா. வள்ளலரசு & க. பிரியங்கா ஆகியோரின் திருமண நிச்சயதார்த்த நன்னாளில் தாங்கள் தங்கள் குடும்ப சகிதமாக வருகை தந்து வாழ்த்தி அருள அன்புடன் அழைக்கின்றோம்.',
     familyBoxTitle: 'Parents of Groom & Bride / மணமகன் & மணமகள் வீட்டார்',
     groomParentsTitle: "Groom's Parents • மணமகன் பெற்றோர்",
@@ -281,7 +281,7 @@ const translationsData: Record<LanguageMode, Translations> = {
     skipIntro: 'Skip ➔',
 
     heroSubtitle: 'WITH DIVINE BLESSINGS OF OUR ELDERS & FAMILY',
-    groomName: 'G. Vallarasu',
+    groomName: 'G. Vallalarasu',
     groomNameTamil: 'ஞா. வள்ளலரசு',
     brideName: 'K. Priyanka',
     brideNameTamil: 'க. பிரியங்கா',
@@ -306,7 +306,7 @@ const translationsData: Record<LanguageMode, Translations> = {
     addCalendarBtn: 'Add to Calendar',
 
     blessingsSectionHeader: 'Blessings & Family Invitation',
-    blessingsVerse: 'With hearts full of gratitude and love, we invite you to grace the sacred union of G. Vallarasu and K. Priyanka with your warm presence and heartfelt prayers.',
+    blessingsVerse: 'With hearts full of gratitude and love, we invite you to grace the sacred union of G. Vallalarasu and K. Priyanka with your warm presence and heartfelt prayers.',
     blessingsVerseTamil: 'அன்பும் பண்பும் நிறைந்த எங்கள் இல்லத்து மணமக்கள் ஞா. வள்ளலரசு & க. பிரியங்கா ஆகியோரின் திருமண நிச்சயதார்த்த நன்னாளில் தாங்கள் தங்கள் குடும்ப சகிதமாக வருகை தந்து வாழ்த்தி அருள அன்புடன் அழைக்கின்றோம்.',
     familyBoxTitle: 'Parents of Groom & Bride',
     groomParentsTitle: "Groom's Parents",

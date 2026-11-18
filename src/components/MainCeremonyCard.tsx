@@ -13,9 +13,9 @@ export const MainCeremonyCard: React.FC = () => {
     try {
       window.dispatchEvent(new CustomEvent('stop-invitation-music'));
     } catch (e) {}
-    const title = encodeURIComponent(`Engagement Ceremony: G. Vallarasu & K. Priyanka`);
+    const title = encodeURIComponent(`Engagement Ceremony: G. Vallalarasu & K. Priyanka`);
     const details = encodeURIComponent(
-      `Cordially inviting you to the auspicious Engagement Ceremony of G. Vallarasu & K. Priyanka at RSM Banquet Hall, Triplicane, Chennai.`
+      `Cordially inviting you to the auspicious Engagement Ceremony of G. Vallalarasu & K. Priyanka at RSM Banquet Hall, Triplicane, Chennai.`
     );
     const location = encodeURIComponent('RSM Banquet Hall, 35/37, Dr Besant Road, Near Hotel Viveka, Triplicane, Chennai – 600005');
     const dates = '20261213T123000Z/20261213T153000Z'; // 6:00 PM - 9:00 PM IST in UTC

@@ -47,9 +47,9 @@ export const EngagementSection: React.FC = () => {
   }, []);
 
   const handleAddToCalendar = () => {
-    const title = encodeURIComponent(`Engagement Ceremony: G. Vallarasu & K. Priyanka`);
+    const title = encodeURIComponent(`Engagement Ceremony: G. Vallalarasu & K. Priyanka`);
     const details = encodeURIComponent(
-      `Cordially inviting you to the auspicious Engagement Ceremony of G. Vallarasu & K. Priyanka at RSM Banquet Hall, Triplicane, Chennai.`
+      `Cordially inviting you to the auspicious Engagement Ceremony of G. Vallalarasu & K. Priyanka at RSM Banquet Hall, Triplicane, Chennai.`
     );
     const location = encodeURIComponent(`${venue.name}, ${venue.address}, ${venue.cityState}`);
     const dates = '20261213T123000Z/20261213T153000Z'; // 6:00 PM - 9:00 PM IST in UTC
@@ -62,12 +62,12 @@ export const EngagementSection: React.FC = () => {
   const handleDownloadICS = () => {
     const icsContent = `BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//Vallarasu Priyanka Engagement//EN
+PRODID:-//Vallalarasu Priyanka Engagement//EN
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT
-SUMMARY:Engagement Ceremony: G. Vallarasu & K. Priyanka
-DESCRIPTION:Auspicious Engagement Ceremony of G. Vallarasu & K. Priyanka at RSM Banquet Hall\\, Triplicane\\, Chennai.
+SUMMARY:Engagement Ceremony: G. Vallalarasu & K. Priyanka
+DESCRIPTION:Auspicious Engagement Ceremony of G. Vallalarasu & K. Priyanka at RSM Banquet Hall\\, Triplicane\\, Chennai.
 LOCATION:RSM Banquet Hall\\, 35/37\\, Dr Besant Rd\\, Near Hotel Viveka\\, Triplicane\\, Chennai - 600005\\, Tamil Nadu
 DTSTART:20261213T123000Z
 DTEND:20261213T153000Z
@@ -78,7 +78,7 @@ END:VCALENDAR`;
     const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
     const link = document.createElement('a');
     link.href = window.URL.createObjectURL(blob);
-    link.setAttribute('download', 'Vallarasu-Priyanka-Engagement.ics');
+    link.setAttribute('download', 'Vallalarasu-Priyanka-Engagement.ics');
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

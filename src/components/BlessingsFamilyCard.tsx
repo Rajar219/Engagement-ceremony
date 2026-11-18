@@ -36,7 +36,7 @@ export const BlessingsFamilyCard: React.FC = () => {
         {/* Traditional Tamil & English Wedding Blessing Verse (Separate lines, matching size) */}
         <div className="relative z-10 max-w-2xl mx-auto mb-8 px-2 flex flex-col items-center gap-3">
           <p className="text-xs sm:text-sm text-[#4a3b32] font-serif italic leading-relaxed">
-            &ldquo;With the divine grace of the Almighty and the heartfelt blessings of our elders, we cordially invite you with your family to join us in celebrating the auspicious Engagement Ceremony of Vallarasu and Priyanka.&rdquo;
+            &ldquo;With the divine grace of the Almighty and the heartfelt blessings of our elders, we cordially invite you with your family to join us in celebrating the auspicious Engagement Ceremony of Vallalarasu and Priyanka.&rdquo;
           </p>
           <p className="text-xs sm:text-sm text-[#4a3b32] font-tamil leading-relaxed">
             &ldquo;அன்பும் பண்பும் நிறைந்த எங்கள் இல்லத்து மணமக்கள் ஞா. வள்ளலரசு &amp; க. பிரியங்கா ஆகியோரின் திருமண நிச்சயதார்த்த நன்னாளில் தாங்கள் தங்கள் குடும்ப சகிதமாக வருகை தந்து வாழ்த்தி அருள அன்புடன் அழைக்கின்றோம்.&rdquo;

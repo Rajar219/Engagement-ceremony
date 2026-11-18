@@ -154,7 +154,7 @@ export const WishesWall: React.FC = () => {
         </div>
 
         <p className="text-xs sm:text-sm text-[#5c534b] font-serif italic max-w-md mb-1">
-          Leave your loving prayers, heartfelt blessings, and congratulations for Vallarasu &amp; Priyanka.
+          Leave your loving prayers, heartfelt blessings, and congratulations for Vallalarasu &amp; Priyanka.
         </p>
         <p className="text-xs sm:text-sm text-[#5c534b] font-tamil max-w-md">
           மணமக்களுக்கான தங்களின் அன்பான வாழ்த்துகளையும் ஆசிகளையும் இங்கு பதிவு செய்யலாம்.

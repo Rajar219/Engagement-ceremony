@@ -175,7 +175,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
           <FloralDivider className="mt-2 mb-1" />
         </div>
 
-        {/* 4, 5 & 6: VALLARASU & PRIYANKA (Grand centerpiece) / Small elegant decorative separator */}
+        {/* 4, 5 & 6: VALLALARASU & PRIYANKA (Grand centerpiece) / Small elegant decorative separator */}
         <div
           className={`w-full flex flex-col items-center justify-center my-0.5 transition-all duration-700 ease-out delay-300 ${
             mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
@@ -185,7 +185,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
             className="couple-script-name text-[clamp(3.5rem,12vw,5.5rem)] leading-[1.05] py-0.5 tracking-wide text-center"
             style={stylishCoupleNameStyle}
           >
-            Vallarasu
+            Vallalarasu
           </h1>
 
           {/* Ampersand separator: ── & ── */}
