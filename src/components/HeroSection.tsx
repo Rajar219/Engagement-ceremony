@@ -182,7 +182,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
           }`}
         >
           <h1
-            className="text-[clamp(3.1rem,10.5vw,5rem)] leading-[1.08] select-none py-0.5"
+            className="couple-script-name text-[clamp(3.1rem,10.5vw,5rem)] leading-[1.08] select-none py-0.5"
             style={stylishCoupleNameStyle}
           >
             Vallarasu
@@ -203,7 +203,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
           </div>
 
           <h1
-            className="text-[clamp(3.1rem,10.5vw,5rem)] leading-[1.08] select-none py-0.5"
+            className="couple-script-name text-[clamp(3.1rem,10.5vw,5rem)] leading-[1.08] select-none py-0.5"
             style={stylishCoupleNameStyle}
           >
             Priyanka
@@ -258,6 +258,32 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
 
           {/* Delicate intertwined double hearts */}
           <IntertwinedHearts className="mt-1.5 xs:mt-2" />
+        </div>
+
+        {/* 9: AUSPICIOUS CEREMONY HIGHLIGHT (Fills lower empty space inside the arch) */}
+        <div
+          className={`w-full max-w-[300px] xs:max-w-[340px] mx-auto mt-2 xs:mt-2.5 px-3.5 py-2 xs:py-2.5 rounded-2xl bg-[#1c1613]/55 border border-[#ffe082]/45 backdrop-blur-[2px] shadow-[0_6px_20px_rgba(0,0,0,0.6)] flex flex-col items-center text-center transition-all duration-700 ease-out delay-850 ${
+            mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
+          }`}
+        >
+          <div className="flex items-center gap-1.5 text-[#ffe599] text-[9.5px] xs:text-[10.5px] font-serif font-bold uppercase tracking-[0.22em]">
+            <span>✦</span>
+            <span>SUNDAY, 13TH DECEMBER 2026</span>
+            <span>✦</span>
+          </div>
+
+          <div className="text-[10px] xs:text-[11px] font-tamil-serif font-semibold text-[#ffe599] mt-0.5 tracking-wide">
+            ஞாயிற்றுக்கிழமை, 13 டிசம்பர் 2026
+          </div>
+
+          <div className="w-20 h-[0.5px] bg-gradient-to-r from-transparent via-[#ffe082]/70 to-transparent my-1" />
+
+          <div className="text-[10.5px] xs:text-[11.5px] font-sans font-medium text-[#ffffff] tracking-wide">
+            Evening 6:00 PM Onwards
+          </div>
+          <div className="text-[10px] xs:text-[11px] font-tamil font-medium text-[#f5e7c4]">
+            RSM Banquet Hall, Triplicane, Chennai
+          </div>
         </div>
       </div>
 

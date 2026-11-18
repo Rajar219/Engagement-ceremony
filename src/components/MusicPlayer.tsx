@@ -15,14 +15,35 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({ autoPlayTrigger }) => 
 
   const audioSrc = invitationConfig.media.music.src || '/assets/music/invitation-theme.mp3';
 
+  const playMusic = () => {
+    if (audioRef.current) {
+      audioRef.current
+        .play()
+        .then(() => {
+          setIsPlaying(true);
+        })
+        .catch((err) => {
+          console.warn('Audio play request prevented:', err);
+        });
+    }
+  };
+
+  // Immediate synchronous play handler for user interactions (e.g. seal tapping)
+  useEffect(() => {
+    const handleImmediatePlay = () => {
+      playMusic();
+    };
+
+    window.addEventListener('play-invitation-music', handleImmediatePlay);
+    return () => {
+      window.removeEventListener('play-invitation-music', handleImmediatePlay);
+    };
+  }, []);
+
   // Autoplay after visitor interaction (e.g. seal breaking)
   useEffect(() => {
     if (autoPlayTrigger && audioRef.current) {
-      audioRef.current.play().then(() => {
-        setIsPlaying(true);
-      }).catch(() => {
-        setIsPlaying(false);
-      });
+      playMusic();
     }
   }, [autoPlayTrigger]);
 

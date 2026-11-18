@@ -60,7 +60,12 @@ export const EnvelopeOpener: React.FC<EnvelopeOpenerProps> = ({ onOpenComplete, 
     hasTriggeredRef.current = true;
     setIsPlaying(true);
 
-    // Muted video + trigger background music immediately upon user gesture
+    // 1. Play music immediately and synchronously in user gesture call stack
+    try {
+      window.dispatchEvent(new CustomEvent('play-invitation-music'));
+    } catch (e) {}
+
+    // 2. Trigger parent callback
     onOpenStart?.();
 
     const video = introVideoRef.current;
@@ -119,32 +124,69 @@ export const EnvelopeOpener: React.FC<EnvelopeOpenerProps> = ({ onOpenComplete, 
         className="w-full h-full object-cover"
       />
 
-      {/* 2. DIRECT INTERACTIVE SEAL HOTSPOT (Centered exactly over the V&P heart seal) */}
-      {!isPlaying && (
-        <div
-          className="absolute inset-0 z-30 flex items-center justify-center pointer-events-auto"
-          aria-label="Interactive V&P Wax Seal"
+      {/* 2. DIRECT INTERACTIVE SEAL HOTSPOT & RADIANT TAP-TO-OPEN CALL-TO-ACTION */}
+      <div
+        className="absolute inset-0 z-30 flex flex-col items-center justify-center pointer-events-none"
+        aria-label="Interactive V&P Wax Seal"
+      >
+        {/* Seal Hotspot Button */}
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            handleUserTrigger();
+          }}
+          onTouchStart={(e) => {
+            e.stopPropagation();
+            handleUserTrigger();
+          }}
+          aria-label={isPlaying ? 'Opening invitation' : 'Tap seal to open invitation'}
+          className={`pointer-events-auto group relative w-36 h-36 sm:w-44 sm:h-44 rounded-full flex items-center justify-center focus:outline-none cursor-pointer transition-transform duration-300 ${
+            isPlaying ? 'scale-105' : 'hover:scale-105 active:scale-95'
+          }`}
         >
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              handleUserTrigger();
-            }}
-            onTouchStart={(e) => {
-              e.stopPropagation();
-              handleUserTrigger();
-            }}
-            aria-label="Tap seal to open invitation"
-            className="group relative w-36 h-36 sm:w-44 sm:h-44 rounded-full flex items-center justify-center focus:outline-none cursor-pointer"
-          >
-            {/* Subtle shimmering ambient glow over the seal */}
-            <div className="absolute inset-0 rounded-full bg-[#c5a059]/20 blur-xl animate-pulse group-hover:bg-[#c5a059]/35 transition-all duration-300" />
-            <div className="absolute inset-4 rounded-full border border-[#e8d29b]/40 animate-ping opacity-30 pointer-events-none" />
-            <div className="absolute inset-6 rounded-full border border-[#f5e7c4]/50 animate-pulse pointer-events-none" />
-          </button>
+          {/* Subtle shimmering ambient glow over the seal */}
+          <div className="absolute inset-0 rounded-full bg-[#c5a059]/25 blur-xl animate-pulse group-hover:bg-[#c5a059]/40 transition-all duration-300" />
+          <div className="absolute inset-3 rounded-full border border-[#ffe082]/40 animate-ping opacity-25 pointer-events-none" />
+          <div className="absolute inset-5 rounded-full border border-[#f5e7c4]/50 animate-pulse pointer-events-none" />
+        </button>
+
+        {/* TAP TO OPEN BADGE (Bilingual English & Tamil with live feedback while tapping) */}
+        <div
+          className={`pointer-events-auto mt-4 sm:mt-6 flex flex-col items-center gap-1.5 px-6 py-2.5 rounded-full backdrop-blur-md transition-all duration-500 cursor-pointer ${
+            isPlaying
+              ? 'bg-[#1c1613]/90 border border-[#ffe082] shadow-[0_0_30px_rgba(255,224,130,0.5)] scale-105'
+              : 'bg-[#1c1613]/80 border border-[#c5a059]/70 shadow-[0_0_22px_rgba(197,160,89,0.4)] hover:border-[#ffe082] animate-pulse'
+          }`}
+          onClick={(e) => {
+            e.stopPropagation();
+            handleUserTrigger();
+          }}
+          onTouchStart={(e) => {
+            e.stopPropagation();
+            handleUserTrigger();
+          }}
+        >
+          <div className="flex items-center gap-2">
+            <span className="text-[#ffe082] text-xs sm:text-sm">✦</span>
+            <span className="text-xs sm:text-sm font-serif font-bold tracking-[0.25em] text-[#ffffff] uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+              {isPlaying ? 'OPENING INVITATION...' : 'TAP TO OPEN'}
+            </span>
+            <span className="text-[#ffe082] text-xs sm:text-sm">✦</span>
+          </div>
+
+          <span className="text-[11px] sm:text-xs font-tamil-serif font-semibold text-[#ffe599] tracking-wide drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]">
+            {isPlaying ? 'அழைப்பிதழ் திறக்கப்படுகிறது...' : 'அழைப்பிதழைத் திறக்க தட்டவும்'}
+          </span>
         </div>
-      )}
+
+        {/* Helpful tap prompt */}
+        {!isPlaying && (
+          <span className="pointer-events-none text-[10px] sm:text-[11px] font-sans font-medium text-[#ffffff]/80 uppercase tracking-[0.16em] mt-2 drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
+            Tap seal or screen to view
+          </span>
+        )}
+      </div>
     </div>
   );
 };
