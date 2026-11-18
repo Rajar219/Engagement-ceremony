@@ -12,9 +12,7 @@ import { BlessingsFamilyCard } from '@/components/BlessingsFamilyCard';
 import { EngagementSection } from '@/components/EngagementSection';
 import { WeddingSection } from '@/components/WeddingSection';
 import { VenueCard } from '@/components/VenueCard';
-import { MomentsGallery } from '@/components/MomentsGallery';
 import { DirectoryAndRSVPCard } from '@/components/DirectoryAndRSVPCard';
-import { WishesWall } from '@/components/WishesWall';
 import { ShareBar } from '@/components/ShareBar';
 import { Footer } from '@/components/Footer';
 import { MusicPlayer } from '@/components/MusicPlayer';
@@ -137,28 +135,8 @@ export default function InvitationPage() {
           </div>
         </div>
 
-        {/* CHERISHED MEMORIES & MILESTONES GALLERY */}
-        <MomentsGallery />
-
-        {/* Refined Gilded Divider */}
-        <div className="w-full max-w-4xl mx-auto px-4 py-4">
-          <div className="ornament-divider text-[#c5a059]/40 font-serif text-sm">
-            ❦
-          </div>
-        </div>
-
         {/* SECTION 6: "WITH BEST COMPLIMENTS FROM" DIRECTORY & COMPLETE RSVP SYSTEM */}
         <DirectoryAndRSVPCard />
-
-        {/* Refined Gilded Divider */}
-        <div className="w-full max-w-4xl mx-auto px-4 py-4">
-          <div className="ornament-divider text-[#c5a059]/40 font-serif text-sm">
-            ❦
-          </div>
-        </div>
-
-        {/* GUEST BLESSINGS & WISHES WALL (LIVE BACKEND API INTEGRATED) */}
-        <WishesWall />
 
         {/* INVITATION SHARING & ENVELOPE REPLAY BAR */}
         <ShareBar onReopenEnvelope={handleReopenEnvelope} />

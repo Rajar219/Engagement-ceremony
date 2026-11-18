@@ -37,7 +37,7 @@ export const NavigationBar: React.FC<NavigationBarProps> = ({ isVisible }) => {
     { labelEn: 'Ceremony', labelTa: 'நிச்சயதார்த்தம்', href: '#ceremony-section' },
     { labelEn: 'Family', labelTa: 'குடும்பம்', href: '#blessings-section' },
     { labelEn: 'Venue', labelTa: 'மண்டபம்', href: '#venue-section' },
-    { labelEn: 'Wishes', labelTa: 'வாழ்த்துகள்', href: '#wishes-section' },
+    { labelEn: 'RSVP', labelTa: 'பதிவு செய்ய', href: '#rsvp-section' },
   ];
 
   return (
