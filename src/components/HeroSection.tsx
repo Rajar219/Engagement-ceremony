@@ -303,7 +303,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
         }`}
       >
         <a
-          href="#scratch-section"
+          href="#couple-section"
           className="text-xs text-[#FFFFFF] hover:text-[#FFF2C6] flex flex-col items-center gap-0.5 transition-colors group cursor-pointer"
         >
           <span

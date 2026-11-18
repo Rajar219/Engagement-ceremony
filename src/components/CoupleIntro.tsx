@@ -43,11 +43,6 @@ export const CoupleIntro: React.FC = () => {
         <div className="luxury-card p-8 sm:p-10 flex flex-col items-center group transition-all duration-300 hover:shadow-2xl">
           <CornerOrnaments color="text-[#c5a059]/40" />
 
-          {/* Authentic Tamil Initial: Displayed directly without circle, badge, or container */}
-          <div className="text-4xl sm:text-5xl font-tamil-heading font-bold text-[#8e6c2e] mb-2 text-center select-none leading-none">
-            ஞா.
-          </div>
-
           {/* Role (English line, then Tamil line, matching size) */}
           <span className="text-xs sm:text-sm text-[#8e6c2e] font-semibold uppercase tracking-[0.22em] font-sans block mb-0.5">
             The Groom
@@ -86,11 +81,6 @@ export const CoupleIntro: React.FC = () => {
         {/* BRIDE CARD */}
         <div className="luxury-card p-8 sm:p-10 flex flex-col items-center group transition-all duration-300 hover:shadow-2xl">
           <CornerOrnaments color="text-[#c5a059]/40" />
-
-          {/* Authentic Tamil Initial: Displayed directly without circle, badge, or container */}
-          <div className="text-4xl sm:text-5xl font-tamil-heading font-bold text-[#8e6c2e] mb-2 text-center select-none leading-none">
-            க.
-          </div>
 
           {/* Role (English line, then Tamil line, matching size) */}
           <span className="text-xs sm:text-sm text-[#8e6c2e] font-semibold uppercase tracking-[0.22em] font-sans block mb-0.5">
