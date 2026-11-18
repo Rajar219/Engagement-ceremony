@@ -241,7 +241,7 @@ export const RSVPForm: React.FC = () => {
 
       {submittedRSVP ? (
         /* RSVP CONFIRMATION SUCCESS CARD */
-        <div className="w-full rounded-3xl overflow-hidden bg-gradient-to-b from-[#2a221c] to-[#1c1613] border-2 border-[#c5a059]/60 shadow-2xl p-6 sm:p-10 text-center backdrop-blur-md animate-subtle-float">
+        <div className="w-full rounded-3xl overflow-hidden bg-gradient-to-b from-[#2a221c] to-[#1c1613] border-2 border-[#c5a059]/60 shadow-2xl p-6 sm:p-10 text-center animate-subtle-float">
           <div className="w-16 h-16 rounded-full bg-[#c5a059]/20 border-2 border-[#c5a059] mx-auto flex items-center justify-center text-[#c5a059] shadow-lg mb-4">
             <CheckCircle2 className="w-8 h-8 text-champagne-400" />
           </div>
@@ -331,7 +331,7 @@ export const RSVPForm: React.FC = () => {
         /* INTERACTIVE RSVP FORM */
         <form
           onSubmit={handleSubmit}
-          className="luxury-dark-card p-6 sm:p-10 text-left backdrop-blur-md"
+          className="luxury-dark-card p-6 sm:p-10 text-left"
         >
           {error && (
             <div className="mb-6 p-4 rounded-xl bg-rose-950/80 border border-rose-500/50 text-rose-200 text-xs sm:text-sm font-medium flex items-start gap-2.5">

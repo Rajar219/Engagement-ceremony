@@ -138,7 +138,7 @@ END:VCALENDAR`;
               </div>
 
               {/* Timeline Card */}
-              <div className="flex-1 p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-black/60 to-burgundy-950/40 border border-gold-500/30 backdrop-blur-md shadow-xl group-hover:border-gold-400/60 transition-all">
+              <div className="flex-1 p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-black/60 to-burgundy-950/40 border border-gold-500/30 shadow-xl group-hover:border-gold-400/60 transition-all">
                 <div className="flex flex-wrap items-center justify-between gap-2 mb-1.5">
                   <h4 className="font-serif text-lg sm:text-xl font-bold text-white tracking-wide">
                     {item.title}
@@ -157,7 +157,7 @@ END:VCALENDAR`;
       </div>
 
       {/* Dress Code Highlight */}
-      <div className="mt-14 inline-flex items-center gap-3 px-6 py-3 rounded-2xl bg-black/50 border border-gold-500/30 backdrop-blur-md text-xs sm:text-sm text-gold-200">
+      <div className="mt-14 inline-flex items-center gap-3 px-6 py-3 rounded-2xl bg-black/70 border border-gold-500/30 text-xs sm:text-sm text-gold-200">
         <Sparkles className="w-4 h-4 text-gold-400 shrink-0" />
         <span>
           <strong>Dress Code:</strong> {dressCode || 'Traditional / Festive Elegance'}

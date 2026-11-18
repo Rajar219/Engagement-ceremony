@@ -85,7 +85,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
   return (
     <section
       id="hero-section"
-      className="relative min-h-[100dvh] w-full flex flex-col items-center justify-between text-center overflow-hidden px-4 py-6 sm:py-10 select-none"
+      className="relative min-h-[100dvh] w-full flex flex-col items-center justify-between text-center overflow-hidden px-4 pt-6 pb-4 sm:pt-8 sm:pb-6 select-none"
     >
       {/* 1. ORIGINAL BACKGROUND (100% BRIGHTNESS RESTORED — ZERO DARK OVERLAYS, ZERO DIMMING) */}
       <div className="absolute inset-0 z-0 overflow-hidden">
@@ -106,19 +106,16 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
       {/* FLOATING GOLDEN DUST PARTICLES */}
       <GoldenDustParticles />
 
-      {/* TOP SPACER (keeps vertical balance with viewport top) */}
-      <div className="w-full pt-3 sm:pt-6" />
-
-      {/* 2. MAIN POSTER CONTENT — SUBTLE GLASSMORPHISM FRAME WITH CRISP SOLID WHITE TYPOGRAPHY */}
+      {/* 2. MAIN POSTER CONTENT — CLEAN, PURE CINEMATIC TYPOGRAPHY WITHOUT GLASSMORPHISM */}
       <div
-        className={`relative z-10 w-full max-w-xl mx-auto my-auto px-3 transition-opacity duration-700 ease-out ${
+        className={`relative z-10 w-full max-w-xl mx-auto px-2 transition-opacity duration-700 ease-out flex flex-col items-center text-center ${
           mounted ? 'opacity-100' : 'opacity-0'
         }`}
       >
-        <div className="w-full bg-black/[0.15] backdrop-blur-[6px] border border-[#d4af37]/35 rounded-3xl px-5 py-6 sm:px-8 sm:py-8 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col items-center text-center">
-          {/* ITEM 1: WITH THE BLESSINGS OF OUR FAMILIES */}
+        {/* ITEM 1: WITH THE BLESSINGS OF OUR FAMILIES (English + Tamil on separate lines, equal size) */}
+        <div className="flex flex-col items-center gap-1">
           <p
-            className="text-[clamp(11px,2.6vw,13px)] tracking-[0.18em] uppercase font-serif font-semibold text-[#FFFFFF] select-none hero-solid-white"
+            className="text-[clamp(11px,2.6vw,13px)] tracking-[0.2em] uppercase font-serif font-semibold text-[#FFFFFF] select-none hero-solid-white"
             style={{
               color: '#FFFFFF',
               opacity: 1,
@@ -127,128 +124,136 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
               textShadow: '1px 2px 4px rgba(0, 0, 0, 0.75)',
             }}
           >
-            {language === 'ta'
-              ? 'எங்கள் குடும்பத்தினரின் நல்லாசியுடன்'
-              : 'WITH THE BLESSINGS OF OUR FAMILIES'}
+            WITH THE BLESSINGS OF OUR FAMILIES
+          </p>
+          <p
+            className="text-[clamp(11px,2.6vw,13px)] tracking-[0.06em] font-tamil-serif font-semibold text-[#FFFFFF] select-none hero-solid-white"
+            style={{
+              color: '#FFFFFF',
+              opacity: 1,
+              WebkitTextFillColor: '#FFFFFF',
+              WebkitTextStroke: '0px transparent',
+              textShadow: '1px 2px 4px rgba(0, 0, 0, 0.75)',
+            }}
+          >
+            எங்கள் குடும்பத்தினரின் நல்லாசியுடன்
+          </p>
+        </div>
+
+        {/* ITEM 2: NEW SILVER COUPLE NAME LOGO & TAMIL NAMES */}
+        <div className="my-2 sm:my-3 flex flex-col items-center w-full">
+          <div className="w-full max-w-[280px] xs:max-w-[320px] sm:max-w-[380px] md:max-w-[420px] mx-auto">
+            <picture>
+              <source srcSet="/assets/images/couple-name-silver.webp" type="image/webp" />
+              <img
+                src="/assets/images/couple-name-silver.png"
+                alt="Vallarasu & Priyanka"
+                className="w-full h-auto object-contain filter drop-shadow-[0_4px_16px_rgba(0,0,0,0.85)] select-none pointer-events-none"
+                loading="eager"
+                width={1536}
+                height={1024}
+              />
+            </picture>
+          </div>
+          <h1
+            className="font-tamil-heading text-[clamp(20px,5vw,28px)] font-bold tracking-[0.04em] leading-tight text-[#FFFFFF] select-none hero-solid-white mt-1.5"
+            style={{
+              color: '#FFFFFF',
+              opacity: 1,
+              WebkitTextFillColor: '#FFFFFF',
+              WebkitTextStroke: '0px transparent',
+              textShadow: '1px 2px 4px rgba(0, 0, 0, 0.75)',
+            }}
+          >
+            ஞா. வல்லரசு &amp; க. பிரியங்கா
+          </h1>
+        </div>
+
+        {/* ITEM 3: ENGAGEMENT & WEDDING CELEBRATION (Strict Rule: English line, then Tamil line) */}
+        <div className="mt-1 sm:mt-1.5 flex flex-col items-center gap-1">
+          <h2
+            className="font-serif uppercase tracking-[0.18em] sm:tracking-[0.22em] text-[clamp(13px,3.2vw,16px)] font-bold text-[#FFFFFF] select-none hero-solid-white"
+            style={{
+              color: '#FFFFFF',
+              opacity: 1,
+              WebkitTextFillColor: '#FFFFFF',
+              WebkitTextStroke: '0px transparent',
+              textShadow: '1px 2px 4px rgba(0, 0, 0, 0.75)',
+            }}
+          >
+            Engagement &amp; Wedding Celebration
+          </h2>
+          <p
+            className="font-tamil-heading text-[clamp(13px,3.2vw,16px)] font-bold tracking-[0.05em] text-[#FFFFFF] select-none hero-solid-white"
+            style={{
+              color: '#FFFFFF',
+              opacity: 1,
+              WebkitTextFillColor: '#FFFFFF',
+              WebkitTextStroke: '0px transparent',
+              textShadow: '1px 2px 4px rgba(0, 0, 0, 0.75)',
+            }}
+          >
+            திருமண நிச்சயதார்த்த விழா
+          </p>
+        </div>
+
+        {/* ITEM 4: CORDIALLY INVITING YOU (English line, then Tamil line) */}
+        <div className="mt-1.5 sm:mt-2 flex flex-col items-center gap-0.5">
+          <p
+            className="font-serif text-[clamp(12px,2.8vw,14px)] tracking-[0.16em] uppercase font-semibold text-[#FFFFFF] select-none hero-solid-white"
+            style={{
+              color: '#FFFFFF',
+              opacity: 1,
+              WebkitTextFillColor: '#FFFFFF',
+              WebkitTextStroke: '0px transparent',
+              textShadow: '1px 2px 4px rgba(0, 0, 0, 0.75)',
+            }}
+          >
+            Cordially Inviting You
+          </p>
+          <p
+            className="font-tamil-invitation text-[clamp(12px,2.8vw,14px)] font-semibold text-[#FFFFFF] select-none hero-solid-white"
+            style={{
+              color: '#FFFFFF',
+              opacity: 1,
+              WebkitTextFillColor: '#FFFFFF',
+              WebkitTextStroke: '0px transparent',
+              textShadow: '1px 2px 4px rgba(0, 0, 0, 0.75)',
+            }}
+          >
+            அன்போடு அழைக்கிறோம்
+          </p>
+        </div>
+
+        {/* ITEM 5: ROMANTIC QUOTATION (English line, then Tamil line, matching sizes) */}
+        <div className="max-w-[340px] sm:max-w-md mx-auto px-2 mt-2 sm:mt-2.5 flex flex-col items-center gap-1 text-center">
+          <p
+            className="font-serif italic font-medium text-[clamp(12px,3vw,14px)] text-[#FFFFFF] leading-[1.6] select-none hero-solid-white"
+            style={{
+              color: '#FFFFFF',
+              opacity: 1,
+              WebkitTextFillColor: '#FFFFFF',
+              WebkitTextStroke: '0px transparent',
+              textShadow: '1px 2px 4px rgba(0, 0, 0, 0.75)',
+            }}
+          >
+            &ldquo;Two hearts, one journey, a lifetime of togetherness begins here...&rdquo;
+          </p>
+          <p
+            className="font-tamil-body text-[clamp(12px,3vw,14px)] text-[#FFFFFF] leading-[1.6] select-none hero-solid-white font-medium"
+            style={{
+              color: '#FFFFFF',
+              opacity: 1,
+              WebkitTextFillColor: '#FFFFFF',
+              WebkitTextStroke: '0px transparent',
+              textShadow: '1px 2px 4px rgba(0, 0, 0, 0.75)',
+            }}
+          >
+            &ldquo;இரு இதயங்கள், ஒரு பயணம், வாழ்நாள் முழுமைக்குமான இணைவு இங்கே தொடங்குகிறது...&rdquo;
           </p>
 
-          {/* ITEMS 2, 3, 4: Vallarasu & Priyanka (OFFICIAL 3D GOLD CALLIGRAPHY EMBLEM) */}
-          <div className="my-1.5 sm:my-2.5 flex flex-col items-center w-full">
-            {language === 'ta' ? (
-              /* Tamil Couple Names with Official 3D Gold Typography Emblem */
-              <div className="flex flex-col items-center font-tamil-heading text-center w-full">
-                <div className="w-full max-w-[320px] sm:max-w-[400px] mx-auto my-1">
-                  <picture>
-                    <source srcSet="/assets/images/couple-name-gold.webp" type="image/webp" />
-                    <img
-                      src="/assets/images/couple-name-gold.png"
-                      alt="Vallarasu & Priyanka"
-                      className="w-full h-auto object-contain filter drop-shadow-[0_4px_14px_rgba(0,0,0,0.7)] select-none pointer-events-none"
-                      loading="eager"
-                      width={1024}
-                      height={341}
-                    />
-                  </picture>
-                </div>
-                <h1
-                  className="font-tamil-heading text-[clamp(26px,6.8vw,38px)] font-bold tracking-[0.02em] leading-tight text-[#FFFFFF] select-none hero-solid-white mt-1"
-                  style={{
-                    color: '#FFFFFF',
-                    opacity: 1,
-                    WebkitTextFillColor: '#FFFFFF',
-                    WebkitTextStroke: '0px transparent',
-                    textShadow: '1px 2px 4px rgba(0, 0, 0, 0.75)',
-                  }}
-                >
-                  வல்லரசு &amp; பிரியங்கா
-                </h1>
-              </div>
-            ) : (
-              /* English Couple Names using Official 3D Gold Calligraphy Graphic */
-              <div className="flex flex-col items-center text-center my-1 sm:my-2 w-full max-w-[340px] sm:max-w-[430px] mx-auto">
-                <picture>
-                  <source srcSet="/assets/images/couple-name-gold.webp" type="image/webp" />
-                  <img
-                    src="/assets/images/couple-name-gold.png"
-                    alt="Vallarasu & Priyanka"
-                    className="w-full h-auto object-contain filter drop-shadow-[0_4px_14px_rgba(0,0,0,0.7)] select-none pointer-events-none"
-                    loading="eager"
-                    width={1024}
-                    height={341}
-                  />
-                </picture>
-              </div>
-            )}
-          </div>
-
-          {/* ITEM 5: ENGAGEMENT CEREMONY */}
-          <div className="mt-1 sm:mt-2 flex flex-col items-center">
-            <h3
-              className="font-serif uppercase tracking-[0.18em] sm:tracking-[0.24em] text-[clamp(12px,3vw,15px)] font-medium text-[#FFFFFF] select-none hero-solid-white"
-              style={{
-                color: '#FFFFFF',
-                opacity: 1,
-                WebkitTextFillColor: '#FFFFFF',
-                WebkitTextStroke: '0px transparent',
-                textShadow: '1px 2px 4px rgba(0, 0, 0, 0.75)',
-              }}
-            >
-              {language === 'ta'
-                ? 'திருமண நிச்சயதார்த்த வைபவம்'
-                : 'ENGAGEMENT CEREMONY'}
-            </h3>
-          </div>
-
-          {/* ITEM 6: TAMIL INVITATION TEXT — அன்போடு அழைக்கிறோம் */}
-          <div className="mt-1 sm:mt-1.5 flex flex-col items-center">
-            <p
-              className="font-tamil-invitation text-[clamp(14px,3.5vw,17px)] font-semibold text-[#FFFFFF] select-none hero-solid-white"
-              style={{
-                color: '#FFFFFF',
-                opacity: 1,
-                WebkitTextFillColor: '#FFFFFF',
-                WebkitTextStroke: '0px transparent',
-                textShadow: '1px 2px 4px rgba(0, 0, 0, 0.75)',
-              }}
-            >
-              அன்போடு அழைக்கிறோம்
-            </p>
-          </div>
-
-          {/* ITEM 7: ROMANTIC QUOTATION IN ELEGANT WARM IVORY ITALIC SERIF */}
-          <div className="max-w-[340px] sm:max-w-md mx-auto px-2 mt-2.5 sm:mt-3">
-            <p
-              className="font-serif italic font-medium text-[clamp(14px,3.4vw,17px)] text-[#FFFFFF] leading-[1.65] select-none hero-solid-white"
-              style={{
-                color: '#FFFFFF',
-                opacity: 1,
-                WebkitTextFillColor: '#FFFFFF',
-                WebkitTextStroke: '0px transparent',
-                textShadow: '1px 2px 4px rgba(0, 0, 0, 0.75)',
-              }}
-            >
-              {language === 'ta' ? (
-                <>
-                  &ldquo;இரு இதயங்கள், ஒரு பயணம்,
-                  <br />
-                  வாழ்நாள் முழுமைக்குமான இணைவு
-                  <br />
-                  இங்கே தொடங்குகிறது...&rdquo;
-                </>
-              ) : (
-                <>
-                  &ldquo;Two hearts, one journey,
-                  <br />
-                  a lifetime of togetherness
-                  <br />
-                  begins here...&rdquo;
-                </>
-              )}
-            </p>
-
-            {/* ITEM 8: SMALL DECORATIVE HEART ORNAMENT */}
-            <HeartOrnament className="mt-2 sm:mt-2.5" />
-          </div>
+          {/* ITEM 6: SMALL DECORATIVE HEART ORNAMENT */}
+          <HeartOrnament className="mt-2" />
         </div>
       </div>
 
@@ -268,7 +273,19 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
               textShadow: '1px 2px 4px rgba(0, 0, 0, 0.75)',
             }}
           >
-            {language === 'ta' ? 'அழைப்பிதழைப் பார்வையிட' : 'Explore Invitation'}
+            Explore Invitation
+          </span>
+          <span
+            className="text-[10px] font-tamil font-medium"
+            style={{
+              color: '#FFFFFF',
+              opacity: 1,
+              WebkitTextFillColor: '#FFFFFF',
+              WebkitTextStroke: '0px transparent',
+              textShadow: '1px 2px 4px rgba(0, 0, 0, 0.75)',
+            }}
+          >
+            அழைப்பிதழைப் பார்வையிட
           </span>
           <ChevronDown className="w-4 h-4 animate-bounce text-white group-hover:text-[#FFFFFF] drop-shadow-md" />
         </a>

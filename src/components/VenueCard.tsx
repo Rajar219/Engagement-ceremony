@@ -2,16 +2,12 @@
 
 import React, { useState } from 'react';
 import { MapPin, Navigation, Copy, Check, ExternalLink, Building, Info } from 'lucide-react';
-import { invitationConfig } from '@/config/invitation.config';
-import { useLanguage } from '@/context/LanguageContext';
 import { CornerOrnaments } from '@/components/CornerOrnaments';
 
 export const VenueCard: React.FC = () => {
   const [copied, setCopied] = useState(false);
-  const { venue } = invitationConfig.engagement;
-  const { t, language } = useLanguage();
 
-  const fullAddress = `${venue.name}, ${venue.address}, ${venue.cityState}`;
+  const fullAddress = 'RSM Banquet Hall, 35/37, Dr Besant Rd, Near Hotel Viveka, Triplicane, Chennai - 600005, Tamil Nadu';
 
   const handleCopyAddress = () => {
     if (typeof navigator !== 'undefined') {
@@ -31,25 +27,35 @@ export const VenueCard: React.FC = () => {
 
   return (
     <section id="venue-section" className="relative w-full py-12 px-4 max-w-4xl mx-auto text-center">
-      {/* 08. VENUE & LOCATION HEADER */}
+      {/* 08. VENUE & LOCATION HEADER (Strict Rule: English line, then Tamil line, matching size) */}
       <div className="flex flex-col items-center mb-10">
-        <span className="text-[11px] uppercase tracking-[0.25em] text-[#8e6c2e] font-semibold mb-2 font-tamil-serif">
-          {language === 'ta' ? 'விழா மண்டப வழிகாட்டி' : 'Ceremony Venue & Directions'}
+        <span className="text-xs sm:text-sm text-[#8e6c2e] font-semibold uppercase tracking-[0.25em] font-serif block mb-0.5">
+          Ceremony Venue &amp; Directions
         </span>
-        <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold gold-foil-text tracking-wide">
-          {language === 'ta' ? 'விழா மண்டபம்' : 'How to Reach the Venue'}
+        <span className="text-xs sm:text-sm text-[#8e6c2e] font-semibold font-tamil-serif block mb-3">
+          விழா மண்டப வழிகாட்டி
+        </span>
+
+        <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold gold-foil-text tracking-wide mb-1">
+          How to Reach the Venue
         </h2>
+        <h2 className="font-tamil-heading text-3xl sm:text-4xl md:text-5xl font-bold gold-foil-text tracking-wide">
+          விழா மண்டபம்
+        </h2>
+
         <div className="ornament-divider text-[#c5a059]/60 font-serif text-sm w-44 mx-auto my-3">
           ❖
         </div>
-        <p className="text-xs sm:text-sm text-[#5c534b] max-w-md font-tamil">
-          {language === 'ta'
-            ? 'சென்னை திருவல்லிக்கேணியில் உள்ள RSM பேங்க்வெட் ஹாலிற்கு தங்களை அன்புடன் வரவேற்கிறோம்.'
-            : 'Join us at RSM Banquet Hall in the heart of Triplicane, Chennai for our joyous celebration.'}
+
+        <p className="text-xs sm:text-sm text-[#5c534b] font-serif italic max-w-md mb-1">
+          Join us at RSM Banquet Hall in the heart of Triplicane, Chennai for our joyous celebration.
+        </p>
+        <p className="text-xs sm:text-sm text-[#5c534b] font-tamil max-w-md">
+          சென்னை திருவல்லிக்கேணியில் உள்ள RSM பேங்க்வெட் ஹாலிற்கு தங்களை அன்புடன் வரவேற்கிறோம்.
         </p>
       </div>
 
-      {/* Main Venue Luxury Card */}
+      {/* Main Venue Luxury Card (Zero Glassmorphism) */}
       <div className="luxury-card p-6 sm:p-10 shadow-xl text-left overflow-hidden">
         <CornerOrnaments color="text-[#c5a059]/40" />
 
@@ -60,18 +66,28 @@ export const VenueCard: React.FC = () => {
               <span>RSM Banquet Hall</span>
             </div>
 
-            <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#231c18] tracking-wide">
-              {venue.name}
+            <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#231c18] tracking-wide mb-0.5">
+              RSM Banquet Hall
+            </h3>
+            <h3 className="font-tamil-heading text-2xl sm:text-3xl font-bold text-[#231c18] tracking-wide mb-3">
+              ஆர்.எஸ்.எம் பேங்க்வெட் ஹால்
             </h3>
 
-            <p className="text-xs sm:text-sm text-[#5c534b] font-tamil mt-2 flex items-start gap-2 max-w-xl">
+            <div className="text-xs sm:text-sm text-[#5c534b] mt-2 flex items-start gap-2 max-w-xl">
               <MapPin className="w-4 h-4 text-[#8e6c2e] shrink-0 mt-0.5" />
-              <span>{venue.address}, {venue.cityState}</span>
-            </p>
+              <div className="flex flex-col gap-1">
+                <span className="font-sans">35/37, Dr Besant Rd, Near Hotel Viveka, Triplicane, Chennai - 600005, Tamil Nadu</span>
+                <span className="font-tamil">35/37, டாக்டர் பெசன்ட் சாலை, விவேகா ஹோட்டல் அருகில், திருவல்லிக்கேணி, சென்னை - 600005</span>
+              </div>
+            </div>
 
-            <div className="mt-3 flex items-center gap-2 text-xs text-[#766c62] bg-[#fbf9f4] px-3.5 py-1.5 rounded-lg border border-[#c5a059]/25 w-fit font-tamil-sans">
-              <Info className="w-3.5 h-3.5 text-[#8e6c2e] shrink-0" />
-              <span>{language === 'ta' ? 'அடையாளம்: ஹோட்டல் விவேகா அருகில்' : 'Landmark: Near Hotel Viveka, Triplicane'}</span>
+            <div className="mt-3 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 text-xs text-[#766c62] bg-[#fbf9f4] px-3.5 py-2 rounded-lg border border-[#c5a059]/25 w-fit">
+              <div className="flex items-center gap-1.5 font-sans">
+                <Info className="w-3.5 h-3.5 text-[#8e6c2e] shrink-0" />
+                <span>Landmark: Near Hotel Viveka, Triplicane</span>
+              </div>
+              <span className="hidden sm:inline text-[#c5a059]/40">•</span>
+              <span className="font-tamil">அடையாளம்: ஹோட்டல் விவேகா அருகில்</span>
             </div>
           </div>
 
@@ -81,29 +97,33 @@ export const VenueCard: React.FC = () => {
               href={mapSearchUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="shimmer-sweep px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#c5a059] to-[#b08b41] text-[#231c18] font-bold tracking-wider uppercase text-xs shadow-md hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2 font-tamil-sans"
+              className="shimmer-sweep px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#c5a059] to-[#b08b41] text-[#231c18] font-bold tracking-wider uppercase text-xs shadow-md hover:scale-105 active:scale-95 transition-all flex flex-col items-center justify-center gap-0.5"
             >
-              <Navigation className="w-4 h-4 shrink-0 text-[#231c18]" />
-              <span>{language === 'ta' ? 'வழித்தடம் காண்க' : 'Get Directions'}</span>
-              <ExternalLink className="w-3.5 h-3.5 shrink-0" />
+              <div className="flex items-center gap-1.5">
+                <Navigation className="w-3.5 h-3.5 shrink-0 text-[#231c18]" />
+                <span className="font-sans">Get Directions</span>
+                <ExternalLink className="w-3 h-3 shrink-0" />
+              </div>
+              <span className="font-tamil-sans text-[10px]">வழித்தடம் காண்க</span>
             </a>
 
             <button
               type="button"
               onClick={handleCopyAddress}
-              className="px-5 py-2.5 rounded-xl bg-[#ffffff] hover:bg-[#faf8f4] border border-[#c5a059]/40 text-[#231c18] text-xs font-semibold uppercase tracking-wider transition-all flex items-center justify-center gap-2 active:scale-95 font-tamil-sans cursor-pointer shadow-sm"
+              className="px-5 py-2.5 rounded-xl bg-[#ffffff] hover:bg-[#faf8f4] border border-[#c5a059]/40 text-[#231c18] text-xs font-semibold uppercase tracking-wider transition-all flex flex-col items-center justify-center gap-0.5 active:scale-95 cursor-pointer shadow-sm"
             >
               {copied ? (
-                <>
+                <div className="flex items-center gap-1.5 text-emerald-700">
                   <Check className="w-4 h-4 text-emerald-600" />
-                  <span className="text-emerald-700">
-                    {language === 'ta' ? 'முகவரி நகலெடுக்கப்பட்டது!' : 'Address Copied!'}
-                  </span>
-                </>
+                  <span className="font-sans font-bold">Address Copied!</span>
+                </div>
               ) : (
                 <>
-                  <Copy className="w-4 h-4 text-[#8e6c2e]" />
-                  <span>{language === 'ta' ? 'முகவரியை நகலெடுக்க' : 'Copy Address'}</span>
+                  <div className="flex items-center gap-1.5">
+                    <Copy className="w-3.5 h-3.5 text-[#8e6c2e]" />
+                    <span className="font-sans">Copy Address</span>
+                  </div>
+                  <span className="font-tamil-sans text-[10px] text-[#766c62]">முகவரியை நகலெடுக்க</span>
                 </>
               )}
             </button>

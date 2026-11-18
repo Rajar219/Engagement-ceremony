@@ -210,23 +210,28 @@ export const ScratchHeartDate: React.FC = () => {
     <section id="scratch-section" className="relative w-full py-14 px-4 max-w-4xl mx-auto text-center">
       {/* SECTION HEADER: Save the Date / சுப தேதியைக் குறித்துக் கொள்ளுங்கள் */}
       <div className="mb-6 max-w-lg mx-auto flex flex-col items-center">
-        <span className={`text-[11px] text-[#8e6c2e] font-semibold mb-1.5 ${language === 'ta' ? 'font-tamil-serif' : 'uppercase tracking-[0.25em] font-serif'}`}>
-          {language === 'ta' ? 'சுப முகூர்த்த நாள்' : 'Mark Your Calendar'}
+        <span className="text-xs sm:text-sm text-[#8e6c2e] font-semibold uppercase tracking-[0.25em] font-serif block mb-0.5">
+          Mark Your Calendar
         </span>
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold gold-foil-text tracking-wide">
+        <span className="text-xs sm:text-sm text-[#8e6c2e] font-semibold font-tamil-serif block mb-2">
+          சுப முகூர்த்த நாள்
+        </span>
+
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold gold-foil-text tracking-wide mb-1">
           Save the Date
         </h2>
-        <span className="text-base sm:text-lg font-tamil-heading font-semibold text-[#8e6c2e] mt-1">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-tamil-heading font-bold gold-foil-text tracking-wide">
           சுப தேதியைக் குறித்துக் கொள்ளுங்கள்
-        </span>
+        </h2>
+
         <div className="w-20 h-0.5 bg-gradient-to-r from-transparent via-[#c5a059] to-transparent mx-auto mt-2.5 mb-3" />
 
-        {/* BILINGUAL DESCRIPTION WITH COMFORTABLE LINE-HEIGHT */}
+        {/* BILINGUAL DESCRIPTION (English sentence on separate line, then Tamil on separate line) */}
         <div className="flex flex-col items-center gap-1 text-center max-w-md px-2">
           <p className="text-xs sm:text-sm text-[#5a4a42] font-serif italic">
-            Scratch the golden seal below to reveal our special day
+            Scratch the golden seal below to reveal our engagement date
           </p>
-          <p className="text-xs sm:text-sm text-[#766c62] font-tamil-body leading-relaxed">
+          <p className="text-xs sm:text-sm text-[#5a4a42] font-tamil-body leading-relaxed">
             எங்கள் திருமண நிச்சயதார்த்த நன்னாளை அறிய பொன் முத்திரையைத் தேய்க்கவும்
           </p>
         </div>
@@ -253,13 +258,16 @@ export const ScratchHeartDate: React.FC = () => {
         className="relative w-[300px] h-[280px] mx-auto filter drop-shadow-[0_16px_36px_rgba(35,28,24,0.18)] select-none my-4"
         style={{ willChange: 'transform' }}
       >
-        {/* UNDERLYING REVEALED DATE CARD: 13 • 12 • 2026 | ஞாயிறு (Sunday) */}
+        {/* UNDERLYING REVEALED DATE CARD: Strict separate lines for EN and TA */}
         <div
           className="absolute inset-0 bg-gradient-to-br from-[#241d18] via-[#1c1613] to-[#140f0c] border-2 border-[#c5a059]/60 flex flex-col items-center justify-center p-5 text-center select-none"
           style={{ clipPath: 'url(#revealHeartClipVP)' }}
         >
-          <span className="text-[11px] sm:text-xs font-serif font-bold tracking-[0.2em] text-[#c5a059] uppercase block mb-0.5">
-            SUNDAY • ஞாயிற்றுக்கிழமை
+          <span className="text-[11px] sm:text-xs font-serif font-bold tracking-[0.2em] text-[#c5a059] uppercase block">
+            SUNDAY
+          </span>
+          <span className="text-[11px] sm:text-xs font-tamil-serif font-bold text-[#c5a059] block mb-0.5">
+            ஞாயிற்றுக்கிழமை
           </span>
 
           <div className="my-1.5 border-t border-b border-[#c5a059]/40 py-2 w-4/5 flex flex-col items-center justify-center">
@@ -268,13 +276,16 @@ export const ScratchHeartDate: React.FC = () => {
             </h4>
           </div>
 
-          <div className="flex items-center gap-1.5 text-[11px] text-[#d4c3b3] font-tamil-sans mt-0.5">
-            <Clock className="w-3.5 h-3.5 text-[#c5a059] shrink-0" />
+          <div className="flex flex-col items-center text-[11px] text-[#d4c3b3] font-sans mt-0.5">
             <span>6:00 PM – 9:00 PM IST</span>
+            <span className="font-tamil-sans text-[10px]">மாலை 6:00 – 9:00 மணி</span>
           </div>
 
-          <span className="text-[10px] text-[#c5a059]/90 font-medium font-tamil-sans mt-0.5">
+          <span className="text-[10px] text-[#c5a059]/90 font-medium font-sans mt-1">
             RSM Banquet Hall, Chennai
+          </span>
+          <span className="text-[10px] text-[#c5a059]/90 font-medium font-tamil-sans">
+            ஆர்.எஸ்.எம் பேங்க்வெட் ஹால், சென்னை
           </span>
         </div>
 
@@ -326,9 +337,10 @@ export const ScratchHeartDate: React.FC = () => {
             className="mt-1 text-xs font-semibold text-[#1c1613] bg-gradient-to-r from-[#b08b41] via-[#c5a059] to-[#99732f] hover:from-[#c5a059] hover:to-[#b08b41] border border-[#f4e8c8]/40 rounded-full px-5 py-2 shadow-md transition-transform active:scale-95 flex items-center justify-center gap-2 cursor-pointer max-w-xs"
           >
             <Sparkles className="w-3.5 h-3.5 shrink-0" />
-            <span className="font-tamil-sans">
-              {language === 'ta' ? 'தேதியை உடனே திறக்க' : 'Tap to Reveal Instantly • உடனே திறக்க'}
-            </span>
+            <div className="flex flex-col items-center leading-tight">
+              <span className="font-sans font-bold">Tap to Reveal Instantly</span>
+              <span className="font-tamil-sans text-[10px]">தேதியை உடனே திறக்க</span>
+            </div>
           </button>
         )}
       </div>

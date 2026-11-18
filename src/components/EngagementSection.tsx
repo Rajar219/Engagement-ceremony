@@ -96,17 +96,29 @@ END:VCALENDAR`;
         <CornerOrnaments color="text-[#c5a059]/40" />
 
         <div className="relative z-10 mb-6">
-          <span className="text-[11px] uppercase tracking-[0.25em] text-[#8e6c2e] font-semibold block font-tamil-serif mb-1.5">
-            Auspicious Moment Countdown • சுபமுகூர்த்த நேரக் கணிப்பு
+          <span className="text-xs sm:text-sm text-[#8e6c2e] font-semibold uppercase tracking-[0.25em] font-serif block mb-0.5">
+            Auspicious Moment Countdown
           </span>
-          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold gold-foil-text tracking-wide">
-            {language === 'ta' ? 'சுபமுகூர்த்த நன்னாளை நோக்கி' : 'Countdown to Auspicious Union'}
+          <span className="text-xs sm:text-sm text-[#8e6c2e] font-semibold font-tamil-serif block mb-3">
+            சுபமுகூர்த்த நேரக் கணிப்பு
+          </span>
+
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold gold-foil-text tracking-wide mb-1">
+            Countdown to Auspicious Union
           </h2>
+          <h2 className="font-tamil-heading text-2xl sm:text-3xl md:text-4xl font-bold gold-foil-text tracking-wide">
+            சுபமுகூர்த்த நன்னாளை நோக்கி
+          </h2>
+
           <div className="ornament-divider text-[#c5a059]/50 font-serif text-sm w-44 mx-auto my-3">
             ❖
           </div>
+
+          <p className="text-xs sm:text-sm text-[#5c534b] font-sans mb-0.5">
+            Sunday, 13th December 2026 • 6:00 PM IST
+          </p>
           <p className="text-xs sm:text-sm text-[#5c534b] font-tamil">
-            Sunday, 13th December 2026 • 6:00 PM IST (ஞாயிறு மாலை 6:00 மணி)
+            ஞாயிற்றுக்கிழமை, 13 டிசம்பர் 2026 • மாலை 6:00 மணி
           </p>
         </div>
 

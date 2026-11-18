@@ -41,7 +41,7 @@ export const WishesWall: React.FC = () => {
       if (savedLikes) {
         setLikedMap(JSON.parse(savedLikes));
       }
-    } catch (e) {}
+    } catch (e) { }
   }, []);
 
   const handleLike = async (id: string) => {
@@ -133,21 +133,31 @@ export const WishesWall: React.FC = () => {
 
   return (
     <section id="wishes-section" className="relative w-full py-14 px-4 max-w-4xl mx-auto text-center">
-      {/* 11. GUEST BLESSINGS & WISHES HEADER */}
+      {/* 11. GUEST BLESSINGS & WISHES HEADER (Strict Rule: English line, then Tamil line, matching size) */}
       <div className="flex flex-col items-center mb-10">
-        <span className="text-[11px] uppercase tracking-[0.25em] text-[#8e6c2e] font-semibold mb-2 font-tamil-serif">
-          {language === 'ta' ? 'வாழ்த்துகள் & பிரார்த்தனைகள்' : 'Warm Blessings & Prayers'}
+        <span className="text-xs sm:text-sm text-[#8e6c2e] font-semibold uppercase tracking-[0.25em] font-serif block mb-0.5">
+          Warm Blessings &amp; Prayers
         </span>
-        <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold gold-foil-text tracking-wide">
-          {language === 'ta' ? 'உறவினர்கள் & நண்பர்கள் வாழ்த்துகள்' : 'Guest Blessings & Wishes'}
+        <span className="text-xs sm:text-sm text-[#8e6c2e] font-semibold font-tamil-serif block mb-3">
+          வாழ்த்துகள் &amp; பிரார்த்தனைகள்
+        </span>
+
+        <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold gold-foil-text tracking-wide mb-1">
+          Guest Blessings &amp; Wishes
         </h2>
+        <h2 className="font-tamil-heading text-3xl sm:text-4xl md:text-5xl font-bold gold-foil-text tracking-wide">
+          உறவினர்கள் &amp; நண்பர்கள் வாழ்த்துகள்
+        </h2>
+
         <div className="ornament-divider text-[#c5a059]/50 font-serif text-sm w-44 mx-auto my-3">
           ❖
         </div>
-        <p className="text-xs sm:text-sm text-[#5c534b] max-w-md font-tamil">
-          {language === 'ta'
-            ? 'மணமக்களுக்கான தங்களின் அன்பான வாழ்த்துகளையும் ஆசிகளையும் இங்கு பதிவு செய்யலாம்.'
-            : 'Leave your loving prayers, heartfelt blessings, and congratulations for Vallarasu & Priyanka.'}
+
+        <p className="text-xs sm:text-sm text-[#5c534b] font-serif italic max-w-md mb-1">
+          Leave your loving prayers, heartfelt blessings, and congratulations for Vallarasu &amp; Priyanka.
+        </p>
+        <p className="text-xs sm:text-sm text-[#5c534b] font-tamil max-w-md">
+          மணமக்களுக்கான தங்களின் அன்பான வாழ்த்துகளையும் ஆசிகளையும் இங்கு பதிவு செய்யலாம்.
         </p>
       </div>
 
@@ -158,12 +168,17 @@ export const WishesWall: React.FC = () => {
       >
         <CornerOrnaments color="text-[#c5a059]/30" />
 
-        <h4 className="relative z-10 font-serif text-lg font-bold text-[#231c18] mb-4 flex items-center gap-2">
-          <MessageSquare className="w-4 h-4 text-[#8e6c2e] shrink-0" />
-          <span className="font-tamil">
-            {language === 'ta' ? 'மணமக்களுக்கு வாழ்த்துச் செய்தி எழுதுங்கள்' : 'Write a Blessing for the Couple'}
-          </span>
-        </h4>
+        <div className="relative z-10 mb-4 flex flex-col gap-0.5">
+          <div className="flex items-center gap-2">
+            <MessageSquare className="w-4 h-4 text-[#8e6c2e] shrink-0" />
+            <h4 className="font-serif text-base sm:text-lg font-bold text-[#231c18]">
+              Write a Blessing for the Couple
+            </h4>
+          </div>
+          <h4 className="font-tamil text-sm font-semibold text-[#8e6c2e]">
+            மணமக்களுக்கு வாழ்த்துச் செய்தி எழுதுங்கள்
+          </h4>
+        </div>
 
         {error && (
           <div className="relative z-10 mb-4 p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-xs flex items-center gap-2">
@@ -274,16 +289,14 @@ export const WishesWall: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => handleLike(w.id)}
-                      className={`px-2.5 py-1 rounded-full border text-xs flex items-center gap-1.5 transition-all active:scale-95 ${
-                        isLiked
+                      className={`px-2.5 py-1 rounded-full border text-xs flex items-center gap-1.5 transition-all active:scale-95 ${isLiked
                           ? 'bg-rose-50 border-rose-300 text-rose-700 shadow-sm'
                           : 'bg-[#faf8f4] border-[#c5a059]/30 text-[#766c62] hover:text-rose-600 hover:border-rose-300'
-                      }`}
+                        }`}
                     >
                       <Heart
-                        className={`w-3.5 h-3.5 ${
-                          isLiked ? 'fill-rose-500 text-rose-500' : 'text-[#8e6c2e]'
-                        }`}
+                        className={`w-3.5 h-3.5 ${isLiked ? 'fill-rose-500 text-rose-500' : 'text-[#8e6c2e]'
+                          }`}
                       />
                       <span className="text-[11px] font-semibold">{w.likes}</span>
                     </button>

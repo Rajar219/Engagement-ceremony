@@ -45,14 +45,18 @@ export const ShareBar: React.FC<ShareBarProps> = ({ onReopenEnvelope }) => {
     <section id="share-section" className="w-full py-12 px-4 max-w-2xl mx-auto text-center">
       {/* 12. INVITATION SHARING (LUXURY STATIONERY CARD) */}
       <div className="luxury-card p-6 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div className="text-left">
+        <div className="text-left flex flex-col gap-0.5">
           <h4 className="font-serif font-bold text-[#231c18] text-base">
-            {language === 'ta' ? 'அழைப்பிதழைப் பகிர்க' : 'Share this Invitation'}
+            Share this Invitation
           </h4>
-          <p className="text-xs text-[#5a4a42] mt-0.5 font-tamil">
-            {language === 'ta'
-              ? 'குடும்பத்தினர் மற்றும் நண்பர்களுடன் மகிழ்ச்சியைப் பகிருங்கள்'
-              : 'Spread the joy with family & friends'}
+          <h4 className="font-tamil-heading font-bold text-[#231c18] text-base mb-1">
+            அழைப்பிதழைப் பகிர்க
+          </h4>
+          <p className="text-xs text-[#5a4a42] font-serif italic">
+            Spread the joy with family &amp; friends
+          </p>
+          <p className="text-xs text-[#5a4a42] font-tamil">
+            குடும்பத்தினர் மற்றும் நண்பர்களுடன் மகிழ்ச்சியைப் பகிருங்கள்
           </p>
         </div>
 

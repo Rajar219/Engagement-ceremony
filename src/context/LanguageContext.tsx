@@ -362,7 +362,7 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType>({
   language: 'bilingual',
-  setLanguage: () => {},
+  setLanguage: () => { },
   t: translationsData.bilingual,
 });
 

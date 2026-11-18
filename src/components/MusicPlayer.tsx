@@ -73,11 +73,11 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({ autoPlayTrigger }) => 
         preload="auto"
       />
 
-      {/* Floating Audio Control Button */}
+      {/* Floating Audio Control Button (Zero Glassmorphism) */}
       <button
         onClick={togglePlay}
         aria-label={isPlaying ? 'Pause music' : 'Play music'}
-        className="group relative flex items-center gap-2.5 px-3.5 py-2.5 rounded-full bg-[#ffffff]/92 hover:bg-[#faf8f4] border border-[#c5a059]/45 shadow-[0_8px_24px_rgba(35,28,24,0.12)] hover:shadow-[0_8px_30px_rgba(197,160,89,0.35)] backdrop-blur-md transition-all duration-300 cursor-pointer"
+        className="group relative flex items-center gap-2.5 px-3.5 py-2.5 rounded-full bg-[#ffffff] hover:bg-[#faf8f4] border border-[#c5a059]/50 shadow-[0_8px_24px_rgba(35,28,24,0.14)] hover:shadow-[0_8px_30px_rgba(197,160,89,0.35)] transition-all duration-300 cursor-pointer"
       >
         {/* Equalizer Wave / Icon */}
         {isPlaying ? (

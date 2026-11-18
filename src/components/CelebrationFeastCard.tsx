@@ -52,8 +52,8 @@ export const CelebrationFeastCard: React.FC = () => {
 
   return (
     <section id="schedule-section" className="relative w-full py-8 px-4 max-w-3xl mx-auto text-center">
-      {/* MATCHING LUXURY COTTON-RAG STATIONERY CARD */}
-      <div className="luxury-card p-6 sm:p-10 shadow-xl overflow-hidden backdrop-blur-md">
+      {/* MATCHING LUXURY COTTON-RAG STATIONERY CARD (Zero Glassmorphism) */}
+      <div className="luxury-card p-6 sm:p-10 shadow-xl overflow-hidden">
         {/* Delicate Gold Corner Floral Ornaments */}
         <CornerOrnaments />
 

@@ -1,107 +1,130 @@
 'use client';
 
 import React from 'react';
-import { Heart } from 'lucide-react';
 import { invitationConfig } from '@/config/invitation.config';
-import { useLanguage } from '@/context/LanguageContext';
 import { CornerOrnaments } from '@/components/CornerOrnaments';
 
 export const CoupleIntro: React.FC = () => {
   const { couple, story } = invitationConfig;
-  const { t, language } = useLanguage();
 
   return (
-    <section id="couple-section" className="relative w-full py-16 px-4 max-w-4xl mx-auto text-center">
-      {/* Ornamental Section Header */}
-      <div className="flex flex-col items-center mb-12">
-        <span className={`text-[11px] text-[#8e6c2e] font-semibold mb-2 ${language === 'ta' ? 'font-tamil-serif' : 'uppercase tracking-[0.25em] font-serif'}`}>
-          {language === 'ta' ? 'மணமக்கள் அறிமுகம்' : 'Two Souls • One Beautiful Journey'}
+    <section id="couple-section" className="relative w-full py-12 px-4 max-w-4xl mx-auto text-center">
+      {/* Ornamental Section Header (Strict Rule: English line, then Tamil line, equal font size) */}
+      <div className="flex flex-col items-center mb-10">
+        <span className="text-xs sm:text-sm text-[#8e6c2e] font-semibold uppercase tracking-[0.25em] font-serif block mb-1">
+          Two Souls • One Beautiful Journey
         </span>
-        <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold gold-foil-text tracking-wide">
-          {language === 'ta' ? 'மணமகன் & மணமகள்' : 'The Groom & Bride'}
+        <span className="text-xs sm:text-sm text-[#8e6c2e] font-semibold font-tamil-serif block mb-3">
+          இரு இதயங்கள் • ஒரு இனிய இல்லறப் பயணம்
+        </span>
+
+        <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold gold-foil-text tracking-wide mb-1">
+          The Groom &amp; Bride
         </h2>
+        <h2 className="font-tamil-heading text-3xl sm:text-4xl md:text-5xl font-bold gold-foil-text tracking-wide">
+          மணமகன் &amp; மணமகள்
+        </h2>
+
         <div className="ornament-divider text-[#c5a059]/60 font-serif text-sm w-48 mx-auto my-4">
           ❦
         </div>
-        <p className="text-xs sm:text-sm text-[#5c534b] max-w-lg font-serif italic leading-relaxed">
-          "{story.narrative}"
+
+        <p className="text-xs sm:text-sm text-[#5c534b] max-w-lg font-serif italic leading-relaxed mb-1">
+          &ldquo;{story.narrative}&rdquo;
+        </p>
+        <p className="text-xs sm:text-sm text-[#5c534b] max-w-lg font-tamil leading-relaxed">
+          &ldquo;பெற்றோர்கள் மற்றும் குடும்பத்தினரின் நல்லாசியுடன் இணையும் இரு இதயங்கள்.&rdquo;
         </p>
       </div>
 
-      {/* Couple Profile Cards (Luxury Editorial Stationery Style) */}
+      {/* Couple Profile Cards (Luxury Editorial Stationery Style — Zero Glassmorphism) */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 my-6 text-center">
         {/* GROOM CARD */}
         <div className="luxury-card p-8 sm:p-10 flex flex-col items-center group transition-all duration-300 hover:shadow-2xl">
           <CornerOrnaments color="text-[#c5a059]/40" />
 
-          {/* Monogram Medallion with Authentic Tamil Initial: ஞா. */}
-          <div className="w-20 h-20 rounded-full border border-[#c5a059] bg-[#fdfbf7] flex items-center justify-center text-[#231c18] font-tamil-heading font-bold text-2xl mb-4 shadow-sm group-hover:scale-105 transition-transform select-none">
-            <span className="leading-none pt-0.5">ஞா.</span>
+          {/* Authentic Tamil Initial: Displayed directly without circle, badge, or container */}
+          <div className="text-4xl sm:text-5xl font-tamil-heading font-bold text-[#8e6c2e] mb-2 text-center select-none leading-none">
+            ஞா.
           </div>
 
-          <span className={`text-[10px] text-[#8e6c2e] font-semibold ${language === 'ta' ? 'font-tamil-sans' : 'uppercase tracking-[0.25em] font-sans'}`}>
-            {language === 'ta' ? 'மணமகன் • Groom' : 'Groom'}
+          {/* Role (English line, then Tamil line, matching size) */}
+          <span className="text-xs sm:text-sm text-[#8e6c2e] font-semibold uppercase tracking-[0.22em] font-sans block mb-0.5">
+            The Groom
+          </span>
+          <span className="text-xs sm:text-sm text-[#8e6c2e] font-semibold font-tamil-sans block mb-3">
+            மணமகன்
           </span>
 
-          <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#231c18] mt-1 mb-1">
+          {/* Groom Names (English line, then Tamil line, matching size) */}
+          <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#231c18] mb-1">
             {couple.groom.fullName}
           </h3>
-
-          <span className="text-sm font-tamil-serif font-semibold text-[#8e6c2e] mb-2">
+          <h3 className="font-tamil-heading text-2xl sm:text-3xl font-bold text-[#231c18] mb-3">
             ஞா. வல்லரசு
-          </span>
+          </h3>
 
           <div className="w-16 h-px bg-[#c5a059]/40 my-2" />
 
-          <p className="text-xs sm:text-sm text-[#5c534b] font-tamil leading-relaxed">
-            {couple.groom.parents}
+          {/* Parents Lineage (English line, then Tamil line, matching size) */}
+          <p className="text-xs sm:text-sm text-[#5c534b] font-sans leading-relaxed mb-1">
+            Son of Mr. V. Gnanasekar &amp; Mrs. G. Meena
           </p>
-          <p className="text-[11px] text-[#766c62] font-sans mt-1">
-            Triplicane, Chennai
+          <p className="text-xs sm:text-sm text-[#5c534b] font-tamil leading-relaxed mb-3">
+            திரு. V. ஞானசேகர் &amp; திருமதி. G. மீனா அவர்களின் அன்பு மகன்
           </p>
 
-          {couple.groom.bio && (
-            <p className="text-xs text-[#8e6c2e]/90 font-serif italic mt-3">
-              "{couple.groom.bio}"
-            </p>
-          )}
+          {/* Location (English line, then Tamil line, matching size) */}
+          <p className="text-xs sm:text-sm text-[#766c62] font-sans">
+            Triplicane, Chennai
+          </p>
+          <p className="text-xs sm:text-sm text-[#766c62] font-tamil">
+            திருவல்லிக்கேணி, சென்னை
+          </p>
         </div>
 
         {/* BRIDE CARD */}
         <div className="luxury-card p-8 sm:p-10 flex flex-col items-center group transition-all duration-300 hover:shadow-2xl">
           <CornerOrnaments color="text-[#c5a059]/40" />
 
-          {/* Monogram Medallion with Authentic Tamil Initial: க. */}
-          <div className="w-20 h-20 rounded-full border border-[#c5a059] bg-[#fdfbf7] flex items-center justify-center text-[#231c18] font-tamil-heading font-bold text-2xl mb-4 shadow-sm group-hover:scale-105 transition-transform select-none">
-            <span className="leading-none pt-0.5">க.</span>
+          {/* Authentic Tamil Initial: Displayed directly without circle, badge, or container */}
+          <div className="text-4xl sm:text-5xl font-tamil-heading font-bold text-[#8e6c2e] mb-2 text-center select-none leading-none">
+            க.
           </div>
 
-          <span className={`text-[10px] text-[#8e6c2e] font-semibold ${language === 'ta' ? 'font-tamil-sans' : 'uppercase tracking-[0.25em] font-sans'}`}>
-            {language === 'ta' ? 'மணமகள் • Bride' : 'Bride'}
+          {/* Role (English line, then Tamil line, matching size) */}
+          <span className="text-xs sm:text-sm text-[#8e6c2e] font-semibold uppercase tracking-[0.22em] font-sans block mb-0.5">
+            The Bride
+          </span>
+          <span className="text-xs sm:text-sm text-[#8e6c2e] font-semibold font-tamil-sans block mb-3">
+            மணமகள்
           </span>
 
-          <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#231c18] mt-1 mb-1">
+          {/* Bride Names (English line, then Tamil line, matching size) */}
+          <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#231c18] mb-1">
             {couple.bride.fullName}
           </h3>
-
-          <span className="text-sm font-tamil-serif font-semibold text-[#8e6c2e] mb-2">
+          <h3 className="font-tamil-heading text-2xl sm:text-3xl font-bold text-[#231c18] mb-3">
             க. பிரியங்கா
-          </span>
+          </h3>
 
           <div className="w-16 h-px bg-[#c5a059]/40 my-2" />
 
-          <p className="text-xs sm:text-sm text-[#5c534b] font-tamil leading-relaxed">
-            {couple.bride.parents}
+          {/* Parents Lineage (English line, then Tamil line, matching size) */}
+          <p className="text-xs sm:text-sm text-[#5c534b] font-sans leading-relaxed mb-1">
+            Daughter of Mr. Kabali &amp; Mrs. K. Sumathy
           </p>
-          <p className="text-[11px] text-[#766c62] font-sans mt-1">
-            Chennai, Tamil Nadu
+          <p className="text-xs sm:text-sm text-[#5c534b] font-tamil leading-relaxed mb-3">
+            திரு. கபாலி &amp; திருமதி. K. சுமதி அவர்களின் அன்பு மகள்
           </p>
 
-          {couple.bride.bio && (
-            <p className="text-xs text-[#8e6c2e]/90 font-serif italic mt-3">
-              "{couple.bride.bio}"
-            </p>
-          )}
+          {/* Location (English line, then Tamil line, matching size) */}
+          <p className="text-xs sm:text-sm text-[#766c62] font-sans">
+            Chennai, Tamil Nadu
+          </p>
+          <p className="text-xs sm:text-sm text-[#766c62] font-tamil">
+            சென்னை, தமிழ்நாடு
+          </p>
         </div>
       </div>
     </section>
