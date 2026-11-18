@@ -51,7 +51,7 @@ export const FamilyIntro: React.FC = () => {
 
           <p className="text-xs text-[#5a4a42] font-tamil leading-relaxed">
             {language === 'ta'
-              ? 'தங்கள் மூத்த புதல்வன் ஞா. வல்லரசுவின் நிச்சயதார்த்த வைபவத்திற்கு தங்களை அன்புடன் அழைக்கின்றனர்.'
+              ? 'தங்கள் மூத்த புதல்வன் ஞா. வள்ளலரசுவின் நிச்சயதார்த்த வைபவத்திற்கு தங்களை அன்புடன் அழைக்கின்றனர்.'
               : `Cordially invite your gracious presence and heartfelt blessings on the celebration of their son, ${couple.groom.fullName}.`}
           </p>
         </div>
@@ -67,7 +67,7 @@ export const FamilyIntro: React.FC = () => {
           </span>
 
           <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#231c18] mt-2 mb-1">
-            Mr. Kabali &amp; Mrs. K. Sumathy
+            Mr. S. Kabali &amp; Mrs. K. Sumathi
           </h3>
 
           <p className="text-xs text-[#8c6b32] font-tamil-sans tracking-wide mt-1">

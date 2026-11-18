@@ -5,10 +5,11 @@ import { invitationConfig } from '@/config/invitation.config';
 
 interface EnvelopeOpenerProps {
   onOpenComplete: () => void;
+  onOpenStart?: () => void;
   isOpen: boolean;
 }
 
-export const EnvelopeOpener: React.FC<EnvelopeOpenerProps> = ({ onOpenComplete, isOpen }) => {
+export const EnvelopeOpener: React.FC<EnvelopeOpenerProps> = ({ onOpenComplete, onOpenStart, isOpen }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isFading, setIsFading] = useState(false);
   const introVideoRef = useRef<HTMLVideoElement>(null);
@@ -37,7 +38,6 @@ export const EnvelopeOpener: React.FC<EnvelopeOpenerProps> = ({ onOpenComplete, 
       const prevHtmlOverflow = document.documentElement.style.overflow;
       document.body.style.overflow = 'hidden';
       document.documentElement.style.overflow = 'hidden';
-
       return () => {
         document.body.style.overflow = prevBodyOverflow;
         document.documentElement.style.overflow = prevHtmlOverflow;
@@ -49,9 +49,7 @@ export const EnvelopeOpener: React.FC<EnvelopeOpenerProps> = ({ onOpenComplete, 
   const finishIntroAndRevealHero = useCallback(() => {
     if (isFading) return;
     setIsFading(true);
-
     onOpenComplete();
-
     document.body.style.overflow = '';
     document.documentElement.style.overflow = '';
   }, [isFading, onOpenComplete]);
@@ -62,18 +60,18 @@ export const EnvelopeOpener: React.FC<EnvelopeOpenerProps> = ({ onOpenComplete, 
     hasTriggeredRef.current = true;
     setIsPlaying(true);
 
+    // Muted video + trigger background music immediately upon user gesture
+    onOpenStart?.();
+
     const video = introVideoRef.current;
     if (video) {
       try {
+        video.muted = true;
         video.currentTime = 0;
         const playPromise = video.play();
         if (playPromise !== undefined) {
           playPromise.catch(() => {
-            // Mobile fallback if unmuted playback is blocked
-            video.muted = true;
-            video.play().catch(() => {
-              finishIntroAndRevealHero();
-            });
+            finishIntroAndRevealHero();
           });
         }
       } catch (err) {
@@ -82,7 +80,7 @@ export const EnvelopeOpener: React.FC<EnvelopeOpenerProps> = ({ onOpenComplete, 
     } else {
       finishIntroAndRevealHero();
     }
-  }, [finishIntroAndRevealHero]);
+  }, [finishIntroAndRevealHero, onOpenStart]);
 
   // Optional: trigger reveal when video blooms into white light near end (~7.2s of 7.9s)
   const handleTimeUpdate = () => {
@@ -111,6 +109,7 @@ export const EnvelopeOpener: React.FC<EnvelopeOpenerProps> = ({ onOpenComplete, 
         ref={introVideoRef}
         src={videoSrc}
         poster={posterSrc}
+        muted
         playsInline
         // @ts-ignore - WebKit iOS attribute
         webkit-playsinline="true"

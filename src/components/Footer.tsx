@@ -43,7 +43,7 @@ export const Footer: React.FC = () => {
           {closing.signature}
         </p>
         <p className="font-tamil-heading text-base sm:text-lg font-bold text-[#231c18] tracking-wider">
-          ஞா. வல்லரசு &amp; க. பிரியங்கா மற்றும் குடும்பத்தினர்
+          ஞா. வள்ளலரசு &amp; க. பிரியங்கா மற்றும் குடும்பத்தினர்
         </p>
 
         <div className="mt-8 flex items-center gap-1.5 text-[11px] text-[#8c6b32] uppercase tracking-widest font-sans">

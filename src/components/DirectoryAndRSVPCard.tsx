@@ -64,10 +64,10 @@ export const DirectoryAndRSVPCard: React.FC = () => {
             </div>
             <div className="flex flex-col sm:text-right">
               <span className="text-xs sm:text-sm font-sans text-[#5a4a42]">
-                Mr. Kabali &amp; Family
+                Mr. S. Kabali &amp; Family
               </span>
               <span className="text-xs sm:text-sm text-[#5a4a42] font-tamil">
-                திரு. கபாலி மற்றும் குடும்பத்தினர்
+                திரு. S. கபாலி மற்றும் குடும்பத்தினர்
               </span>
             </div>
           </div>

@@ -35,7 +35,7 @@ export const WeddingSection: React.FC = () => {
             &ldquo;With the sacred blessings of elders and loved ones, G. Vallarasu and K. Priyanka will unite in holy matrimony following traditional Vedic rites.&rdquo;
           </p>
           <p className="text-xs sm:text-sm text-[#5c534b] font-tamil max-w-lg mx-auto leading-relaxed">
-            &ldquo;இறைவன் திருவருளாலும் பெரியோர்களின் ஆசிகளாலும் ஞா. வல்லரசு &amp; க. பிரியங்கா ஆகியோரின் திருமண முகூர்த்தம் முறைப்படி இனிதே நடைபெற உள்ளது.&rdquo;
+            &ldquo;இறைவன் திருவருளாலும் பெரியோர்களின் ஆசிகளாலும் ஞா. வள்ளலரசு &amp; க. பிரியங்கா ஆகியோரின் திருமண முகூர்த்தம் முறைப்படி இனிதே நடைபெற உள்ளது.&rdquo;
           </p>
         </div>
 

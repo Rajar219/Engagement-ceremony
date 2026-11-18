@@ -39,7 +39,7 @@ export const BlessingsFamilyCard: React.FC = () => {
             &ldquo;With the divine grace of the Almighty and the heartfelt blessings of our elders, we cordially invite you with your family to join us in celebrating the auspicious Engagement Ceremony of Vallarasu and Priyanka.&rdquo;
           </p>
           <p className="text-xs sm:text-sm text-[#4a3b32] font-tamil leading-relaxed">
-            &ldquo;அன்பும் பண்பும் நிறைந்த எங்கள் இல்லத்து மணமக்கள் ஞா. வல்லரசு &amp; க. பிரியங்கா ஆகியோரின் திருமண நிச்சயதார்த்த நன்னாளில் தாங்கள் தங்கள் குடும்ப சகிதமாக வருகை தந்து வாழ்த்தி அருள அன்புடன் அழைக்கின்றோம்.&rdquo;
+            &ldquo;அன்பும் பண்பும் நிறைந்த எங்கள் இல்லத்து மணமக்கள் ஞா. வள்ளலரசு &amp; க. பிரியங்கா ஆகியோரின் திருமண நிச்சயதார்த்த நன்னாளில் தாங்கள் தங்கள் குடும்ப சகிதமாக வருகை தந்து வாழ்த்தி அருள அன்புடன் அழைக்கின்றோம்.&rdquo;
           </p>
         </div>
 
@@ -92,10 +92,10 @@ export const BlessingsFamilyCard: React.FC = () => {
               </span>
 
               <h4 className="font-serif text-base sm:text-lg font-bold text-[#231c18] leading-snug">
-                Mr. Kabali &amp; Mrs. K. Sumathy
+                Mr. S. Kabali &amp; Mrs. K. Sumathi
               </h4>
               <h4 className="font-tamil-heading text-base sm:text-lg font-bold text-[#231c18] leading-snug mb-1">
-                திரு. கபாலி &amp; திருமதி. K. சுமதி
+                திரு. S. கபாலி &amp; திருமதி. K. சுமதி
               </h4>
 
               <p className="text-xs text-[#715c4d] font-sans">

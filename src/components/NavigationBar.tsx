@@ -52,7 +52,7 @@ export const NavigationBar: React.FC<NavigationBarProps> = ({ isVisible }) => {
             Vallarasu &amp; Priyanka
           </span>
           <span className="font-tamil-serif text-[11px] sm:text-xs font-semibold text-[#8e6c2e]">
-            ஞா. வல்லரசு &amp; க. பிரியங்கா
+            ஞா. வள்ளலரசு &amp; க. பிரியங்கா
           </span>
         </a>
 

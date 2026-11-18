@@ -56,7 +56,7 @@ export const CoupleIntro: React.FC = () => {
             {couple.groom.fullName}
           </h3>
           <h3 className="font-tamil-heading text-2xl sm:text-3xl font-bold text-[#231c18] mb-3">
-            ஞா. வல்லரசு
+            ஞா. வள்ளலரசு
           </h3>
 
           <div className="w-16 h-px bg-[#c5a059]/40 my-2" />
@@ -102,10 +102,10 @@ export const CoupleIntro: React.FC = () => {
 
           {/* Parents Lineage (English line, then Tamil line, matching size) */}
           <p className="text-xs sm:text-sm text-[#5c534b] font-sans leading-relaxed mb-1">
-            Daughter of Mr. Kabali &amp; Mrs. K. Sumathy
+            Daughter of Mr. S. Kabali &amp; Mrs. K. Sumathi
           </p>
           <p className="text-xs sm:text-sm text-[#5c534b] font-tamil leading-relaxed mb-3">
-            திரு. கபாலி &amp; திருமதி. K. சுமதி அவர்களின் அன்பு மகள்
+            திரு. S. கபாலி &amp; திருமதி. K. சுமதி அவர்களின் அன்பு மகள்
           </p>
 
           {/* Location (English line, then Tamil line, matching size) */}

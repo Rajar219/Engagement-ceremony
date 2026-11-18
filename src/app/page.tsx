@@ -48,6 +48,7 @@ export default function InvitationPage() {
         {/* SECTION 0: FULL-SCREEN TAP-TO-OPEN WAX SEAL INTRO GATE (100dvh) */}
         <EnvelopeOpener
           isOpen={isEnvelopeOpened}
+          onOpenStart={() => setMusicTrigger(true)}
           onOpenComplete={handleOpenComplete}
         />
 

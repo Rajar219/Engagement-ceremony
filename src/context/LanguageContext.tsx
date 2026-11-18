@@ -112,7 +112,7 @@ const translationsData: Record<LanguageMode, Translations> = {
 
     heroSubtitle: 'WITH DIVINE BLESSINGS OF OUR ELDERS & FAMILY / பெரியோர்கள் மற்றும் குடும்பத்தினரின் நல்லாசியுடன்',
     groomName: 'G. Vallarasu',
-    groomNameTamil: 'ஞா. வல்லரசு',
+    groomNameTamil: 'ஞா. வள்ளலரசு',
     brideName: 'K. Priyanka',
     brideNameTamil: 'க. பிரியங்கா',
     welcomeQuote: '"Together with their families, cordially invite you to celebrate our Engagement & Wedding Celebration"',
@@ -137,12 +137,12 @@ const translationsData: Record<LanguageMode, Translations> = {
 
     blessingsSectionHeader: 'Blessings & Family Invitation • குடும்பத்தினரின் நல்வரவேற்பு',
     blessingsVerse: 'With hearts full of gratitude and love, we invite you to grace the sacred union of G. Vallarasu and K. Priyanka with your warm presence and heartfelt prayers.',
-    blessingsVerseTamil: 'அன்பும் பண்பும் நிறைந்த எங்கள் இல்லத்து மணமக்கள் ஞா. வல்லரசு & க. பிரியங்கா ஆகியோரின் திருமண நிச்சயதார்த்த நன்னாளில் தாங்கள் தங்கள் குடும்ப சகிதமாக வருகை தந்து வாழ்த்தி அருள அன்புடன் அழைக்கின்றோம்.',
+    blessingsVerseTamil: 'அன்பும் பண்பும் நிறைந்த எங்கள் இல்லத்து மணமக்கள் ஞா. வள்ளலரசு & க. பிரியங்கா ஆகியோரின் திருமண நிச்சயதார்த்த நன்னாளில் தாங்கள் தங்கள் குடும்ப சகிதமாக வருகை தந்து வாழ்த்தி அருள அன்புடன் அழைக்கின்றோம்.',
     familyBoxTitle: 'Parents of Groom & Bride / மணமகன் & மணமகள் வீட்டார்',
     groomParentsTitle: "Groom's Parents • மணமகன் பெற்றோர்",
     groomParentsNames: 'Mr. V. Gnanasekar & Mrs. G. Meena (திரு. V. ஞானசேகர் & திருமதி G. மீனா)',
     brideParentsTitle: "Bride's Parents • மணமகள் பெற்றோர்",
-    brideParentsNames: 'Mr. Kabali & Mrs. K. Sumathy (திரு. கபாலி & திருமதி K. சுமதி)',
+    brideParentsNames: 'Mr. S. Kabali & Mrs. K. Sumathi (திரு. S. கபாலி & திருமதி K. சுமதி)',
 
     highlightsSectionHeader: 'நிகழ்வுகள் & விருந்து • Celebration & Dinner',
     itinerary1Title: 'Engagement Muhurtham • நிச்சயதார்த்தம்',
@@ -160,7 +160,7 @@ const translationsData: Record<LanguageMode, Translations> = {
     dirGroomFamilyLabel: "Groom's Family / மணமகன் வீட்டார்",
     dirGroomFamilyValue: 'Mr. V. Gnanasekar, Mrs. G. Meena & Family (திரு. V. ஞானசேகர் & திருமதி G. மீனா குடும்பத்தினர்)',
     dirBrideFamilyLabel: "Bride's Family / மணமகள் வீட்டார்",
-    dirBrideFamilyValue: 'Mr. Kabali, Mrs. K. Sumathy & Family (திரு. கபாலி & திருமதி K. சுமதி குடும்பத்தினர்)',
+    dirBrideFamilyValue: 'Mr. S. Kabali, Mrs. K. Sumathi & Family (திரு. S. கபாலி & திருமதி K. சுமதி குடும்பத்தினர்)',
     dirRelativesLabel: 'Relatives & Friends / உற்றார் உறவினர் & நண்பர்கள்',
     dirRelativesValue: 'உற்றார், உறவினர்கள் மற்றும் நண்பர்கள் (Extended Family, Relatives & Friends)',
 
@@ -196,8 +196,8 @@ const translationsData: Record<LanguageMode, Translations> = {
     skipIntro: 'தவிர் ➔',
 
     heroSubtitle: 'பெரியோர்கள் மற்றும் குடும்பத்தினரின் நல்லாசியுடன்',
-    groomName: 'ஞா. வல்லரசு',
-    groomNameTamil: 'ஞா. வல்லரசு',
+    groomName: 'ஞா. வள்ளலரசு',
+    groomNameTamil: 'ஞா. வள்ளலரசு',
     brideName: 'க. பிரியங்கா',
     brideNameTamil: 'க. பிரியங்கா',
     welcomeQuote: '"இருவீட்டாரும் இணைந்து தங்கள் இல்லத் திருமண நிச்சயதார்த்த விழாவிற்கு தங்களை அன்புடன் அழைக்கிறோம்"',
@@ -221,13 +221,13 @@ const translationsData: Record<LanguageMode, Translations> = {
     addCalendarBtn: 'நாட்காட்டியில் சேர்க்க (Calendar)',
 
     blessingsSectionHeader: 'குடும்பத்தினரின் நல்வரவேற்பு',
-    blessingsVerse: 'அன்பும் பண்பும் நிறைந்த எங்கள் இல்லத்து மணமக்கள் ஞா. வல்லரசு & க. பிரியங்கா ஆகியோரின் திருமண நிச்சயதார்த்த நன்னாளில் தாங்கள் தங்கள் குடும்ப சகிதமாக வருகை தந்து வாழ்த்தி அருள அன்புடன் அழைக்கின்றோம்.',
-    blessingsVerseTamil: 'அன்பும் பண்பும் நிறைந்த எங்கள் இல்லத்து மணமக்கள் ஞா. வல்லரசு & க. பிரியங்கா ஆகியோரின் திருமண நிச்சயதார்த்த நன்னாளில் தாங்கள் தங்கள் குடும்ப சகிதமாக வருகை தந்து வாழ்த்தி அருள அன்புடன் அழைக்கின்றோம்.',
+    blessingsVerse: 'அன்பும் பண்பும் நிறைந்த எங்கள் இல்லத்து மணமக்கள் ஞா. வள்ளலரசு & க. பிரியங்கா ஆகியோரின் திருமண நிச்சயதார்த்த நன்னாளில் தாங்கள் தங்கள் குடும்ப சகிதமாக வருகை தந்து வாழ்த்தி அருள அன்புடன் அழைக்கின்றோம்.',
+    blessingsVerseTamil: 'அன்பும் பண்பும் நிறைந்த எங்கள் இல்லத்து மணமக்கள் ஞா. வள்ளலரசு & க. பிரியங்கா ஆகியோரின் திருமண நிச்சயதார்த்த நன்னாளில் தாங்கள் தங்கள் குடும்ப சகிதமாக வருகை தந்து வாழ்த்தி அருள அன்புடன் அழைக்கின்றோம்.',
     familyBoxTitle: 'மணமகன் & மணமகள் வீட்டார்',
     groomParentsTitle: 'மணமகன் பெற்றோர்',
     groomParentsNames: 'திரு. V. ஞானசேகர் & திருமதி G. மீனா',
     brideParentsTitle: 'மணமகள் பெற்றோர்',
-    brideParentsNames: 'திரு. கபாலி & திருமதி K. சுமதி',
+    brideParentsNames: 'திரு. S. கபாலி & திருமதி K. சுமதி',
 
     highlightsSectionHeader: 'நிகழ்வுகள் & விருந்து உபசரிப்பு',
     itinerary1Title: 'நிச்சயதார்த்த சுபமுகூர்த்தம்',
@@ -245,7 +245,7 @@ const translationsData: Record<LanguageMode, Translations> = {
     dirGroomFamilyLabel: 'மணமகன் வீட்டார்',
     dirGroomFamilyValue: 'திரு. V. ஞானசேகர், திருமதி G. மீனா மற்றும் குடும்பத்தினர்',
     dirBrideFamilyLabel: 'மணமகள் வீட்டார்',
-    dirBrideFamilyValue: 'திரு. கபாலி, திருமதி K. சுமதி மற்றும் குடும்பத்தினர்',
+    dirBrideFamilyValue: 'திரு. S. கபாலி, திருமதி K. சுமதி மற்றும் குடும்பத்தினர்',
     dirRelativesLabel: 'உற்றார் உறவினர் & நண்பர்கள்',
     dirRelativesValue: 'உற்றார், உறவினர்கள் மற்றும் நண்பர்கள் அனைவரும்',
 
@@ -282,7 +282,7 @@ const translationsData: Record<LanguageMode, Translations> = {
 
     heroSubtitle: 'WITH DIVINE BLESSINGS OF OUR ELDERS & FAMILY',
     groomName: 'G. Vallarasu',
-    groomNameTamil: 'ஞா. வல்லரசு',
+    groomNameTamil: 'ஞா. வள்ளலரசு',
     brideName: 'K. Priyanka',
     brideNameTamil: 'க. பிரியங்கா',
     welcomeQuote: '"Together with their families, cordially invite you to celebrate our Engagement & Wedding Celebration"',
@@ -307,12 +307,12 @@ const translationsData: Record<LanguageMode, Translations> = {
 
     blessingsSectionHeader: 'Blessings & Family Invitation',
     blessingsVerse: 'With hearts full of gratitude and love, we invite you to grace the sacred union of G. Vallarasu and K. Priyanka with your warm presence and heartfelt prayers.',
-    blessingsVerseTamil: 'அன்பும் பண்பும் நிறைந்த எங்கள் இல்லத்து மணமக்கள் ஞா. வல்லரசு & க. பிரியங்கா ஆகியோரின் திருமண நிச்சயதார்த்த நன்னாளில் தாங்கள் தங்கள் குடும்ப சகிதமாக வருகை தந்து வாழ்த்தி அருள அன்புடன் அழைக்கின்றோம்.',
+    blessingsVerseTamil: 'அன்பும் பண்பும் நிறைந்த எங்கள் இல்லத்து மணமக்கள் ஞா. வள்ளலரசு & க. பிரியங்கா ஆகியோரின் திருமண நிச்சயதார்த்த நன்னாளில் தாங்கள் தங்கள் குடும்ப சகிதமாக வருகை தந்து வாழ்த்தி அருள அன்புடன் அழைக்கின்றோம்.',
     familyBoxTitle: 'Parents of Groom & Bride',
     groomParentsTitle: "Groom's Parents",
     groomParentsNames: 'Mr. V. Gnanasekar & Mrs. G. Meena',
     brideParentsTitle: "Bride's Parents",
-    brideParentsNames: 'Mr. Kabali & Mrs. K. Sumathy',
+    brideParentsNames: 'Mr. S. Kabali & Mrs. K. Sumathi',
 
     highlightsSectionHeader: 'Celebration Highlights & Dinner',
     itinerary1Title: 'Engagement Muhurtham',
@@ -330,7 +330,7 @@ const translationsData: Record<LanguageMode, Translations> = {
     dirGroomFamilyLabel: "Groom's Family",
     dirGroomFamilyValue: 'Mr. V. Gnanasekar, Mrs. G. Meena & Family',
     dirBrideFamilyLabel: "Bride's Family",
-    dirBrideFamilyValue: 'Mr. Kabali, Mrs. K. Sumathy & Family',
+    dirBrideFamilyValue: 'Mr. S. Kabali, Mrs. K. Sumathi & Family',
     dirRelativesLabel: 'Relatives & Friends',
     dirRelativesValue: 'Extended Family, Relatives & Friends',
 

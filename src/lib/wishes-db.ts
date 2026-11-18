@@ -17,7 +17,7 @@ const INITIAL_HISTORICAL_WISHES: Wish[] = [
   },
   {
     id: 'wish_historical_2',
-    name: 'Mr. Kabali & Mrs. K. Sumathy',
+    name: 'Mr. S. Kabali & Mrs. K. Sumathi',
     relation: "Bride's Parents",
     message: 'Wishing our dearest daughter Priyanka and dear son-in-law Vallarasu a blessed lifetime of shared dreams, laughter, respect, and auspicious prosperity.',
     likes: 45,
