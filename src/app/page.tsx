@@ -23,6 +23,15 @@ export default function InvitationPage() {
   const [isEnvelopeOpened, setIsEnvelopeOpened] = useState(false);
   const [musicTrigger, setMusicTrigger] = useState(false);
 
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('opened') === 'true' || params.get('hero') === '1') {
+        setIsEnvelopeOpened(true);
+      }
+    }
+  }, []);
+
   const handleOpenComplete = () => {
     setIsEnvelopeOpened(true);
     setMusicTrigger(true);
