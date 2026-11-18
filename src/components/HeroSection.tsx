@@ -112,15 +112,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
     filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.9))',
   };
 
-  const brightGoldStyle: React.CSSProperties = {
-    color: '#FFF2C6',
-    opacity: 1,
-    WebkitTextFillColor: '#FFF2C6',
-    WebkitTextStroke: '0',
-    textShadow:
-      '0 0 14px rgba(255, 215, 100, 0.8), 0 2px 4px rgba(0, 0, 0, 0.95), 0 4px 12px rgba(0, 0, 0, 0.85)',
-  };
-
   // Stylish flowing script typography for couple names (Great Vibes / Allura / Alex Brush)
   const stylishCoupleNameStyle: React.CSSProperties = {
     color: '#FFFFFF',
@@ -161,138 +152,112 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
       <GoldenDustParticles />
 
       {/* 2. UNIFIED POSTER COMPOSITION (All content strictly ordered, centered, and harmoniously spaced) */}
-      <div className="relative z-10 w-full max-w-md mx-auto flex flex-col items-center text-center mt-[max(2.5rem,7.5svh)] sm:mt-[8svh] px-2">
-        {/* FIRST – ENGAGEMENT TITLE */}
+      <div className="relative z-10 w-full max-w-md mx-auto flex flex-col items-center text-center mt-[max(1.75rem,5svh)] sm:mt-[6.5svh] px-3">
+        {/* 1 & 2: WITH THE BLESSINGS OF OUR FAMILIES / எங்கள் குடும்பத்தினரின் நல்லாசியுடன் */}
         <div
-          className={`flex flex-col items-center gap-0.5 sm:gap-1 transition-all duration-700 ease-out delay-100 ${
+          className={`flex flex-col items-center gap-0.5 transition-all duration-700 ease-out delay-100 ${
             mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
           }`}
         >
-          <h2
-            className="font-serif uppercase tracking-[0.24em] sm:tracking-[0.3em] text-[clamp(12px,2.9vw,15px)] font-bold select-none text-center"
+          <span
+            className="font-serif uppercase tracking-[0.24em] sm:tracking-[0.28em] text-[clamp(11px,2.6vw,13.5px)] font-bold select-none text-center"
             style={brightWhiteStyle}
           >
-            ENGAGEMENT CEREMONY
-          </h2>
-          <p
-            className="font-tamil-heading text-[clamp(12px,2.9vw,15px)] font-bold tracking-[0.03em] select-none text-center"
+            WITH THE BLESSINGS OF OUR FAMILIES
+          </span>
+          <span
+            className="font-tamil-serif text-[clamp(11px,2.6vw,13.5px)] font-bold tracking-[0.02em] select-none text-center"
             style={brightWhiteStyle}
           >
-            அன்புடன் அழைக்கிறோம்
-          </p>
+            எங்கள் குடும்பத்தினரின் நல்லாசியுடன்
+          </span>
 
-          <FloralDivider className="mt-1.5 xs:mt-2 mb-1 xs:mb-1.5" />
+          <FloralDivider className="mt-1 xs:mt-1.5 mb-0.5 xs:mb-1" />
         </div>
 
-        {/* SECOND – COUPLE NAMES (Large, flowing stylish calligraphy script with radiant brightness) */}
+        {/* 3 & 4: COUPLE NAMES (Large, flowing stylish calligraphy script) */}
         <div
           className={`w-full max-w-sm sm:max-w-md mx-auto my-0.5 xs:my-1 flex flex-col items-center justify-center transition-all duration-700 ease-out delay-300 ${
             mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <h1
-            className="text-[clamp(3.4rem,11.5vw,5.5rem)] leading-[1.1] select-none py-0.5"
+            className="text-[clamp(3.1rem,10.5vw,5rem)] leading-[1.08] select-none py-0.5"
             style={stylishCoupleNameStyle}
           >
             Vallarasu
           </h1>
 
           {/* Ampersand separator: — & — */}
-          <div className="flex items-center justify-center gap-2.5 sm:gap-3 w-36 xs:w-44 sm:w-52 mx-auto my-0.5 xs:my-1 select-none pointer-events-none">
-            <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent via-[#ffe082]/70 to-[#ffe082]" />
+          <div className="flex items-center justify-center gap-2.5 sm:gap-3 w-32 xs:w-40 sm:w-48 mx-auto my-0.5 select-none pointer-events-none">
+            <div className="flex-1 h-[0.75px] bg-gradient-to-r from-transparent via-[#ffe082]/70 to-[#ffe082]" />
             <span
-              className="font-serif italic text-lg xs:text-xl sm:text-2xl text-[#ffe599] font-normal leading-none"
+              className="font-serif italic text-base xs:text-lg sm:text-xl text-[#ffe599] font-normal leading-none"
               style={{
                 textShadow: '0 0 12px rgba(255, 225, 120, 0.8), 0 2px 4px rgba(0, 0, 0, 0.9)',
               }}
             >
               &amp;
             </span>
-            <div className="flex-1 h-[1px] bg-gradient-to-l from-transparent via-[#ffe082]/70 to-[#ffe082]" />
+            <div className="flex-1 h-[0.75px] bg-gradient-to-l from-transparent via-[#ffe082]/70 to-[#ffe082]" />
           </div>
 
           <h1
-            className="text-[clamp(3.4rem,11.5vw,5.5rem)] leading-[1.1] select-none py-0.5"
+            className="text-[clamp(3.1rem,10.5vw,5rem)] leading-[1.08] select-none py-0.5"
             style={stylishCoupleNameStyle}
           >
             Priyanka
           </h1>
 
-          <FloralDivider className="mt-1.5 xs:mt-2 mb-1 xs:mb-1.5" />
+          <FloralDivider className="mt-1 xs:mt-1.5 mb-0.5 xs:mb-1" />
         </div>
 
-        {/* THIRD – CEREMONY DESCRIPTION & FOURTH – DECORATION */}
+        {/* 5 & 6: ENGAGEMENT CEREMONY / திருமண நிச்சயதார்த்த விழா */}
         <div
-          className={`max-w-[300px] xs:max-w-[340px] sm:max-w-md mx-auto px-2 mt-1 xs:mt-1.5 text-center transition-all duration-700 ease-out delay-500 ${
+          className={`flex flex-col items-center gap-0.5 transition-all duration-700 ease-out delay-500 ${
+            mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
+          }`}
+        >
+          <h2
+            className="font-serif uppercase tracking-[0.24em] sm:tracking-[0.28em] text-[clamp(12px,2.9vw,15px)] font-bold select-none text-center"
+            style={brightWhiteStyle}
+          >
+            ENGAGEMENT CEREMONY
+          </h2>
+          <h2
+            className="font-tamil-heading text-[clamp(12px,2.9vw,15px)] font-bold tracking-[0.03em] select-none text-center"
+            style={brightWhiteStyle}
+          >
+            திருமண நிச்சயதார்த்த விழா
+          </h2>
+        </div>
+
+        {/* 7 & 8: CEREMONY DESCRIPTION (Two hearts, one journey... & Tamil translation) */}
+        <div
+          className={`max-w-[300px] xs:max-w-[340px] sm:max-w-md mx-auto px-2 mt-2 xs:mt-2.5 text-center transition-all duration-700 ease-out delay-700 ${
             mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
           }`}
         >
           <p
-            className="font-serif italic font-medium text-[clamp(13px,3.1vw,15px)] leading-[1.45] xs:leading-[1.5] select-none text-[#FFFFFF]"
+            className="font-serif italic font-medium text-[clamp(11.5px,2.7vw,13.5px)] leading-[1.4] select-none text-[#FFFFFF]"
             style={brightWhiteStyle}
           >
             &ldquo;Two hearts, one journey,
             <br />
-            a lifetime of togetherness
-            <br />
-            begins here...&rdquo;
+            a lifetime of togetherness begins here...&rdquo;
           </p>
 
-          {/* FOURTH – DECORATION: Delicate intertwined double heart ornament beneath quotation */}
+          <p
+            className="font-tamil font-medium text-[clamp(11px,2.5vw,13px)] leading-[1.5] select-none text-[#FFFFFF] mt-1"
+            style={brightWhiteStyle}
+          >
+            &ldquo;இரு இதயங்கள், ஒரு பயணம்,
+            <br />
+            வாழ்நாள் முழுமைக்குமான இணைவு இங்கு தொடங்குகிறது...&rdquo;
+          </p>
+
+          {/* Delicate intertwined double hearts */}
           <IntertwinedHearts className="mt-1.5 xs:mt-2" />
-        </div>
-
-        {/* NEWLY FILLED SPACE: CEREMONY DATE, TIME & VENUE BADGE (Elegantly balances the lower space) */}
-        <div
-          className={`mt-2.5 xs:mt-3 sm:mt-4 w-full max-w-xs xs:max-w-sm sm:max-w-md mx-auto flex flex-col items-center gap-1 transition-all duration-700 ease-out delay-700 ${
-            mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
-          }`}
-        >
-          {/* Subtle Top Accent */}
-          <div className="flex items-center justify-center gap-2 w-28 xs:w-36 mx-auto select-none pointer-events-none">
-            <div className="flex-1 h-[0.75px] bg-gradient-to-r from-transparent via-[#ffe082]/60 to-[#ffe082]" />
-            <span className="text-[#ffe082] text-xs">✦</span>
-            <div className="flex-1 h-[0.75px] bg-gradient-to-l from-transparent via-[#ffe082]/60 to-[#ffe082]" />
-          </div>
-
-          {/* Date & Day */}
-          <div className="flex flex-col items-center">
-            <p
-              className="font-serif uppercase tracking-[0.22em] sm:tracking-[0.26em] text-[clamp(11.5px,2.7vw,14px)] font-bold text-[#FFFFFF] select-none text-center"
-              style={brightWhiteStyle}
-            >
-              SUNDAY • 13TH DECEMBER 2026
-            </p>
-            <p
-              className="font-tamil-heading text-[clamp(11.5px,2.7vw,14px)] font-bold tracking-[0.03em] text-[#FFFFFF] select-none text-center mt-0.5"
-              style={brightWhiteStyle}
-            >
-              ஞாயிறு, 13 டிசம்பர் 2026
-            </p>
-          </div>
-
-          {/* Time & Venue */}
-          <div className="flex flex-col items-center mt-0.5">
-            <p
-              className="font-serif tracking-[0.16em] sm:tracking-[0.2em] text-[clamp(10.5px,2.4vw,12.5px)] text-[#FFF2C6] font-semibold uppercase select-none text-center"
-              style={brightGoldStyle}
-            >
-              6:00 PM ONWARDS • RSM BANQUET HALL
-            </p>
-            <p
-              className="font-tamil text-[clamp(10.5px,2.4vw,12.5px)] text-[#FFF2C6] font-medium tracking-[0.02em] select-none text-center mt-0.5"
-              style={brightGoldStyle}
-            >
-              மாலை 6:00 மணி • திருவல்லிக்கேணி, சென்னை
-            </p>
-          </div>
-
-          {/* Subtle Bottom Accent */}
-          <div className="flex items-center justify-center gap-2 w-28 xs:w-36 mx-auto mt-0.5 select-none pointer-events-none">
-            <div className="flex-1 h-[0.75px] bg-gradient-to-r from-transparent via-[#ffe082]/60 to-[#ffe082]" />
-            <span className="text-[#ffe082] text-xs">✦</span>
-            <div className="flex-1 h-[0.75px] bg-gradient-to-l from-transparent via-[#ffe082]/60 to-[#ffe082]" />
-          </div>
         </div>
       </div>
 

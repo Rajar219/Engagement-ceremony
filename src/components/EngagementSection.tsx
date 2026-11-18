@@ -13,43 +13,38 @@ interface TimeLeft {
   seconds: number;
 }
 
+// 13 December 2026, 6:00 PM IST (Asia/Kolkata, UTC+05:30)
+const TARGET_TIME_MS = new Date('2026-12-13T18:00:00+05:30').getTime();
+
+const calculateTimeLeft = (): TimeLeft => {
+  const now = Date.now();
+  const difference = TARGET_TIME_MS - now;
+
+  if (difference <= 0) {
+    return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+  }
+
+  return {
+    days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+    hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+    minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+    seconds: Math.floor((difference % (1000 * 60)) / 1000),
+  };
+};
+
 export const EngagementSection: React.FC = () => {
   const { date, time, venue } = invitationConfig.engagement;
   const { t, language } = useLanguage();
 
-  const targetIsoString = '2026-12-13T18:00:00+05:30';
-
-  const [timeLeft, setTimeLeft] = useState<TimeLeft>({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
+  const [timeLeft, setTimeLeft] = useState<TimeLeft>(calculateTimeLeft);
 
   useEffect(() => {
-    const targetTime = new Date(targetIsoString).getTime();
-
-    const calculateCountdown = () => {
-      const now = new Date().getTime();
-      const difference = targetTime - now;
-
-      if (difference <= 0) {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-        return;
-      }
-
-      setTimeLeft({
-        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-        minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
-        seconds: Math.floor((difference % (1000 * 60)) / 1000),
-      });
-    };
-
-    calculateCountdown();
-    const interval = setInterval(calculateCountdown, 1000);
+    setTimeLeft(calculateTimeLeft());
+    const interval = setInterval(() => {
+      setTimeLeft(calculateTimeLeft());
+    }, 1000);
     return () => clearInterval(interval);
-  }, [targetIsoString]);
+  }, []);
 
   const handleAddToCalendar = () => {
     const title = encodeURIComponent(`Engagement Ceremony: G. Vallarasu & K. Priyanka`);
@@ -125,7 +120,7 @@ END:VCALENDAR`;
         {/* 4 GILDED IVORY PILL CARDS */}
         <div className="relative z-10 grid grid-cols-4 gap-2.5 sm:gap-4 max-w-md mx-auto my-6">
           <div className="p-3 sm:p-4 rounded-2xl bg-[#faf8f4] border border-[#c5a059]/40 shadow-sm flex flex-col items-center">
-            <span className="font-serif text-2xl sm:text-4xl font-bold text-[#231c18]">
+            <span suppressHydrationWarning className="font-serif text-2xl sm:text-4xl font-bold text-[#231c18]">
               {timeLeft.days}
             </span>
             <span className="text-[9px] sm:text-[10px] uppercase tracking-wider text-[#8e6c2e] font-semibold mt-1 font-tamil-sans">
@@ -137,7 +132,7 @@ END:VCALENDAR`;
           </div>
 
           <div className="p-3 sm:p-4 rounded-2xl bg-[#faf8f4] border border-[#c5a059]/40 shadow-sm flex flex-col items-center">
-            <span className="font-serif text-2xl sm:text-4xl font-bold text-[#231c18]">
+            <span suppressHydrationWarning className="font-serif text-2xl sm:text-4xl font-bold text-[#231c18]">
               {timeLeft.hours}
             </span>
             <span className="text-[9px] sm:text-[10px] uppercase tracking-wider text-[#8e6c2e] font-semibold mt-1 font-tamil-sans">
@@ -149,7 +144,7 @@ END:VCALENDAR`;
           </div>
 
           <div className="p-3 sm:p-4 rounded-2xl bg-[#faf8f4] border border-[#c5a059]/40 shadow-sm flex flex-col items-center">
-            <span className="font-serif text-2xl sm:text-4xl font-bold text-[#231c18]">
+            <span suppressHydrationWarning className="font-serif text-2xl sm:text-4xl font-bold text-[#231c18]">
               {timeLeft.minutes}
             </span>
             <span className="text-[9px] sm:text-[10px] uppercase tracking-wider text-[#8e6c2e] font-semibold mt-1 font-tamil-sans">
@@ -161,7 +156,7 @@ END:VCALENDAR`;
           </div>
 
           <div className="p-3 sm:p-4 rounded-2xl bg-[#faf8f4] border border-[#c5a059]/40 shadow-sm flex flex-col items-center">
-            <span className="font-serif text-2xl sm:text-4xl font-bold text-[#231c18]">
+            <span suppressHydrationWarning className="font-serif text-2xl sm:text-4xl font-bold text-[#231c18]">
               {timeLeft.seconds}
             </span>
             <span className="text-[9px] sm:text-[10px] uppercase tracking-wider text-[#8e6c2e] font-semibold mt-1 font-tamil-sans">

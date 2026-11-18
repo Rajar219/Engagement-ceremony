@@ -40,7 +40,7 @@ export const CoupleIntro: React.FC = () => {
       {/* Couple Profile Cards (Luxury Editorial Stationery Style — Zero Glassmorphism) */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 my-6 text-center">
         {/* GROOM CARD */}
-        <div className="luxury-card px-4 py-8 sm:px-8 sm:py-10 flex flex-col items-center group transition-all duration-300 hover:shadow-2xl">
+        <div className="luxury-card h-full px-4 py-8 sm:px-8 sm:py-10 flex flex-col items-center justify-between group transition-all duration-300 hover:shadow-2xl">
           <CornerOrnaments color="text-[#c5a059]/40" />
 
           {/* Role (English line, then Tamil line, matching size) */}
@@ -79,7 +79,7 @@ export const CoupleIntro: React.FC = () => {
         </div>
 
         {/* BRIDE CARD */}
-        <div className="luxury-card px-4 py-8 sm:px-8 sm:py-10 flex flex-col items-center group transition-all duration-300 hover:shadow-2xl">
+        <div className="luxury-card h-full px-4 py-8 sm:px-8 sm:py-10 flex flex-col items-center justify-between group transition-all duration-300 hover:shadow-2xl">
           <CornerOrnaments color="text-[#c5a059]/40" />
 
           {/* Role (English line, then Tamil line, matching size) */}
