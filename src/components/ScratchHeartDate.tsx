@@ -2,20 +2,24 @@
 
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import confetti from 'canvas-confetti';
-import { Sparkles, Calendar, Clock } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
+import { GrandFireworksOverlay } from '@/components/GrandFireworksOverlay';
 
 export const ScratchHeartDate: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [scratchPercent, setScratchPercent] = useState(0);
   const [isRevealed, setIsRevealed] = useState(false);
-  const isDrawingRef = useRef(false);
-  const hasTriggeredConfettiRef = useRef(false);
-  const progressPendingRef = useRef(false);
-  const { t, language } = useLanguage();
+  const [showFireworks, setShowFireworks] = useState(false);
+  const [explosionCoords, setExplosionCoords] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
 
-  // Initialize canvas with golden/lavender metallic foil
+  const isDrawingRef = useRef(false);
+  const hasTriggeredFireworksRef = useRef(false);
+  const progressPendingRef = useRef(false);
+  const { language } = useLanguage();
+
+  // Initialize canvas with golden metallic foil & V&P emblem
   const initCanvas = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -76,103 +80,69 @@ export const ScratchHeartDate: React.FC = () => {
     initCanvas();
   }, [initCanvas]);
 
-  // Full-page pyrotechnics, cracker effects and grand celebration blast
+  // Layered celebratory confetti (Champagne-gold metallic mixed with festive color paper)
   const triggerFullPagePyros = useCallback(() => {
     try {
-      const count = 200;
       const defaults = {
-        origin: { y: 0.68 },
-        zIndex: 99999,
+        zIndex: 99998,
       };
 
-      const fire = (particleRatio: number, opts: confetti.Options) => {
-        confetti({
-          ...defaults,
-          ...opts,
-          particleCount: Math.floor(count * particleRatio),
-        });
-      };
+      // 1. Initial grand burst centered at the heart
+      let originY = 0.55;
+      let originX = 0.5;
+      if (containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect();
+        originX = (rect.left + rect.width / 2) / window.innerWidth;
+        originY = (rect.top + rect.height / 2) / window.innerHeight;
+      }
 
-      // 1. Initial grand explosive pyro blast with golden sparkles and stars
-      fire(0.25, {
-        spread: 35,
-        startVelocity: 65,
+      // Champagne gold metallic foil mixed with colorful celebratory paper
+      confetti({
+        ...defaults,
+        particleCount: 75,
+        spread: 90,
+        startVelocity: 45,
+        origin: { x: originX, y: originY },
+        colors: ['#ffd700', '#f5d77f', '#d4af37', '#ffffff', '#ff69b4', '#ba55d3', '#e0b0ff'],
         shapes: ['star', 'circle'],
-        colors: ['#ffd700', '#ffea75', '#ffffff', '#ffaa00'],
-      });
-      fire(0.2, {
-        spread: 75,
-        shapes: ['circle'],
-        colors: ['#e0b0ff', '#ba55d3', '#ffd700', '#ff4081'],
-      });
-      fire(0.35, {
-        spread: 120,
-        decay: 0.91,
-        scalar: 1.1,
-        shapes: ['star', 'circle'],
-        colors: ['#ffd700', '#ffffff', '#ff69b4', '#ffe4e1'],
-      });
-      fire(0.1, {
-        spread: 140,
-        startVelocity: 35,
-        decay: 0.92,
-        colors: ['#f5d77f', '#d4af37'],
-      });
-      fire(0.1, {
-        spread: 150,
-        startVelocity: 55,
-        shapes: ['star'],
-        colors: ['#ffffff', '#ffd700', '#c5a059'],
       });
 
-      // 2. Full-Page Dual Cannon Pyros + Rapid Firecracker Sparkle Pops (3.5 seconds)
+      // 2. Dual cannon pyros at lower corners for 3.5 seconds
       const endTime = Date.now() + 3500;
-      const crackerColors = ['#ffd700', '#ffffff', '#ff8c00', '#ff0055', '#e0b0ff', '#00e5ff', '#ffecb3'];
+      const festiveColors = [
+        '#ffd700', // Champagne Gold
+        '#f5d77f', // Warm Gold
+        '#ffffff', // Diamond White
+        '#ff8c00', // Warm Amber
+        '#ff1493', // Rose Pink
+        '#ba55d3', // Lavender
+        '#00e5ff', // Sky Blue
+      ];
 
       const runPyros = () => {
         // Left cannon shooting up diagonally across screen
         confetti({
-          particleCount: 6,
+          ...defaults,
+          particleCount: 5,
           angle: 60,
-          spread: 60,
-          startVelocity: 58,
-          origin: { x: 0, y: 0.85 },
-          colors: crackerColors,
+          spread: 55,
+          startVelocity: 55,
+          origin: { x: 0.02, y: 0.88 },
+          colors: festiveColors,
           shapes: ['star', 'circle'],
-          zIndex: 99999,
         });
 
         // Right cannon shooting up diagonally across screen
         confetti({
-          particleCount: 6,
+          ...defaults,
+          particleCount: 5,
           angle: 120,
-          spread: 60,
-          startVelocity: 58,
-          origin: { x: 1, y: 0.85 },
-          colors: crackerColors,
+          spread: 55,
+          startVelocity: 55,
+          origin: { x: 0.98, y: 0.88 },
+          colors: festiveColors,
           shapes: ['star', 'circle'],
-          zIndex: 99999,
         });
-
-        // Cracker / Sparkler pops (random aerial sparkle explosions popping across the screen)
-        if (Math.random() < 0.45) {
-          confetti({
-            particleCount: 14,
-            spread: 360,
-            startVelocity: 25 + Math.random() * 20,
-            ticks: 55,
-            gravity: 1.1,
-            decay: 0.92,
-            scalar: 0.8 + Math.random() * 0.5,
-            shapes: ['star', 'circle'],
-            origin: {
-              x: 0.15 + Math.random() * 0.7,
-              y: 0.15 + Math.random() * 0.45,
-            },
-            colors: crackerColors,
-            zIndex: 99999,
-          });
-        }
 
         if (Date.now() < endTime) {
           requestAnimationFrame(runPyros);
@@ -185,17 +155,31 @@ export const ScratchHeartDate: React.FC = () => {
     }
   }, []);
 
+  // Reveal fully and trigger the Grand Fireworks Celebration
   const revealFully = useCallback(() => {
+    if (hasTriggeredFireworksRef.current) return;
+    hasTriggeredFireworksRef.current = true;
+
     setIsRevealed(true);
     setScratchPercent(100);
-    hasTriggeredConfettiRef.current = true;
+
+    // Capture screen origin for the fireworks radial explosion
+    if (containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      setExplosionCoords({
+        x: rect.left + rect.width / 2,
+        y: rect.top + rect.height / 2,
+      });
+    }
+
+    setShowFireworks(true);
     triggerFullPagePyros();
   }, [triggerFullPagePyros]);
 
-  // Calculate percentage scratched (lightweight sample step 32)
+  // Calculate percentage scratched strictly inside the heart shape mask
   const calculateProgress = useCallback(() => {
     const canvas = canvasRef.current;
-    if (!canvas || isRevealed) return;
+    if (!canvas || isRevealed || hasTriggeredFireworksRef.current) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
@@ -205,19 +189,31 @@ export const ScratchHeartDate: React.FC = () => {
       let transparentCount = 0;
       let totalSampled = 0;
 
-      for (let i = 3; i < pixels.length; i += 32) {
-        totalSampled++;
-        if (pixels[i] === 0) {
-          transparentCount++;
+      // Sample coordinates inside the heart's geometric area (step 4x4)
+      for (let y = 10; y < 270; y += 4) {
+        for (let x = 15; x < 285; x += 4) {
+          // Heart curve equation normalized to 300x280 box
+          const nx = (x - 150) / 115;
+          const ny = -(y - 125) / 115;
+          const a = nx * nx + ny * ny - 1;
+          if (a * a * a - nx * nx * ny * ny * ny <= 0.05) {
+            totalSampled++;
+            const alphaIdx = (y * 300 + x) * 4 + 3;
+            if (pixels[alphaIdx] === 0) {
+              transparentCount++;
+            }
+          }
         }
       }
 
-      const percent = Math.min(100, Math.round((transparentCount / totalSampled) * 100));
-      setScratchPercent(percent);
+      if (totalSampled > 0) {
+        const percent = Math.min(100, Math.round((transparentCount / totalSampled) * 100));
+        setScratchPercent(percent);
 
-      // Lightweight gold particle burst at 60% reveal
-      if (percent >= 60 && !hasTriggeredConfettiRef.current) {
-        revealFully();
+        // REQUIREMENT 1: Trigger celebration exactly once at 75% threshold
+        if (percent >= 75 && !hasTriggeredFireworksRef.current) {
+          revealFully();
+        }
       }
     } catch (e) {}
   }, [isRevealed, revealFully]);
@@ -309,6 +305,14 @@ export const ScratchHeartDate: React.FC = () => {
 
   return (
     <section id="scratch-section" className="relative z-[2] w-full py-14 px-4 max-w-4xl mx-auto text-center">
+      {/* GRAND FIREWORKS CELEBRATION OVERLAY */}
+      <GrandFireworksOverlay
+        isActive={showFireworks}
+        originX={explosionCoords.x}
+        originY={explosionCoords.y}
+        onComplete={() => setShowFireworks(false)}
+      />
+
       {/* SECTION HEADER: Save the Date / சுப தேதியைக் குறித்துக் கொள்ளுங்கள் */}
       <div className="mb-6 max-w-lg mx-auto flex flex-col items-center">
         <span className="text-xs sm:text-sm text-[#8e6c2e] font-semibold uppercase tracking-[0.25em] font-serif block mb-0.5">
@@ -430,7 +434,7 @@ export const ScratchHeartDate: React.FC = () => {
       <div className="mt-5 flex flex-col items-center gap-2.5 text-xs text-[#5a4a42]">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#ffffff] border border-[#c5a059]/35 text-[#231c18] font-tamil-sans shadow-sm">
           <span>🪙 {language === 'ta' ? 'தேய்த்த நிலை' : 'Scratched'}: <strong>{scratchPercent}%</strong></span>
-          {scratchPercent >= 60 && <span className="text-[#8e6c2e] font-semibold">• ✨ திறக்கப்பட்டது!</span>}
+          {scratchPercent >= 75 && <span className="text-[#8e6c2e] font-semibold">• ✨ திறக்கப்பட்டது!</span>}
         </div>
 
         {!isRevealed && (
