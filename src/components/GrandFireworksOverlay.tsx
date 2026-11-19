@@ -17,6 +17,7 @@ interface Spark {
   gravity: number;
   drag: number;
   size: number;
+  isFountain?: boolean;
 }
 
 interface Rocket {
@@ -28,20 +29,8 @@ interface Rocket {
   vy: number;
   launchTime: number;
   colorTheme: string[];
-  hasExploded: boolean;
-}
-
-interface FountainSpark {
-  active: boolean;
-  x: number;
-  y: number;
-  prevX: number;
-  prevY: number;
-  vx: number;
-  vy: number;
-  color: string;
-  alpha: number;
-  decay: number;
+  exploded: boolean;
+  whistlePlayed: boolean;
 }
 
 interface GrandFireworksOverlayProps {
@@ -51,10 +40,11 @@ interface GrandFireworksOverlayProps {
   onComplete?: () => void;
 }
 
-const GOLD_PALETTE = ['#ffffff', '#fff3b0', '#ffe066', '#ffd700', '#dfba68', '#f5d77f'];
-const ROSE_GOLD_PALETTE = ['#ffffff', '#fff0f5', '#ffd700', '#ffb6c1', '#f0a0a8', '#ffccd5'];
-const CHAMPAGNE_PALETTE = ['#ffffff', '#faf8f4', '#ffe8a3', '#dfba68', '#c5a059', '#ffd97d'];
-const VIOLET_GOLD_PALETTE = ['#ffffff', '#e0b0ff', '#ffd700', '#ba55d3', '#ffecb3'];
+const GOLD_CHRYSANTHEMUM = ['#ffffff', '#fff7b2', '#ffea6c', '#ffd700', '#f5b82e', '#ff9900'];
+const ROSE_GOLD_FIREWORK = ['#ffffff', '#fff0f5', '#ffd700', '#ff99bb', '#ff6688', '#f0a0a8'];
+const WARM_WHITE_WILLOW = ['#ffffff', '#fffff0', '#fff8dc', '#ffea88', '#e5c068'];
+const LAVENDER_GOLD = ['#ffffff', '#e8b5ff', '#ffd700', '#c066ff', '#ffeb99'];
+const ROYAL_AMBER = ['#ffffff', '#ffdf80', '#ffaa00', '#ff7700', '#ffd700'];
 
 export const GrandFireworksOverlay: React.FC<GrandFireworksOverlayProps> = ({
   isActive,
@@ -67,7 +57,7 @@ export const GrandFireworksOverlay: React.FC<GrandFireworksOverlayProps> = ({
   useEffect(() => {
     if (!isActive) return;
 
-    // Respect reduced motion
+    // Respect reduced motion accessibility
     if (
       typeof window !== 'undefined' &&
       window.matchMedia &&
@@ -93,16 +83,16 @@ export const GrandFireworksOverlay: React.FC<GrandFireworksOverlayProps> = ({
     const centerY = originY !== undefined ? originY : height * 0.45;
 
     const startTime = performance.now();
-    const DURATION_MS = 5500;
+    const DURATION_MS = 6000;
 
-    // Preload audio
+    // Preload all audio assets
     fireworksAudio.preload();
 
-    // 0ms Sound: Initial Boom
-    fireworksAudio.playBoom();
+    // 0ms Event: Initial concussive celebration blast
+    fireworksAudio.playInitialBlast();
 
-    // Pre-allocate pools
-    const MAX_SPARKS = 500;
+    // Pool of sparks (reusable, zero allocations)
+    const MAX_SPARKS = 700;
     const sparks: Spark[] = Array.from({ length: MAX_SPARKS }, () => ({
       active: false,
       x: 0,
@@ -115,8 +105,9 @@ export const GrandFireworksOverlay: React.FC<GrandFireworksOverlayProps> = ({
       alpha: 1,
       decay: 0.02,
       gravity: 0.1,
-      drag: 0.98,
+      drag: 0.97,
       size: 2,
+      isFountain: false,
     }));
 
     const spawnSpark = (
@@ -125,10 +116,11 @@ export const GrandFireworksOverlay: React.FC<GrandFireworksOverlayProps> = ({
       vx: number,
       vy: number,
       color: string,
-      decay = 0.018,
-      gravity = 0.1,
+      decay = 0.016,
+      gravity = 0.12,
       size = 2.2,
-      drag = 0.98
+      drag = 0.97,
+      isFountain = false
     ) => {
       for (let i = 0; i < MAX_SPARKS; i++) {
         if (!sparks[i].active) {
@@ -146,117 +138,107 @@ export const GrandFireworksOverlay: React.FC<GrandFireworksOverlayProps> = ({
           s.gravity = gravity;
           s.drag = drag;
           s.size = size;
+          s.isFountain = isFountain;
           return;
         }
       }
     };
 
-    // 1. Initial Grand Golden Radial Blast (0ms)
-    const initialSparks = width < 768 ? 90 : 140;
-    for (let i = 0; i < initialSparks; i++) {
-      const angle = (i / initialSparks) * Math.PI * 2 + (Math.random() - 0.5) * 0.2;
-      const speed = Math.random() * 8.5 + 4.5;
+    // 1. Initial Central Concussive Explosion (0ms)
+    const initialCount = width < 768 ? 95 : 140;
+    for (let i = 0; i < initialCount; i++) {
+      const angle = (i / initialCount) * Math.PI * 2 + (Math.random() - 0.5) * 0.25;
+      const speed = Math.random() * 9 + 4;
       const vx = Math.cos(angle) * speed;
       const vy = Math.sin(angle) * speed * 0.85;
-      const col = GOLD_PALETTE[Math.floor(Math.random() * GOLD_PALETTE.length)];
-      spawnSpark(centerX, centerY, vx, vy, col, Math.random() * 0.012 + 0.014, 0.13, 2.5);
+      const col = GOLD_CHRYSANTHEMUM[Math.floor(Math.random() * GOLD_CHRYSANTHEMUM.length)];
+      spawnSpark(centerX, centerY, vx, vy, col, Math.random() * 0.012 + 0.014, 0.14, 2.6);
     }
 
-    // 2. Rockets (Staggered launches)
+    // 2. Rockets Array (Real ascending missiles that shoot from ground to sky)
     const rockets: Rocket[] = [
       {
         active: false,
-        x: width * 0.24,
+        x: width * 0.26,
         y: height,
         prevY: height,
-        targetY: height * 0.28,
-        vy: -15,
-        launchTime: 250,
-        colorTheme: GOLD_PALETTE,
-        hasExploded: false,
+        targetY: height * 0.26,
+        vy: -20,
+        launchTime: 400,
+        colorTheme: GOLD_CHRYSANTHEMUM,
+        exploded: false,
+        whistlePlayed: false,
       },
       {
         active: false,
-        x: width * 0.76,
+        x: width * 0.74,
+        y: height,
+        prevY: height,
+        targetY: height * 0.20,
+        vy: -21,
+        launchTime: 650,
+        colorTheme: ROSE_GOLD_FIREWORK,
+        exploded: false,
+        whistlePlayed: false,
+      },
+      {
+        active: false,
+        x: width * 0.50,
+        y: height,
+        prevY: height,
+        targetY: height * 0.15,
+        vy: -22,
+        launchTime: 1100,
+        colorTheme: WARM_WHITE_WILLOW,
+        exploded: false,
+        whistlePlayed: false,
+      },
+      {
+        active: false,
+        x: width * 0.36,
+        y: height,
+        prevY: height,
+        targetY: height * 0.29,
+        vy: -19,
+        launchTime: 1800,
+        colorTheme: LAVENDER_GOLD,
+        exploded: false,
+        whistlePlayed: false,
+      },
+      {
+        active: false,
+        x: width * 0.64,
         y: height,
         prevY: height,
         targetY: height * 0.22,
-        vy: -16,
-        launchTime: 450,
-        colorTheme: ROSE_GOLD_PALETTE,
-        hasExploded: false,
+        vy: -20.5,
+        launchTime: 2300,
+        colorTheme: ROYAL_AMBER,
+        exploded: false,
+        whistlePlayed: false,
       },
       {
+        // GRAND FINALE SHELL
         active: false,
-        x: width * 0.5,
+        x: width * 0.50,
         y: height,
         prevY: height,
-        targetY: height * 0.16,
-        vy: -17,
-        launchTime: 750,
-        colorTheme: CHAMPAGNE_PALETTE,
-        hasExploded: false,
-      },
-      {
-        active: false,
-        x: width * 0.35,
-        y: height,
-        prevY: height,
-        targetY: height * 0.32,
-        vy: -14.5,
-        launchTime: 1050,
-        colorTheme: VIOLET_GOLD_PALETTE,
-        hasExploded: false,
-      },
-      {
-        active: false,
-        x: width * 0.65,
-        y: height,
-        prevY: height,
-        targetY: height * 0.24,
-        vy: -15.5,
-        launchTime: 1350,
-        colorTheme: GOLD_PALETTE,
-        hasExploded: false,
+        targetY: height * 0.14,
+        vy: -23,
+        launchTime: 3600,
+        colorTheme: GOLD_CHRYSANTHEMUM,
+        exploded: false,
+        whistlePlayed: false,
       },
     ];
 
-    // 3. Ground Fountain Sparks Pool
-    const MAX_FOUNTAIN = 180;
-    const fountains: FountainSpark[] = Array.from({ length: MAX_FOUNTAIN }, () => ({
-      active: false,
-      x: 0,
-      y: 0,
-      prevX: 0,
-      prevY: 0,
-      vx: 0,
-      vy: 0,
-      color: '#ffd700',
-      alpha: 1,
-      decay: 0.025,
-    }));
+    // Chakkar (Spinning Wheel) state
+    let chakkarAngle = 0;
+    const chakkarX = width * 0.5;
+    const chakkarY = height - 55;
 
-    const spawnFountainSpark = (x: number, y: number, vx: number, vy: number, color: string) => {
-      for (let i = 0; i < MAX_FOUNTAIN; i++) {
-        if (!fountains[i].active) {
-          const f = fountains[i];
-          f.active = true;
-          f.x = x;
-          f.y = y;
-          f.prevX = x;
-          f.prevY = y;
-          f.vx = vx;
-          f.vy = vy;
-          f.color = color;
-          f.alpha = 1.0;
-          f.decay = Math.random() * 0.02 + 0.02;
-          return;
-        }
-      }
-    };
-
-    let hasWhistled = false;
-    let hasCrackled = false;
+    let fountainAudioPlayed = false;
+    let crackleAudioPlayed = false;
 
     // Render loop
     const render = (now: number) => {
@@ -267,25 +249,33 @@ export const GrandFireworksOverlay: React.FC<GrandFireworksOverlayProps> = ({
         return;
       }
 
-      ctx.clearRect(0, 0, width, height);
+      // Smooth motion trails: fade out previous frame slightly rather than clearing completely
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.18)';
+      ctx.fillRect(0, 0, width, height);
 
-      // A. Initial Golden Starburst / Flash Bloom (0 - 450ms)
-      if (elapsed < 450) {
-        const flashProgress = elapsed / 450;
-        const flashAlpha = (1 - flashProgress) * 0.75;
-        const flashRadius = Math.min(width, height) * (0.3 + flashProgress * 0.5);
+      // Additive blending for realistic glowing incendiary firework light
+      ctx.globalCompositeOperation = 'lighter';
+
+      // ==========================================
+      // STAGE 1: Initial Golden Flash (0ms - 320ms)
+      // ==========================================
+      if (elapsed < 320) {
+        const flashProgress = elapsed / 320;
+        const flashAlpha = (1 - flashProgress) * 0.85;
+        const flashRadius = Math.min(width, height) * (0.35 + flashProgress * 0.55);
 
         const grad = ctx.createRadialGradient(
           centerX,
           centerY,
-          5,
+          4,
           centerX,
           centerY,
           flashRadius
         );
-        grad.addColorStop(0, `rgba(255, 255, 255, ${flashAlpha * 0.9})`);
-        grad.addColorStop(0.3, `rgba(255, 235, 140, ${flashAlpha * 0.7})`);
-        grad.addColorStop(0.7, `rgba(212, 175, 55, ${flashAlpha * 0.3})`);
+        grad.addColorStop(0, `rgba(255, 255, 255, ${flashAlpha})`);
+        grad.addColorStop(0.25, `rgba(255, 240, 160, ${flashAlpha * 0.8})`);
+        grad.addColorStop(0.65, `rgba(212, 175, 55, ${flashAlpha * 0.35})`);
         grad.addColorStop(1, 'transparent');
 
         ctx.fillStyle = grad;
@@ -294,138 +284,208 @@ export const GrandFireworksOverlay: React.FC<GrandFireworksOverlayProps> = ({
         ctx.fill();
       }
 
-      // B. Update & Draw Rockets
+      // ==========================================
+      // STAGE 2: Real Ground Flower-Pot Fountains (300ms - 3800ms)
+      // ==========================================
+      if (elapsed >= 300 && elapsed <= 3800) {
+        if (!fountainAudioPlayed) {
+          fountainAudioPlayed = true;
+          fireworksAudio.playFountainSizzle();
+        }
+
+        const leftFountainX = width * 0.12;
+        const rightFountainX = width * 0.88;
+        const fountainBaseY = height - 6;
+        const countPerFrame = width < 768 ? 3 : 5;
+
+        for (let k = 0; k < countPerFrame; k++) {
+          // Left Anaar fountain: shoots upward and slightly inward (72° to 98°)
+          const angleL = (Math.PI / 180) * (72 + Math.random() * 26);
+          const speedL = Math.random() * 9 + 14;
+          spawnSpark(
+            leftFountainX + (Math.random() - 0.5) * 8,
+            fountainBaseY,
+            Math.cos(angleL) * speedL,
+            -Math.sin(angleL) * speedL,
+            GOLD_CHRYSANTHEMUM[Math.floor(Math.random() * GOLD_CHRYSANTHEMUM.length)],
+            Math.random() * 0.016 + 0.018,
+            0.38, // gravity pulling fountain down in parabolic weeping cascade
+            2.2,
+            0.985,
+            true
+          );
+
+          // Right Anaar fountain: shoots upward and slightly inward (82° to 108°)
+          const angleR = (Math.PI / 180) * (82 + Math.random() * 26);
+          const speedR = Math.random() * 9 + 14;
+          spawnSpark(
+            rightFountainX + (Math.random() - 0.5) * 8,
+            fountainBaseY,
+            Math.cos(angleR) * speedR * -1,
+            -Math.sin(angleR) * speedR,
+            GOLD_CHRYSANTHEMUM[Math.floor(Math.random() * GOLD_CHRYSANTHEMUM.length)],
+            Math.random() * 0.016 + 0.018,
+            0.38,
+            2.2,
+            0.985,
+            true
+          );
+        }
+
+        // Draw fountain incandescent nozzles
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath();
+        ctx.arc(leftFountainX, fountainBaseY, 3, 0, Math.PI * 2);
+        ctx.arc(rightFountainX, fountainBaseY, 3, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // ==========================================
+      // STAGE 3: Spinning Ground Firework / Chakkar (1400ms - 4200ms)
+      // ==========================================
+      if (elapsed >= 1400 && elapsed <= 4200) {
+        chakkarAngle += 0.38;
+        const sparksThisFrame = width < 768 ? 4 : 7;
+
+        for (let m = 0; m < sparksThisFrame; m++) {
+          const tangentAngle = chakkarAngle + Math.PI / 2 + (Math.random() - 0.5) * 0.28;
+          const spd = Math.random() * 6 + 9;
+          spawnSpark(
+            chakkarX,
+            chakkarY,
+            Math.cos(tangentAngle) * spd,
+            Math.sin(tangentAngle) * spd * 0.55,
+            '#ffd700',
+            Math.random() * 0.022 + 0.024,
+            0.12,
+            1.8,
+            0.96
+          );
+        }
+
+        // Chakkar incandescent core
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath();
+        ctx.arc(chakkarX, chakkarY, 4, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.strokeStyle = '#ffe57f';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(chakkarX, chakkarY, 9, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+
+      // ==========================================
+      // STAGE 4: Real Ascending Sky-Shot Rockets
+      // ==========================================
       for (let i = 0; i < rockets.length; i++) {
         const r = rockets[i];
-        if (elapsed >= r.launchTime && !r.hasExploded) {
+        if (elapsed >= r.launchTime && !r.exploded) {
           if (!r.active) {
             r.active = true;
-            if (!hasWhistled) {
-              hasWhistled = true;
-              fireworksAudio.playWhistle();
-            }
+          }
+
+          if (!r.whistlePlayed) {
+            r.whistlePlayed = true;
+            fireworksAudio.playRocketWhistle();
           }
 
           r.prevY = r.y;
           r.y += r.vy;
-          r.vy += 0.28; // gravity slowing rocket ascent
+          r.vy += 0.30; // Deceleration on ascent
 
-          // Rocket glowing head
+          // Draw incandescent rocket head
           ctx.beginPath();
-          ctx.arc(r.x, r.y, 2.5, 0, Math.PI * 2);
+          ctx.arc(r.x, r.y, 3.2, 0, Math.PI * 2);
           ctx.fillStyle = '#ffffff';
           ctx.fill();
 
-          // Fiery rocket tail line
+          // Visible streaming rocket exhaust trail
           ctx.beginPath();
           ctx.moveTo(r.x, r.y);
-          ctx.lineTo(r.x + (Math.random() - 0.5) * 2, r.prevY + 8);
-          ctx.strokeStyle = '#ffe57f';
-          ctx.lineWidth = 2;
+          ctx.lineTo(r.x + (Math.random() - 0.5) * 3, r.prevY + 12);
+          ctx.strokeStyle = '#fff3b0';
+          ctx.lineWidth = 2.5;
           ctx.stroke();
 
-          // Embers falling from rocket trail
-          if (Math.random() < 0.6) {
+          // Falling sparks from rocket trail
+          if (Math.random() < 0.75) {
             spawnSpark(
               r.x + (Math.random() - 0.5) * 4,
-              r.y + 4,
-              (Math.random() - 0.5) * 1.5,
-              Math.random() * 2 + 1,
+              r.y + 6,
+              (Math.random() - 0.5) * 1.6,
+              Math.random() * 3 + 1,
               '#ffd700',
               0.05,
               0.08,
-              1.5,
+              1.6,
               0.96
             );
           }
 
-          // Check if rocket reached apex
-          if (r.y <= r.targetY || r.vy >= 0) {
-            r.hasExploded = true;
+          // Apex detonation check
+          if (r.y <= r.targetY || r.vy >= -1.0) {
+            r.exploded = true;
             r.active = false;
-            fireworksAudio.playBurst();
+            fireworksAudio.playAerialExplosion();
 
-            // Explode into spherical burst ring
-            const burstCount = width < 768 ? 55 : 85;
+            // Spawn spherical chrysanthemum explosion
+            const burstCount = i === rockets.length - 1 ? (width < 768 ? 120 : 160) : (width < 768 ? 75 : 105);
             for (let j = 0; j < burstCount; j++) {
               const angle = (j / burstCount) * Math.PI * 2;
-              const spd = Math.random() * 5.5 + 2.5;
+              const spd = Math.random() * 6.5 + 3.2;
               const vx = Math.cos(angle) * spd;
               const vy = Math.sin(angle) * spd;
               const col = r.colorTheme[Math.floor(Math.random() * r.colorTheme.length)];
-              spawnSpark(r.x, r.y, vx, vy, col, Math.random() * 0.015 + 0.014, 0.09, 2.2);
+              spawnSpark(
+                r.x,
+                r.y,
+                vx,
+                vy,
+                col,
+                Math.random() * 0.012 + 0.014,
+                0.09, // gentle drooping willow gravity
+                2.4,
+                0.975
+              );
             }
           }
         }
       }
 
-      // C. Ground Fountain Pyros (1300ms - 3400ms)
-      if (elapsed >= 1300 && elapsed <= 3400) {
-        if (!hasCrackled) {
-          hasCrackled = true;
+      // ==========================================
+      // STAGE 5: Crackling Ground Sparks (2200ms - 4500ms)
+      // ==========================================
+      if (elapsed >= 2200 && elapsed <= 4500 && Math.random() < 0.18) {
+        if (!crackleAudioPlayed) {
+          crackleAudioPlayed = true;
           fireworksAudio.playCrackle();
         }
 
-        const leftX = width * 0.06;
-        const rightX = width * 0.94;
-        const groundY = height - 10;
-        const sparksPerFrame = width < 768 ? 2 : 4;
-
-        for (let k = 0; k < sparksPerFrame; k++) {
-          // Left fountain: shoots up and right (62° to 78°)
-          const leftAngle = (Math.PI / 180) * (62 + Math.random() * 16);
-          const leftSpd = Math.random() * 8 + 12;
-          spawnFountainSpark(
-            leftX,
-            groundY,
-            Math.cos(leftAngle) * leftSpd,
-            -Math.sin(leftAngle) * leftSpd,
-            GOLD_PALETTE[Math.floor(Math.random() * GOLD_PALETTE.length)]
-          );
-
-          // Right fountain: shoots up and left (102° to 118°)
-          const rightAngle = (Math.PI / 180) * (102 + Math.random() * 16);
-          const rightSpd = Math.random() * 8 + 12;
-          spawnFountainSpark(
-            rightX,
-            groundY,
-            Math.cos(rightAngle) * rightSpd,
-            -Math.sin(rightAngle) * rightSpd,
-            GOLD_PALETTE[Math.floor(Math.random() * GOLD_PALETTE.length)]
+        // Small secondary crackling burst
+        const bx = width * 0.2 + Math.random() * (width * 0.6);
+        const by = height * 0.25 + Math.random() * (height * 0.45);
+        for (let c = 0; c < 8; c++) {
+          const cAngle = Math.random() * Math.PI * 2;
+          const cSpd = Math.random() * 4 + 2;
+          spawnSpark(
+            bx,
+            by,
+            Math.cos(cAngle) * cSpd,
+            Math.sin(cAngle) * cSpd,
+            '#ffffff',
+            0.04,
+            0.15,
+            1.8,
+            0.94
           );
         }
       }
 
-      // D. Draw Fountain Sparks
-      for (let i = 0; i < MAX_FOUNTAIN; i++) {
-        const f = fountains[i];
-        if (f.active) {
-          f.prevX = f.x;
-          f.prevY = f.y;
-          f.x += f.vx;
-          f.y += f.vy;
-          f.vy += 0.38; // gravity pulling fountain down in beautiful arch
-          f.vx *= 0.985;
-          f.alpha -= f.decay;
-
-          if (f.alpha <= 0 || f.y > height) {
-            f.active = false;
-            continue;
-          }
-
-          ctx.save();
-          ctx.globalAlpha = Math.max(0, f.alpha);
-          ctx.strokeStyle = f.color;
-          ctx.lineWidth = 1.8;
-          ctx.beginPath();
-          ctx.moveTo(f.prevX, f.prevY);
-          ctx.lineTo(f.x, f.y);
-          ctx.stroke();
-          ctx.restore();
-        }
-      }
-
-      // E. Draw Sparks & Glowing Trails
+      // ==========================================
+      // UPDATE & RENDER ALL PARTICLES & GLOWING TRAILS
+      // ==========================================
       for (let i = 0; i < MAX_SPARKS; i++) {
         const s = sparks[i];
         if (s.active) {
@@ -438,7 +498,7 @@ export const GrandFireworksOverlay: React.FC<GrandFireworksOverlayProps> = ({
           s.vy *= s.drag;
           s.alpha -= s.decay;
 
-          if (s.alpha <= 0 || s.y > height + 20) {
+          if (s.alpha <= 0 || s.y > height + 25) {
             s.active = false;
             continue;
           }
@@ -446,7 +506,7 @@ export const GrandFireworksOverlay: React.FC<GrandFireworksOverlayProps> = ({
           ctx.save();
           ctx.globalAlpha = Math.max(0, s.alpha);
 
-          // Spark trail line
+          // Glowing spark motion trail line
           ctx.strokeStyle = s.color;
           ctx.lineWidth = s.size;
           ctx.beginPath();
@@ -454,10 +514,10 @@ export const GrandFireworksOverlay: React.FC<GrandFireworksOverlayProps> = ({
           ctx.lineTo(s.x, s.y);
           ctx.stroke();
 
-          // Bright center dot
+          // White-hot incandescent spark core
           ctx.fillStyle = '#ffffff';
           ctx.beginPath();
-          ctx.arc(s.x, s.y, s.size * 0.45, 0, Math.PI * 2);
+          ctx.arc(s.x, s.y, s.size * 0.48, 0, Math.PI * 2);
           ctx.fill();
 
           ctx.restore();

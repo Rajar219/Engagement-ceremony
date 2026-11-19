@@ -1,14 +1,24 @@
 import { audioManager } from '@/lib/audio-manager';
 
 /**
- * Dedicated Fireworks Sound Effects Controller
- * Preloads local audio files and plays synchronized sounds for the 75% scratch card celebration.
- * Respects global mute state and does NOT interrupt background music.
+ * High-Fidelity Realistic Fireworks Audio Controller
+ * Manages dedicated audio channels for:
+ * 1. Initial Celebration Blast (0ms)
+ * 2. Rocket Launch Whistle (with ascending rocket flight)
+ * 3. Aerial Explosion Boom (at apex chrysanthemum detonations)
+ * 4. Ground Flower-Pot Fountain Sizzle (continuous fountain spray)
+ * 5. Crackling & Sparkling Bursts (secondary crackles)
+ *
+ * Guaranteed:
+ * - Does NOT stop, restart, or degrade background music
+ * - Respects global mute control (audioManager.getState().isMuted)
+ * - Safely handles browser autoplay promises
  */
 class FireworksAudioManager {
-  private boomAudio: HTMLAudioElement | null = null;
-  private whistleAudio: HTMLAudioElement | null = null;
-  private burstAudio: HTMLAudioElement | null = null;
+  private initialBlastAudio: HTMLAudioElement | null = null;
+  private rocketWhistleAudio: HTMLAudioElement | null = null;
+  private aerialExplosionAudio: HTMLAudioElement | null = null;
+  private fountainSizzleAudio: HTMLAudioElement | null = null;
   private crackleAudio: HTMLAudioElement | null = null;
   private isPreloaded = false;
 
@@ -17,20 +27,24 @@ class FireworksAudioManager {
     this.isPreloaded = true;
 
     try {
-      this.boomAudio = new Audio('/assets/sounds/celebration-boom.wav');
-      this.boomAudio.volume = 0.6;
-      this.boomAudio.preload = 'auto';
+      this.initialBlastAudio = new Audio('/assets/sounds/initial-blast.wav');
+      this.initialBlastAudio.volume = 0.65;
+      this.initialBlastAudio.preload = 'auto';
 
-      this.whistleAudio = new Audio('/assets/sounds/rocket-whistle.wav');
-      this.whistleAudio.volume = 0.45;
-      this.whistleAudio.preload = 'auto';
+      this.rocketWhistleAudio = new Audio('/assets/sounds/rocket-whistle.wav');
+      this.rocketWhistleAudio.volume = 0.45;
+      this.rocketWhistleAudio.preload = 'auto';
 
-      this.burstAudio = new Audio('/assets/sounds/firework-burst.wav');
-      this.burstAudio.volume = 0.55;
-      this.burstAudio.preload = 'auto';
+      this.aerialExplosionAudio = new Audio('/assets/sounds/aerial-explosion.wav');
+      this.aerialExplosionAudio.volume = 0.60;
+      this.aerialExplosionAudio.preload = 'auto';
 
-      this.crackleAudio = new Audio('/assets/sounds/sparkle-crackle.wav');
-      this.crackleAudio.volume = 0.5;
+      this.fountainSizzleAudio = new Audio('/assets/sounds/fountain-sizzle.wav');
+      this.fountainSizzleAudio.volume = 0.50;
+      this.fountainSizzleAudio.preload = 'auto';
+
+      this.crackleAudio = new Audio('/assets/sounds/crackle-sparkle.wav');
+      this.crackleAudio.volume = 0.50;
       this.crackleAudio.preload = 'auto';
     } catch (e) {
       console.warn('[FireworksAudio] Preload error:', e);
@@ -55,31 +69,41 @@ class FireworksAudioManager {
         const p = snd.play();
         if (p !== undefined) {
           p.catch(() => {
-            // Autoplay policy or user gesture restriction handled gracefully
+            // Autoplay policy or gesture restriction caught gracefully
           });
         }
       }
     } catch (e) {}
   }
 
-  public playBoom() {
-    this.playSound(this.boomAudio, 0.65);
+  public playInitialBlast() {
+    this.playSound(this.initialBlastAudio, 0.70);
   }
 
-  public playWhistle() {
-    this.playSound(this.whistleAudio, 0.45);
+  public playRocketWhistle() {
+    this.playSound(this.rocketWhistleAudio, 0.45);
   }
 
-  public playBurst() {
-    this.playSound(this.burstAudio, 0.55);
+  public playAerialExplosion() {
+    this.playSound(this.aerialExplosionAudio, 0.65);
+  }
+
+  public playFountainSizzle() {
+    this.playSound(this.fountainSizzleAudio, 0.50);
   }
 
   public playCrackle() {
-    this.playSound(this.crackleAudio, 0.5);
+    this.playSound(this.crackleAudio, 0.50);
   }
 
   public stopAll() {
-    [this.boomAudio, this.whistleAudio, this.burstAudio, this.crackleAudio].forEach((a) => {
+    [
+      this.initialBlastAudio,
+      this.rocketWhistleAudio,
+      this.aerialExplosionAudio,
+      this.fountainSizzleAudio,
+      this.crackleAudio,
+    ].forEach((a) => {
       if (a) {
         try {
           a.pause();

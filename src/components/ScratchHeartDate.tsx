@@ -80,14 +80,13 @@ export const ScratchHeartDate: React.FC = () => {
     initCanvas();
   }, [initCanvas]);
 
-  // Layered celebratory confetti (Champagne-gold metallic mixed with festive color paper)
+  // Subtle secondary champagne-gold metallic foil accent (strictly no star icons)
   const triggerFullPagePyros = useCallback(() => {
     try {
       const defaults = {
         zIndex: 99998,
       };
 
-      // 1. Initial grand burst centered at the heart
       let originY = 0.55;
       let originX = 0.5;
       if (containerRef.current) {
@@ -96,60 +95,16 @@ export const ScratchHeartDate: React.FC = () => {
         originY = (rect.top + rect.height / 2) / window.innerHeight;
       }
 
-      // Champagne gold metallic foil mixed with colorful celebratory paper
+      // Small secondary burst of metallic champagne-gold foil ribbons
       confetti({
         ...defaults,
-        particleCount: 75,
-        spread: 90,
-        startVelocity: 45,
+        particleCount: 35,
+        spread: 75,
+        startVelocity: 30,
         origin: { x: originX, y: originY },
-        colors: ['#ffd700', '#f5d77f', '#d4af37', '#ffffff', '#ff69b4', '#ba55d3', '#e0b0ff'],
-        shapes: ['star', 'circle'],
+        colors: ['#ffd700', '#f5d77f', '#d4af37', '#ffffff'],
+        shapes: ['square'],
       });
-
-      // 2. Dual cannon pyros at lower corners for 3.5 seconds
-      const endTime = Date.now() + 3500;
-      const festiveColors = [
-        '#ffd700', // Champagne Gold
-        '#f5d77f', // Warm Gold
-        '#ffffff', // Diamond White
-        '#ff8c00', // Warm Amber
-        '#ff1493', // Rose Pink
-        '#ba55d3', // Lavender
-        '#00e5ff', // Sky Blue
-      ];
-
-      const runPyros = () => {
-        // Left cannon shooting up diagonally across screen
-        confetti({
-          ...defaults,
-          particleCount: 5,
-          angle: 60,
-          spread: 55,
-          startVelocity: 55,
-          origin: { x: 0.02, y: 0.88 },
-          colors: festiveColors,
-          shapes: ['star', 'circle'],
-        });
-
-        // Right cannon shooting up diagonally across screen
-        confetti({
-          ...defaults,
-          particleCount: 5,
-          angle: 120,
-          spread: 55,
-          startVelocity: 55,
-          origin: { x: 0.98, y: 0.88 },
-          colors: festiveColors,
-          shapes: ['star', 'circle'],
-        });
-
-        if (Date.now() < endTime) {
-          requestAnimationFrame(runPyros);
-        }
-      };
-
-      requestAnimationFrame(runPyros);
     } catch (e) {
       console.error(e);
     }
@@ -210,8 +165,8 @@ export const ScratchHeartDate: React.FC = () => {
         const percent = Math.min(100, Math.round((transparentCount / totalSampled) * 100));
         setScratchPercent(percent);
 
-        // REQUIREMENT 1: Trigger celebration exactly once at 75% threshold
-        if (percent >= 75 && !hasTriggeredFireworksRef.current) {
+        // REQUIREMENT 1: Trigger celebration exactly once at 70% threshold
+        if (percent >= 70 && !hasTriggeredFireworksRef.current) {
           revealFully();
         }
       }
@@ -434,7 +389,7 @@ export const ScratchHeartDate: React.FC = () => {
       <div className="mt-5 flex flex-col items-center gap-2.5 text-xs text-[#5a4a42]">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#ffffff] border border-[#c5a059]/35 text-[#231c18] font-tamil-sans shadow-sm">
           <span>🪙 {language === 'ta' ? 'தேய்த்த நிலை' : 'Scratched'}: <strong>{scratchPercent}%</strong></span>
-          {scratchPercent >= 75 && <span className="text-[#8e6c2e] font-semibold">• ✨ திறக்கப்பட்டது!</span>}
+          {scratchPercent >= 70 && <span className="text-[#8e6c2e] font-semibold">• ✨ திறக்கப்பட்டது!</span>}
         </div>
 
         {!isRevealed && (
