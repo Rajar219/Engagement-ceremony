@@ -31,7 +31,7 @@ export const NavigationBar: React.FC<NavigationBarProps> = ({ isVisible }) => {
   }
 
   return (
-    <header className="fixed top-0 left-1/2 -translate-x-1/2 z-40 w-full max-w-[430px] bg-[#faf8f4]/95 backdrop-blur-md border-b border-[#c5a059]/30 py-2.5 shadow-sm text-[#231c18] transition-all duration-300">
+    <header className="fixed top-0 left-1/2 -translate-x-1/2 z-40 w-full max-w-[430px] bg-[#faf8f4] border-b border-[#c5a059]/30 py-2.5 shadow-sm text-[#231c18] transition-opacity duration-200">
       <div className="w-full px-4 flex items-center justify-center text-center">
         {/* Couple Title (Clean Centered Typography) */}
         <a

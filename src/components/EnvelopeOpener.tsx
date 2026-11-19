@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { invitationConfig } from '@/config/invitation.config';
+import { audioManager } from '@/lib/audio-manager';
 
 interface EnvelopeOpenerProps {
   onOpenComplete: () => void;
@@ -78,10 +79,10 @@ export const EnvelopeOpener: React.FC<EnvelopeOpenerProps> = ({ onOpenComplete, 
     hasTriggeredRef.current = true;
     setIsPlaying(true);
 
-    // 1. Play music immediately and synchronously in user gesture call stack
-    try {
-      window.dispatchEvent(new CustomEvent('play-invitation-music'));
-    } catch (e) {}
+    // 1. Play music directly and synchronously within the user gesture call stack
+    audioManager.play().catch((err) => {
+      console.warn('[EnvelopeOpener] Audio play in user gesture caught error:', err);
+    });
 
     // 2. Trigger parent callback
     onOpenStart?.();
@@ -90,6 +91,8 @@ export const EnvelopeOpener: React.FC<EnvelopeOpenerProps> = ({ onOpenComplete, 
     if (video) {
       try {
         video.muted = true;
+        video.defaultMuted = true;
+        video.volume = 0;
         video.currentTime = 0;
         const playPromise = video.play();
         if (playPromise !== undefined) {

@@ -78,10 +78,16 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
   }, [isVisible]);
 
   useEffect(() => {
-    if (isVisible && heroVideoRef.current) {
-      heroVideoRef.current.play().catch(() => {});
-    } else if (!isVisible && heroVideoRef.current) {
-      heroVideoRef.current.pause();
+    const video = heroVideoRef.current;
+    if (!video) return;
+
+    if (isVisible) {
+      video.muted = true;
+      video.defaultMuted = true;
+      video.volume = 0;
+      video.play().catch(() => {});
+    } else {
+      video.pause();
     }
   }, [isVisible]);
 

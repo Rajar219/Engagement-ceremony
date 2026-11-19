@@ -16,6 +16,7 @@ import { DirectoryAndRSVPCard } from '@/components/DirectoryAndRSVPCard';
 import { ShareBar } from '@/components/ShareBar';
 import { Footer } from '@/components/Footer';
 import { MusicPlayer } from '@/components/MusicPlayer';
+import { audioManager } from '@/lib/audio-manager';
 
 export default function InvitationPage() {
   const [isEnvelopeOpened, setIsEnvelopeOpened] = useState(false);
@@ -37,9 +38,7 @@ export default function InvitationPage() {
 
   const handleReopenEnvelope = () => {
     setIsEnvelopeOpened(false);
-    try {
-      window.dispatchEvent(new CustomEvent('stop-invitation-music'));
-    } catch (e) {}
+    audioManager.pause();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 

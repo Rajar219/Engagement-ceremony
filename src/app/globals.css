@@ -450,7 +450,7 @@ canvas {
   user-select: none !important;
 }
 
-/* Stylish flowing calligraphy script for couple names */
+/* Stylish flowing calligraphy script for couple names (Static GPU-cached glow for zero lag) */
 .couple-script-name {
   font-family: 'Great Vibes', 'Allura', 'Alex Brush', 'Pinyon Script', cursive !important;
   font-weight: 400 !important;
@@ -463,12 +463,12 @@ canvas {
     0 0 32px rgba(255, 215, 120, 0.7),
     0 2px 6px rgba(0, 0, 0, 0.95),
     0 4px 16px rgba(0, 0, 0, 0.85) !important;
-  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 20px rgba(255, 225, 140, 0.6)) !important;
-  animation: cinematicCoupleGlow 4.5s ease-in-out infinite;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 18px rgba(255, 225, 140, 0.65)) !important;
+  will-change: transform, opacity;
 }
 
 /* -------------------------------------------------------------
- * CINEMATIC FLASH TRANSITION & GOLDEN ATMOSPHERE KEYFRAMES
+ * CINEMATIC FLASH TRANSITION (Pure GPU transform & opacity)
  * ----------------------------------------------------------- */
 @keyframes cinematicFlashOverlay {
   0% {
@@ -504,37 +504,11 @@ canvas {
   }
 }
 
-@keyframes cinematicCoupleGlow {
-  0%, 100% {
-    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 16px rgba(255, 225, 140, 0.55));
-  }
-  50% {
-    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 28px rgba(255, 235, 170, 0.9)) drop-shadow(0 0 45px rgba(255, 215, 120, 0.5));
-  }
-}
-
-@keyframes goldDividerGlow {
-  0%, 100% {
-    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 4px rgba(255, 224, 130, 0.35));
-  }
-  50% {
-    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 9px rgba(255, 224, 130, 0.75)) drop-shadow(0 0 15px rgba(212, 175, 55, 0.4));
-  }
-}
-
-@keyframes heartGlowPulse {
-  0%, 100% {
-    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 4px rgba(255, 224, 130, 0.4));
-  }
-  50% {
-    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 12px rgba(255, 224, 130, 0.85)) drop-shadow(0 0 20px rgba(255, 200, 80, 0.45));
-  }
-}
-
+/* Static ambient luster (zero per-frame repaint overhead) */
 .gold-divider-glow {
-  animation: goldDividerGlow 4s ease-in-out infinite;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 5px rgba(255, 224, 130, 0.5));
 }
 
 .heart-glow-pulse {
-  animation: heartGlowPulse 3.5s ease-in-out infinite;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 8px rgba(255, 224, 130, 0.6));
 }
