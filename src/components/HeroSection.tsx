@@ -2,16 +2,16 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { ChevronDown } from 'lucide-react';
-import { GoldenDustParticles } from '@/components/GoldenDustParticles';
+import { GoldenFloralLiveEffects } from '@/components/GoldenFloralLiveEffects';
 
 interface HeroSectionProps {
   isVisible?: boolean;
 }
 
-// Delicate floral diamond ornament: ─── ❀ ───
+// Delicate floral diamond ornament: ─── ❀ ─── with ambient gold breathing luster
 const FloralDivider: React.FC<{ className?: string }> = ({ className = 'my-1.5 xs:my-2' }) => (
   <div
-    className={`flex items-center justify-center gap-2 w-36 xs:w-44 sm:w-52 mx-auto ${className} select-none pointer-events-none`}
+    className={`flex items-center justify-center gap-2 w-36 xs:w-44 sm:w-52 mx-auto ${className} select-none pointer-events-none gold-divider-glow`}
   >
     <div className="flex-1 h-[0.75px] bg-gradient-to-r from-transparent via-[#ffe082]/70 to-[#ffe082]" />
     <svg
@@ -29,9 +29,9 @@ const FloralDivider: React.FC<{ className?: string }> = ({ className = 'my-1.5 x
   </div>
 );
 
-// Delicate intertwined double hearts: ♡♡
+// Delicate intertwined double hearts: ♡♡ with ambient warm gold halo pulse
 const IntertwinedHearts: React.FC<{ className?: string }> = ({ className = 'mt-2 xs:mt-2.5' }) => (
-  <div className={`flex items-center justify-center ${className} select-none pointer-events-none`}>
+  <div className={`flex items-center justify-center ${className} select-none pointer-events-none heart-glow-pulse`}>
     <svg
       className="w-10 h-5 text-[#ffe599] drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]"
       viewBox="0 0 48 26"
@@ -68,10 +68,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
   const posterSrc = '/hero-poster.webp';
 
   useEffect(() => {
-    // Subtle tick to trigger smooth CSS transitions
-    const timer = setTimeout(() => setMounted(true), 60);
-    return () => clearTimeout(timer);
-  }, []);
+    if (isVisible) {
+      // Gentle cinematic delay so hero elements fade in and glide up as the golden flash dissolves
+      const timer = setTimeout(() => setMounted(true), 140);
+      return () => clearTimeout(timer);
+    } else {
+      setMounted(false);
+    }
+  }, [isVisible]);
 
   useEffect(() => {
     if (isVisible && heroVideoRef.current) {
@@ -148,8 +152,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
         />
       </div>
 
-      {/* FLOATING GOLDEN DUST PARTICLES */}
-      <GoldenDustParticles />
+      {/* FLOATING GOLDEN FLORAL PETALS & LIVE EFFECTS */}
+      <GoldenFloralLiveEffects />
 
       {/* 2. UNIFIED POSTER COMPOSITION (Evenly distributed vertical spacing inside the architectural arch) */}
       <div className="relative z-10 w-full max-w-sm sm:max-w-md mx-auto flex-1 flex flex-col items-center justify-evenly text-center pt-[max(1.75rem,5svh)] pb-2 px-3">
