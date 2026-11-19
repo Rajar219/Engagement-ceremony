@@ -291,11 +291,6 @@ export const GrandFireworksOverlay: React.FC<GrandFireworksOverlayProps> = ({
       // STAGE 2: Real Ground Flower-Pot Fountains (300ms - 3800ms)
       // ==========================================
       if (elapsed >= 300 && elapsed <= 3800) {
-        if (!fountainAudioPlayed) {
-          fountainAudioPlayed = true;
-          fireworksAudio.playFountainSizzle();
-        }
-
         const leftFountainX = width * 0.12;
         const rightFountainX = width * 0.88;
         const fountainBaseY = height - 6;
@@ -391,9 +386,6 @@ export const GrandFireworksOverlay: React.FC<GrandFireworksOverlayProps> = ({
 
           if (!r.whistlePlayed) {
             r.whistlePlayed = true;
-            if (r.hasWhistle) {
-              fireworksAudio.playRocketWhistle();
-            }
           }
 
           r.prevY = r.y;
@@ -460,13 +452,8 @@ export const GrandFireworksOverlay: React.FC<GrandFireworksOverlayProps> = ({
       }
 
       // ==========================================
-      // STAGE 5: Crackling Ground Sparks (2500ms - 4500ms)
+      // STAGE 5: Crackling Ground Sparks (2200ms - 4500ms)
       // ==========================================
-      if (elapsed >= 2500 && !crackleAudioPlayed) {
-        crackleAudioPlayed = true;
-        fireworksAudio.playCrackle();
-      }
-
       if (elapsed >= 2200 && elapsed <= 4500 && Math.random() < 0.18) {
 
         // Small secondary crackling burst
