@@ -1,7 +1,7 @@
 /**
- * Central Universal Audio Manager
- * Production-ready singleton for rock-solid mobile audio playback across
- * iOS Safari, Android Chrome, Samsung Internet, and desktop browsers.
+ * Central Universal Audio Controller
+ * Engineered specifically for iOS Safari, Android Chrome, Samsung Internet, and modern desktop browsers.
+ * Reuses the single persistent #vp-global-audio element rendered in root layout.
  */
 
 export interface AudioState {
@@ -9,6 +9,7 @@ export interface AudioState {
   hasStarted: boolean;
   hasError: boolean;
   isMuted: boolean;
+  errorMessage: string | null;
 }
 
 type AudioListener = (state: AudioState) => void;
@@ -16,68 +17,122 @@ type AudioListener = (state: AudioState) => void;
 class CentralAudioManager {
   private audio: HTMLAudioElement | null = null;
   private listeners: Set<AudioListener> = new Set();
-  private audioSrc = '/assets/music/invitation-theme.mp3';
-  private wasPlayingBeforeHidden = false;
-  private isInitializing = false;
+  private hasInitializedListeners = false;
 
   private state: AudioState = {
     isPlaying: false,
     hasStarted: false,
     hasError: false,
     isMuted: false,
+    errorMessage: null,
   };
 
-  constructor() {
-    if (typeof window !== 'undefined') {
-      this.setupVisibilityHandler();
-    }
-  }
-
   /**
-   * Lazily retrieve or create the single central HTMLAudioElement
+   * Retrieve the single persistent HTMLAudioElement from DOM
    */
   public getAudioElement(): HTMLAudioElement | null {
     if (typeof window === 'undefined') return null;
 
     if (!this.audio) {
-      this.audio = new Audio();
-      this.audio.src = this.audioSrc;
-      this.audio.loop = true;
-      this.audio.preload = 'auto';
-      this.audio.volume = 1.0;
+      this.audio = document.getElementById('vp-global-audio') as HTMLAudioElement;
 
-      // Ensure proper mobile playback configuration
-      // @ts-ignore
-      this.audio.playsInline = true;
+      // Fallback if not yet in DOM
+      if (!this.audio) {
+        console.warn('[Audio] #vp-global-audio element not found in DOM, creating fallback');
+        this.audio = new Audio('/assets/music/invitation-theme.mp3');
+        this.audio.id = 'vp-global-audio';
+        this.audio.loop = true;
+        this.audio.preload = 'auto';
+        // @ts-ignore
+        this.audio.playsInline = true;
+        document.body.appendChild(this.audio);
+      }
 
-      // Event listeners for state sync
-      this.audio.addEventListener('play', () => {
-        this.updateState({ isPlaying: true, hasStarted: true, hasError: false });
-      });
-
-      this.audio.addEventListener('pause', () => {
-        this.updateState({ isPlaying: false });
-      });
-
-      this.audio.addEventListener('ended', () => {
-        // Since loop is true, this is a fallback
-        if (this.audio) {
-          this.audio.currentTime = 0;
-          this.audio.play().catch(() => {});
-        }
-      });
-
-      this.audio.addEventListener('error', (e) => {
-        console.warn('[AudioManager] Audio element error:', e);
-        this.updateState({ hasError: true, isPlaying: false });
-      });
+      this.attachDebugListeners();
     }
 
     return this.audio;
   }
 
   /**
-   * Subscribe to audio state changes
+   * Attach robust lifecycle and debugging event listeners
+   */
+  private attachDebugListeners() {
+    if (this.hasInitializedListeners || !this.audio) return;
+    this.hasInitializedListeners = true;
+
+    const a = this.audio;
+
+    a.addEventListener('loadstart', () => {
+      console.log('[Audio] File loadstart: /assets/music/invitation-theme.mp3');
+    });
+
+    a.addEventListener('loadedmetadata', () => {
+      console.log(`[Audio] Metadata loaded. Duration: ${a.duration.toFixed(2)}s`);
+    });
+
+    a.addEventListener('canplay', () => {
+      console.log(`[Audio] Canplay reached. readyState: ${a.readyState}`);
+    });
+
+    a.addEventListener('play', () => {
+      console.log('[Audio] Native play event fired');
+      this.updateState({ isPlaying: true, hasStarted: true, hasError: false, errorMessage: null });
+    });
+
+    a.addEventListener('playing', () => {
+      console.log('[Audio] Native playing event fired (audio actively streaming to speakers)');
+      this.updateState({ isPlaying: true });
+    });
+
+    a.addEventListener('pause', () => {
+      console.log('[Audio] Native pause event fired');
+      this.updateState({ isPlaying: false });
+    });
+
+    a.addEventListener('waiting', () => {
+      console.warn('[Audio] Native waiting event (buffering stream)');
+    });
+
+    a.addEventListener('stalled', () => {
+      console.warn('[Audio] Native stalled event (network stream paused)');
+    });
+
+    a.addEventListener('ended', () => {
+      console.log('[Audio] Track ended, looping back to start');
+      a.currentTime = 0;
+      a.play().catch((err) => console.warn('[Audio] Loop replay error:', err));
+    });
+
+    a.addEventListener('volumechange', () => {
+      console.log(`[Audio] Volume changed: ${a.volume}, muted: ${a.muted}`);
+      this.updateState({ isMuted: a.muted });
+    });
+
+    a.addEventListener('error', (e) => {
+      const err = a.error;
+      const msg = err ? `Code ${err.code}: ${err.message}` : 'Unknown audio error';
+      console.error('[Audio] Native error event:', msg, e);
+      this.updateState({ hasError: true, isPlaying: false, errorMessage: msg });
+    });
+
+    // When invitation links are clicked or user switches tabs/apps, immediately stop audio
+    if (typeof document !== 'undefined') {
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          console.log('[Audio] Page hidden/link opened. Stopping music immediately.');
+          this.pause();
+        }
+      });
+      window.addEventListener('pagehide', () => {
+        console.log('[Audio] Pagehide event. Stopping music immediately.');
+        this.pause();
+      });
+    }
+  }
+
+  /**
+   * Subscribe to state updates
    */
   public subscribe(listener: AudioListener): () => void {
     this.listeners.add(listener);
@@ -97,86 +152,102 @@ class CentralAudioManager {
       try {
         listener(this.state);
       } catch (err) {
-        console.error('[AudioManager] Listener error:', err);
+        console.error('[Audio] Listener error:', err);
       }
     });
   }
 
   /**
-   * Play music immediately within a user gesture handler (tap/click).
-   * Returns a promise resolving to true if playback started, false otherwise.
+   * Directly invoked within user interaction (seal tap).
+   * Guaranteed to execute synchronously in the gesture context.
    */
   public async play(): Promise<boolean> {
     const audio = this.getAudioElement();
-    if (!audio) return false;
+    if (!audio) {
+      console.error('[Audio] play() aborted: no audio element');
+      return false;
+    }
+
+    console.log('[Audio] Executing audio.play() in user gesture handler. readyState:', audio.readyState);
 
     try {
       audio.loop = true;
-      audio.volume = 1.0;
+      audio.muted = false;
       
       const playPromise = audio.play();
       if (playPromise !== undefined) {
         await playPromise;
-        this.updateState({ isPlaying: true, hasStarted: true, hasError: false });
+        console.log('[Audio] audio.play() Promise RESOLVED successfully! Music is playing.');
+        this.updateState({
+          isPlaying: true,
+          hasStarted: true,
+          hasError: false,
+          isMuted: false,
+          errorMessage: null,
+        });
         return true;
       }
       return false;
     } catch (err: any) {
-      console.warn('[AudioManager] Playback blocked or failed:', err);
-      this.updateState({ isPlaying: false, hasError: true });
+      const errMsg = err?.message || err?.name || 'Audio playback blocked';
+      console.error('[Audio] audio.play() Promise REJECTED by browser:', errMsg, err);
+      this.updateState({
+        isPlaying: false,
+        hasError: true,
+        errorMessage: errMsg,
+      });
       return false;
     }
   }
 
   /**
-   * Pause music safely
+   * Toggle mute/unmute
+   * Changing muted property preserves audio playback session without needing re-activation.
+   */
+  public toggleMute(): boolean {
+    const audio = this.getAudioElement();
+    if (!audio) return false;
+
+    // If audio was never started or paused, try to play
+    if (audio.paused) {
+      this.play().catch(() => {});
+      return false;
+    }
+
+    audio.muted = !audio.muted;
+    console.log('[Audio] Mute toggled. audio.muted =', audio.muted);
+    this.updateState({ isMuted: audio.muted });
+    return audio.muted;
+  }
+
+  /**
+   * Pause music safely (e.g. user explicit pause or envelope reset)
    */
   public pause(): void {
     const audio = this.getAudioElement();
     if (!audio) return;
-
     try {
+      console.log('[Audio] Explicit pause requested');
       audio.pause();
       this.updateState({ isPlaying: false });
     } catch (err) {
-      console.warn('[AudioManager] Pause error:', err);
+      console.warn('[Audio] Pause error:', err);
     }
   }
 
   /**
-   * Toggle music playback
+   * Toggle playback state
    */
-  public async toggle(): Promise<boolean> {
-    if (this.state.isPlaying) {
+  public async togglePlay(): Promise<boolean> {
+    const audio = this.getAudioElement();
+    if (!audio) return false;
+
+    if (audio.paused) {
+      return await this.play();
+    } else {
       this.pause();
       return false;
-    } else {
-      return await this.play();
     }
-  }
-
-  /**
-   * Handle backgrounding and foregrounding smoothly
-   * Reopening the browser or switching back does not break playback
-   */
-  private setupVisibilityHandler() {
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) {
-        if (this.audio && !this.audio.paused) {
-          this.wasPlayingBeforeHidden = true;
-          this.audio.pause();
-        }
-      } else {
-        // When returning to tab, resume smoothly if it was playing before
-        if (this.wasPlayingBeforeHidden && this.audio) {
-          this.audio.play().catch(() => {
-            // If browser blocks resume without gesture, set error state for user tap
-            this.updateState({ isPlaying: false, hasError: true });
-          });
-          this.wasPlayingBeforeHidden = false;
-        }
-      }
-    });
   }
 }
 

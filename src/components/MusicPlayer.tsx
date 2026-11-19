@@ -20,17 +20,23 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({ autoPlayTrigger }) => 
 
   // When autoPlayTrigger turns true (after user interaction), trigger play
   useEffect(() => {
-    if (autoPlayTrigger && !audioState.isPlaying) {
+    if (autoPlayTrigger && !audioState.isPlaying && !audioState.hasStarted) {
       audioManager.play().catch(() => {});
     }
-  }, [autoPlayTrigger, audioState.isPlaying]);
+  }, [autoPlayTrigger, audioState.isPlaying, audioState.hasStarted]);
 
   const handleToggle = (e: React.MouseEvent) => {
     e.stopPropagation();
-    audioManager.toggle().catch(() => {});
+    // If playing, toggle mute as requested; if paused/error, trigger play
+    if (audioState.isPlaying) {
+      audioManager.toggleMute();
+    } else {
+      audioManager.play().catch(() => {});
+    }
   };
 
   const isPlaying = audioState.isPlaying;
+  const isMuted = audioState.isMuted;
   const hasError = audioState.hasError && !isPlaying;
 
   return (
@@ -38,11 +44,11 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({ autoPlayTrigger }) => 
       {/* Floating Audio Control Button */}
       <button
         onClick={handleToggle}
-        aria-label={isPlaying ? 'Mute music' : 'Play music'}
+        aria-label={isMuted ? 'Unmute music' : isPlaying ? 'Mute music' : 'Play music'}
         className={`pointer-events-auto group relative flex items-center gap-2 px-3.5 py-2.5 rounded-full transition-all duration-300 cursor-pointer shadow-md active:scale-95 ${
           hasError
             ? 'bg-[#fff8e1] border-2 border-[#e6a836] animate-pulse text-[#8c6b32]'
-            : isPlaying
+            : isPlaying && !isMuted
             ? 'bg-[#ffffff] hover:bg-[#faf8f4] border border-[#c5a059]/60 text-[#231c18]'
             : 'bg-[#ffffff] hover:bg-[#faf8f4] border border-[#c5a059]/40 text-[#5a4a42]'
         }`}
@@ -50,7 +56,7 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({ autoPlayTrigger }) => 
         {/* Equalizer Wave / Error / Mute Icon */}
         {hasError ? (
           <AlertCircle className="w-4 h-4 text-[#c5a059] animate-bounce shrink-0" />
-        ) : isPlaying ? (
+        ) : isPlaying && !isMuted ? (
           <div className="flex items-end gap-0.5 h-3.5 w-3.5 shrink-0" aria-hidden="true">
             <span className="w-0.5 bg-[#c5a059] rounded-full eq-bar-1" />
             <span className="w-0.5 bg-[#c5a059] rounded-full eq-bar-2" />
@@ -61,7 +67,13 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({ autoPlayTrigger }) => 
         )}
 
         <span className="text-[10.5px] font-sans uppercase tracking-wider font-semibold whitespace-nowrap">
-          {hasError ? 'Tap to Play Music' : isPlaying ? 'Music On' : 'Play Music'}
+          {hasError
+            ? 'Tap to Play Music'
+            : isPlaying && !isMuted
+            ? 'Music On'
+            : isMuted
+            ? 'Muted'
+            : 'Play Music'}
         </span>
       </button>
     </div>

@@ -149,42 +149,44 @@ export const EnvelopeOpener: React.FC<EnvelopeOpenerProps> = ({ onOpenComplete, 
               className="w-full h-full object-cover"
             />
 
-            {/* Interactive Seal Hotspot (Hidden once user taps) */}
-            {!isPlaying && (
-              <div
-                className="absolute inset-0 z-30 flex flex-col items-center justify-center pointer-events-none"
-                aria-label="Interactive V&P Wax Seal"
+            {/* Interactive Seal Hotspot (Fades out when tapped, kept in DOM to preserve touch gesture token) */}
+            <div
+              className={`absolute inset-0 z-30 flex flex-col items-center justify-center pointer-events-none transition-opacity duration-300 ${
+                isPlaying ? 'opacity-0' : 'opacity-100'
+              }`}
+              aria-label="Interactive V&P Wax Seal"
+            >
+              {/* Seal Hotspot Button */}
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleUserTrigger();
+                }}
+                onTouchStart={(e) => {
+                  e.stopPropagation();
+                  handleUserTrigger();
+                }}
+                aria-label="Tap seal to open invitation"
+                className={`group relative w-36 h-36 sm:w-44 sm:h-44 rounded-full flex items-center justify-center focus:outline-none cursor-pointer hover:scale-105 active:scale-95 transition-transform duration-300 ${
+                  isPlaying ? 'pointer-events-none' : 'pointer-events-auto'
+                }`}
               >
-                {/* Seal Hotspot Button */}
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleUserTrigger();
-                  }}
-                  onTouchStart={(e) => {
-                    e.stopPropagation();
-                    handleUserTrigger();
-                  }}
-                  aria-label="Tap seal to open invitation"
-                  className="pointer-events-auto group relative w-36 h-36 sm:w-44 sm:h-44 rounded-full flex items-center justify-center focus:outline-none cursor-pointer hover:scale-105 active:scale-95 transition-transform duration-300"
-                >
-                  <div className="absolute inset-0 rounded-full bg-[#c5a059]/25 blur-xl animate-pulse group-hover:bg-[#c5a059]/40 transition-all duration-300" />
-                  <div className="absolute inset-3 rounded-full border border-[#ffe082]/40 animate-ping opacity-25 pointer-events-none" />
-                  <div className="absolute inset-5 rounded-full border border-[#f5e7c4]/50 animate-pulse pointer-events-none" />
-                </button>
+                <div className="absolute inset-0 rounded-full bg-[#c5a059]/25 blur-xl animate-pulse group-hover:bg-[#c5a059]/40 transition-all duration-300" />
+                <div className="absolute inset-3 rounded-full border border-[#ffe082]/40 animate-ping opacity-25 pointer-events-none" />
+                <div className="absolute inset-5 rounded-full border border-[#f5e7c4]/50 animate-pulse pointer-events-none" />
+              </button>
 
-                {/* Clean, Cardless Tap Indicator */}
-                <div className="pointer-events-none mt-4 sm:mt-5 flex flex-col items-center text-center select-none">
-                  <span className="text-xs sm:text-sm font-serif font-bold tracking-[0.25em] text-[#ffffff] uppercase drop-shadow-[0_2px_6px_rgba(0,0,0,0.95)]">
-                    ✦ TAP TO OPEN ✦
-                  </span>
-                  <span className="text-[11px] sm:text-xs font-tamil-serif font-semibold text-[#ffe599] tracking-wide drop-shadow-[0_1px_4px_rgba(0,0,0,0.95)] mt-0.5">
-                    அழைப்பிதழைத் திறக்க தட்டவும்
-                  </span>
-                </div>
+              {/* Clean, Cardless Tap Indicator */}
+              <div className="pointer-events-none mt-4 sm:mt-5 flex flex-col items-center text-center select-none">
+                <span className="text-xs sm:text-sm font-serif font-bold tracking-[0.25em] text-[#ffffff] uppercase drop-shadow-[0_2px_6px_rgba(0,0,0,0.95)]">
+                  ✦ TAP TO OPEN ✦
+                </span>
+                <span className="text-[11px] sm:text-xs font-tamil-serif font-semibold text-[#ffe599] tracking-wide drop-shadow-[0_1px_4px_rgba(0,0,0,0.95)] mt-0.5">
+                  அழைப்பிதழைத் திறக்க தட்டவும்
+                </span>
               </div>
-            )}
+            </div>
           </div>
         </div>
       )}

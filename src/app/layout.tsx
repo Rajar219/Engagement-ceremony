@@ -96,6 +96,17 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-[100dvh] bg-[#f0eae1] text-[#231c18] antialiased selection:bg-[#c5a059]/30 selection:text-[#231c18] overflow-x-hidden">
+        {/* Single Universal Background Music Element (Persistent across whole lifecycle) */}
+        <audio
+          id="vp-global-audio"
+          src="/assets/music/invitation-theme.mp3"
+          preload="auto"
+          loop
+          // @ts-ignore
+          playsInline
+          className="hidden pointer-events-none"
+          aria-hidden="true"
+        />
         {children}
       </body>
     </html>
