@@ -75,14 +75,14 @@ export const EnvelopeOpener: React.FC<EnvelopeOpenerProps> = ({ onOpenComplete, 
 
   // Direct seal click/tap interaction: iOS Safari & Android Chrome mobile-safe user gesture
   const handleUserTrigger = useCallback(() => {
-    if (hasTriggeredRef.current) return;
-    hasTriggeredRef.current = true;
-    setIsPlaying(true);
-
     // 1. Play music directly and synchronously within the user gesture call stack
     audioManager.play().catch((err) => {
       console.warn('[EnvelopeOpener] Audio play in user gesture caught error:', err);
     });
+
+    if (hasTriggeredRef.current) return;
+    hasTriggeredRef.current = true;
+    setIsPlaying(true);
 
     // 2. Trigger parent callback
     onOpenStart?.();
@@ -130,7 +130,6 @@ export const EnvelopeOpener: React.FC<EnvelopeOpenerProps> = ({ onOpenComplete, 
           className="fixed inset-0 z-50 h-[100dvh] w-full flex items-center justify-center bg-[#16110e] overflow-hidden cursor-pointer"
           style={{ willChange: 'opacity' }}
           onClick={handleUserTrigger}
-          onTouchStart={handleUserTrigger}
         >
           {/* Centered Mobile Envelope Frame (Max 430px) */}
           <div className="relative w-full max-w-[430px] h-[100dvh] bg-[#1c1613] overflow-hidden shadow-2xl">
@@ -160,10 +159,6 @@ export const EnvelopeOpener: React.FC<EnvelopeOpenerProps> = ({ onOpenComplete, 
               <button
                 type="button"
                 onClick={(e) => {
-                  e.stopPropagation();
-                  handleUserTrigger();
-                }}
-                onTouchStart={(e) => {
                   e.stopPropagation();
                   handleUserTrigger();
                 }}

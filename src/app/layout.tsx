@@ -104,7 +104,15 @@ export default function RootLayout({
           loop
           // @ts-ignore
           playsInline
-          className="hidden pointer-events-none"
+          style={{
+            position: 'fixed',
+            top: '-9999px',
+            left: '-9999px',
+            width: '1px',
+            height: '1px',
+            opacity: 0,
+            pointerEvents: 'none',
+          }}
           aria-hidden="true"
         />
         {children}

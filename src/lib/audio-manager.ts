@@ -18,6 +18,7 @@ class CentralAudioManager {
   private audio: HTMLAudioElement | null = null;
   private listeners: Set<AudioListener> = new Set();
   private hasInitializedListeners = false;
+  private unlockedCtx: any = null;
 
   private state: AudioState = {
     isPlaying: false,
@@ -170,9 +171,32 @@ class CentralAudioManager {
 
     console.log('[Audio] Executing audio.play() in user gesture handler. readyState:', audio.readyState);
 
+    // 1. Hardware session unlock for iOS WebKit & Android Chrome
+    try {
+      if (typeof window !== 'undefined') {
+        const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
+        if (AudioCtx) {
+          if (!this.unlockedCtx) {
+            this.unlockedCtx = new AudioCtx();
+          }
+          if (this.unlockedCtx.state === 'suspended') {
+            this.unlockedCtx.resume();
+          }
+        }
+      }
+    } catch (e) {
+      // Non-blocking
+    }
+
+    // 2. HTMLAudioElement playback
     try {
       audio.loop = true;
       audio.muted = false;
+      audio.volume = 1.0;
+
+      if (audio.readyState === 0) {
+        audio.load();
+      }
       
       const playPromise = audio.play();
       if (playPromise !== undefined) {

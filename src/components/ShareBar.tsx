@@ -29,12 +29,16 @@ export const ShareBar: React.FC<ShareBarProps> = ({ onReopenEnvelope }) => {
   const handleShareWhatsApp = () => {
     const url = getShareUrl();
     const text = encodeURIComponent(
-      `With immense joy, we invite you to celebrate the Engagement Ceremony of Vallalarasu & Priyanka.\n\n` +
-      `Sunday, 13 December 2026\n` +
-      `6:00 PM onwards\n` +
-      `RSM Banquet Hall, Triplicane, Chennai.\n\n` +
-      `Your gracious presence and blessings will make our celebration special.\n\n` +
-      `View our invitation:\n${url}`
+      `✨ திருமண நிச்சயதார்த்த அழைப்பிதழ் ✨\n\n` +
+      `அன்புடையீர் வணக்கம்,\n\n` +
+      `எங்கள் இல்லத்து மணமக்கள்\n` +
+      `ஞா. வள்ளலரசு & க. பிரியங்கா\n` +
+      `ஆகியோரின் திருமண நிச்சயதார்த்த நன்னாளில், தாங்கள் தங்கள் குடும்ப சகிதமாக வருகை தந்து மணமக்களை வாழ்த்தி அருள அன்புடன் அழைக்கின்றோம்.\n\n` +
+      `📅 நாள்: ஞாயிற்றுக்கிழமை, 13 டிசம்பர் 2026\n` +
+      `⏰ நேரம்: மாலை 6:00 மணி முதல்\n` +
+      `📍 இடம்: RSM பேங்க்வெட் ஹால், திருவல்லிக்கேணி, சென்னை.\n\n` +
+      `தங்களின் வருகையே எங்கள் மகிழ்ச்சி! 🙏\n\n` +
+      `அழைப்பிதழைக் காண:\n${url}`
     );
     window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
   };
