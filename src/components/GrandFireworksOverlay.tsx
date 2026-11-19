@@ -31,6 +31,7 @@ interface Rocket {
   colorTheme: string[];
   exploded: boolean;
   whistlePlayed: boolean;
+  hasWhistle?: boolean;
 }
 
 interface GrandFireworksOverlayProps {
@@ -164,10 +165,11 @@ export const GrandFireworksOverlay: React.FC<GrandFireworksOverlayProps> = ({
         prevY: height,
         targetY: height * 0.26,
         vy: -20,
-        launchTime: 400,
+        launchTime: 450,
         colorTheme: GOLD_CHRYSANTHEMUM,
         exploded: false,
         whistlePlayed: false,
+        hasWhistle: true,
       },
       {
         active: false,
@@ -176,7 +178,7 @@ export const GrandFireworksOverlay: React.FC<GrandFireworksOverlayProps> = ({
         prevY: height,
         targetY: height * 0.20,
         vy: -21,
-        launchTime: 650,
+        launchTime: 750,
         colorTheme: ROSE_GOLD_FIREWORK,
         exploded: false,
         whistlePlayed: false,
@@ -188,7 +190,7 @@ export const GrandFireworksOverlay: React.FC<GrandFireworksOverlayProps> = ({
         prevY: height,
         targetY: height * 0.15,
         vy: -22,
-        launchTime: 1100,
+        launchTime: 1400,
         colorTheme: WARM_WHITE_WILLOW,
         exploded: false,
         whistlePlayed: false,
@@ -200,7 +202,7 @@ export const GrandFireworksOverlay: React.FC<GrandFireworksOverlayProps> = ({
         prevY: height,
         targetY: height * 0.29,
         vy: -19,
-        launchTime: 1800,
+        launchTime: 2000,
         colorTheme: LAVENDER_GOLD,
         exploded: false,
         whistlePlayed: false,
@@ -212,7 +214,7 @@ export const GrandFireworksOverlay: React.FC<GrandFireworksOverlayProps> = ({
         prevY: height,
         targetY: height * 0.22,
         vy: -20.5,
-        launchTime: 2300,
+        launchTime: 2500,
         colorTheme: ROYAL_AMBER,
         exploded: false,
         whistlePlayed: false,
@@ -229,6 +231,7 @@ export const GrandFireworksOverlay: React.FC<GrandFireworksOverlayProps> = ({
         colorTheme: GOLD_CHRYSANTHEMUM,
         exploded: false,
         whistlePlayed: false,
+        hasWhistle: true,
       },
     ];
 
@@ -388,7 +391,9 @@ export const GrandFireworksOverlay: React.FC<GrandFireworksOverlayProps> = ({
 
           if (!r.whistlePlayed) {
             r.whistlePlayed = true;
-            fireworksAudio.playRocketWhistle();
+            if (r.hasWhistle) {
+              fireworksAudio.playRocketWhistle();
+            }
           }
 
           r.prevY = r.y;
@@ -455,13 +460,14 @@ export const GrandFireworksOverlay: React.FC<GrandFireworksOverlayProps> = ({
       }
 
       // ==========================================
-      // STAGE 5: Crackling Ground Sparks (2200ms - 4500ms)
+      // STAGE 5: Crackling Ground Sparks (2500ms - 4500ms)
       // ==========================================
+      if (elapsed >= 2500 && !crackleAudioPlayed) {
+        crackleAudioPlayed = true;
+        fireworksAudio.playCrackle();
+      }
+
       if (elapsed >= 2200 && elapsed <= 4500 && Math.random() < 0.18) {
-        if (!crackleAudioPlayed) {
-          crackleAudioPlayed = true;
-          fireworksAudio.playCrackle();
-        }
 
         // Small secondary crackling burst
         const bx = width * 0.2 + Math.random() * (width * 0.6);
