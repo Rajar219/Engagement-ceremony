@@ -16,6 +16,7 @@ import { DirectoryAndRSVPCard } from '@/components/DirectoryAndRSVPCard';
 import { ShareBar } from '@/components/ShareBar';
 import { Footer } from '@/components/Footer';
 import { MusicPlayer } from '@/components/MusicPlayer';
+import { GoldenFloralLiveEffects } from '@/components/GoldenFloralLiveEffects';
 import { audioManager } from '@/lib/audio-manager';
 
 export default function InvitationPage() {
@@ -47,6 +48,9 @@ export default function InvitationPage() {
       <div className="w-full min-h-[100dvh] bg-[#f0eae1] flex justify-center overflow-x-hidden selection:bg-[#c5a059]/30 selection:text-[#231c18]">
         {/* INVITATION WRAPPER: Forced mobile 430px viewport on all devices (PC, Mac, Tablet, Mobile) */}
         <main className="invitation-wrapper relative min-h-[100dvh] w-full max-w-[430px] bg-[#faf8f4] text-[#231c18] shadow-[0_0_50px_rgba(35,28,24,0.14)] overflow-x-hidden">
+          {/* CONTINUOUS GLOBAL GOLDEN FLORAL LIVE EFFECTS (Across every section of the invitation) */}
+          <GoldenFloralLiveEffects />
+
           {/* SECTION 0: FULL-SCREEN TAP-TO-OPEN WAX SEAL INTRO GATE (100dvh) */}
           <EnvelopeOpener
             isOpen={isEnvelopeOpened}
@@ -61,7 +65,7 @@ export default function InvitationPage() {
           <HeroSection isVisible={isEnvelopeOpened} />
 
         {/* Refined Gilded Divider */}
-        <div className="w-full max-w-4xl mx-auto px-4 py-4">
+        <div className="w-full max-w-4xl mx-auto px-4 py-4 relative z-[2]">
           <div className="ornament-divider text-[#c5a059]/40 font-serif text-sm">
             ❦
           </div>
@@ -71,7 +75,7 @@ export default function InvitationPage() {
         <CoupleIntro />
 
         {/* Refined Gilded Divider */}
-        <div className="w-full max-w-4xl mx-auto px-4 py-4">
+        <div className="w-full max-w-4xl mx-auto px-4 py-4 relative z-[2]">
           <div className="ornament-divider text-[#c5a059]/40 font-serif text-sm">
             ❦
           </div>
@@ -81,7 +85,7 @@ export default function InvitationPage() {
         <ScratchHeartDate />
 
         {/* Refined Gilded Divider */}
-        <div className="w-full max-w-4xl mx-auto px-4 py-4">
+        <div className="w-full max-w-4xl mx-auto px-4 py-4 relative z-[2]">
           <div className="ornament-divider text-[#c5a059]/40 font-serif text-sm">
             ❦
           </div>
@@ -91,7 +95,7 @@ export default function InvitationPage() {
         <MainCeremonyCard />
 
         {/* Refined Gilded Divider */}
-        <div className="w-full max-w-4xl mx-auto px-4 py-4">
+        <div className="w-full max-w-4xl mx-auto px-4 py-4 relative z-[2]">
           <div className="ornament-divider text-[#c5a059]/40 font-serif text-sm">
             ❦
           </div>
@@ -101,7 +105,7 @@ export default function InvitationPage() {
         <BlessingsFamilyCard />
 
         {/* Refined Gilded Divider */}
-        <div className="w-full max-w-4xl mx-auto px-4 py-4">
+        <div className="w-full max-w-4xl mx-auto px-4 py-4 relative z-[2]">
           <div className="ornament-divider text-[#c5a059]/40 font-serif text-sm">
             ❦
           </div>
@@ -111,7 +115,7 @@ export default function InvitationPage() {
         <EngagementSection />
 
         {/* Refined Gilded Divider */}
-        <div className="w-full max-w-4xl mx-auto px-4 py-4">
+        <div className="w-full max-w-4xl mx-auto px-4 py-4 relative z-[2]">
           <div className="ornament-divider text-[#c5a059]/40 font-serif text-sm">
             ❦
           </div>
@@ -121,7 +125,7 @@ export default function InvitationPage() {
         <WeddingSection />
 
         {/* Refined Gilded Divider */}
-        <div className="w-full max-w-4xl mx-auto px-4 py-4">
+        <div className="w-full max-w-4xl mx-auto px-4 py-4 relative z-[2]">
           <div className="ornament-divider text-[#c5a059]/40 font-serif text-sm">
             ❦
           </div>
@@ -131,7 +135,7 @@ export default function InvitationPage() {
         <VenueCard />
 
         {/* Refined Gilded Divider */}
-        <div className="w-full max-w-4xl mx-auto px-4 py-4">
+        <div className="w-full max-w-4xl mx-auto px-4 py-4 relative z-[2]">
           <div className="ornament-divider text-[#c5a059]/40 font-serif text-sm">
             ❦
           </div>

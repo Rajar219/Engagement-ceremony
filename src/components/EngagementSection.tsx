@@ -85,7 +85,7 @@ END:VCALENDAR`;
   };
 
   return (
-    <section id="countdown-section" className="relative w-full py-12 px-4 max-w-4xl mx-auto text-center">
+    <section id="countdown-section" className="relative z-[2] w-full py-12 px-4 max-w-4xl mx-auto text-center">
       {/* 04. AUSPICIOUS MOMENT COUNTDOWN TIMER CARD */}
       <div className="luxury-card p-6 sm:p-10 shadow-xl text-center">
         <CornerOrnaments color="text-[#c5a059]/40" />

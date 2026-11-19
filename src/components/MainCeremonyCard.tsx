@@ -26,7 +26,7 @@ export const MainCeremonyCard: React.FC = () => {
   };
 
   return (
-    <section id="ceremony-section" className="relative w-full py-12 px-4 max-w-4xl mx-auto text-center">
+    <section id="ceremony-section" className="relative z-[2] w-full py-12 px-4 max-w-4xl mx-auto text-center">
       {/* ELEVATED LUXURY ESPRESSO & GILDED GOLD CARD (Zero Glassmorphism) */}
       <div className="luxury-dark-card p-6 sm:p-10 shadow-2xl overflow-hidden">
         {/* Delicate Gold Corner Floral Ornaments */}

@@ -8,7 +8,7 @@ export const Footer: React.FC = () => {
   const { closing } = invitationConfig;
 
   return (
-    <footer id="footer-section" className="relative w-full py-16 px-4 bg-gradient-to-b from-transparent via-[#f5f0ea] to-[#eee7dd] text-center border-t border-[#c5a059]/30">
+    <footer id="footer-section" className="relative z-[2] w-full py-16 px-4 bg-gradient-to-b from-transparent via-[#f5f0ea] to-[#eee7dd] text-center border-t border-[#c5a059]/30">
       {/* 13. FINAL THANK-YOU SECTION (Strict Rule: English line, then Tamil line, matching size) */}
       <div className="max-w-2xl mx-auto flex flex-col items-center">
         {/* Minimal Monogram Typography (No Icon Container) */}

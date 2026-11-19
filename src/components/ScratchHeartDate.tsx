@@ -308,7 +308,7 @@ export const ScratchHeartDate: React.FC = () => {
   };
 
   return (
-    <section id="scratch-section" className="relative w-full py-14 px-4 max-w-4xl mx-auto text-center">
+    <section id="scratch-section" className="relative z-[2] w-full py-14 px-4 max-w-4xl mx-auto text-center">
       {/* SECTION HEADER: Save the Date / சுப தேதியைக் குறித்துக் கொள்ளுங்கள் */}
       <div className="mb-6 max-w-lg mx-auto flex flex-col items-center">
         <span className="text-xs sm:text-sm text-[#8e6c2e] font-semibold uppercase tracking-[0.25em] font-serif block mb-0.5">

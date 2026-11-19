@@ -5,7 +5,7 @@ import { CornerOrnaments } from '@/components/CornerOrnaments';
 
 export const DirectoryAndRSVPCard: React.FC = () => {
   return (
-    <section id="directory-section" className="relative w-full py-12 px-4 max-w-4xl mx-auto text-center">
+    <section id="directory-section" className="relative z-[2] w-full py-12 px-4 max-w-4xl mx-auto text-center">
       {/* DIRECTORY CARD: "With Best Compliments From" (Zero Glassmorphism) */}
       <div className="luxury-card p-6 sm:p-10 shadow-xl overflow-hidden text-left">
         <CornerOrnaments />

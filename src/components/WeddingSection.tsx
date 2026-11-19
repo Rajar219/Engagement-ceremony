@@ -6,7 +6,7 @@ import { CornerOrnaments } from '@/components/CornerOrnaments';
 
 export const WeddingSection: React.FC = () => {
   return (
-    <section id="wedding-section" className="relative w-full py-12 px-4 max-w-4xl mx-auto text-center">
+    <section id="wedding-section" className="relative z-[2] w-full py-12 px-4 max-w-4xl mx-auto text-center">
       {/* 07. WEDDING / MUHURTHAM INVITATION CARD (Zero Glassmorphism) */}
       <div className="luxury-card p-6 sm:p-10 shadow-xl text-center">
         <CornerOrnaments color="text-[#c5a059]/40" />

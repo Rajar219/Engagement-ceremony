@@ -6,7 +6,7 @@ import { CornerOrnaments } from '@/components/CornerOrnaments';
 
 export const BlessingsFamilyCard: React.FC = () => {
   return (
-    <section id="blessings-section" className="relative w-full py-12 px-4 max-w-4xl mx-auto text-center">
+    <section id="blessings-section" className="relative z-[2] w-full py-12 px-4 max-w-4xl mx-auto text-center">
       {/* MATCHING LUXURY COTTON-RAG STATIONERY CARD (Zero Glassmorphism) */}
       <div className="luxury-card p-6 sm:p-10 shadow-xl overflow-hidden">
         {/* Delicate Gold Corner Floral Ornaments */}

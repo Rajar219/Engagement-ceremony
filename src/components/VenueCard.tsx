@@ -26,7 +26,7 @@ export const VenueCard: React.FC = () => {
   )}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
 
   return (
-    <section id="venue-section" className="relative w-full py-12 px-4 max-w-4xl mx-auto text-center">
+    <section id="venue-section" className="relative z-[2] w-full py-12 px-4 max-w-4xl mx-auto text-center">
       {/* 08. VENUE & LOCATION HEADER (Strict Rule: English line, then Tamil line, matching size) */}
       <div className="flex flex-col items-center mb-10">
         <span className="text-xs sm:text-sm text-[#8e6c2e] font-semibold uppercase tracking-[0.25em] font-serif block mb-0.5">

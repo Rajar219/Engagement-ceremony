@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { ChevronDown } from 'lucide-react';
-import { GoldenFloralLiveEffects } from '@/components/GoldenFloralLiveEffects';
 
 interface HeroSectionProps {
   isVisible?: boolean;
@@ -157,9 +156,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isVisible = true }) =>
           className="w-full h-full object-cover object-center scale-[1.01]"
         />
       </div>
-
-      {/* FLOATING GOLDEN FLORAL PETALS & LIVE EFFECTS */}
-      <GoldenFloralLiveEffects />
 
       {/* 2. UNIFIED POSTER COMPOSITION (Evenly distributed vertical spacing inside the architectural arch) */}
       <div className="relative z-10 w-full max-w-sm sm:max-w-md mx-auto flex-1 flex flex-col items-center justify-evenly text-center pt-[max(1.75rem,5svh)] pb-2 px-3">

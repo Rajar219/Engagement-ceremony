@@ -40,7 +40,7 @@ export const ShareBar: React.FC<ShareBarProps> = ({ onReopenEnvelope }) => {
   };
 
   return (
-    <section id="share-section" className="w-full py-12 px-4 max-w-2xl mx-auto text-center">
+    <section id="share-section" className="relative z-[2] w-full py-12 px-4 max-w-2xl mx-auto text-center">
       {/* 12. INVITATION SHARING (LUXURY STATIONERY CARD) */}
       <div className="luxury-card p-6 shadow-xl flex flex-col items-center justify-between gap-4 text-center">
         <div className="flex flex-col items-center gap-0.5 text-center">
